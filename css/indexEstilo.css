@@ -1,0 +1,23 @@
+header {
+    width: 100%;
+    background-color: #white;
+}
+
+.contenedor_logo {
+    width: 150px;
+    height: auto;
+    background-color: transparent;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.contenedor_logo img {
+    margin-right: 15px;
+}
+
+.contenedor_logo h1 {
+    font-family: cursive;
+    font-weight: 600;
+    color: black;
+}
