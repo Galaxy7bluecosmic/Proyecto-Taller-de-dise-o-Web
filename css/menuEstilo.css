@@ -1,0 +1,20 @@
+:root {
+    --colorResaltante: #b03000;
+}
+
+.contenedorTabla {
+    border-collapse: collapse;
+    border: 1px solid var(--colorResaltante);
+    border-radius: 8px;
+    overflow: hidden;
+    width: 100%;
+    display: inline-block;
+}
+.contenedorTabla th, .contenedorTabla td {
+    border: 1px solid var(--colorResaltante);
+    padding: 12px 10px;
+}
+.contenedorTabla th {
+    background-color: var(--colorResaltante);
+    color: white;
+}
