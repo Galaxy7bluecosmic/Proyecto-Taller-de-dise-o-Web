@@ -1,23 +1,30 @@
 header {
     width: 100%;
+    /*background-color: #0F2E2A;*/
     background-color: white;
 }
 
 .contenedor_logo {
-    width: 150px;
+    width: 200px;
     height: auto;
-    background-color: transparent;
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left: 10px;
+}
+.contenedor_logo .contenedor_letrasLogo {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0;
 }
 
 .contenedor_logo img {
-    margin-right: 15px;
+    margin-right: 5px;
+    background-color: white;
 }
 
 .contenedor_logo h1 {
-    font-family: cursive;
+    font-family: 'Montserrat', sans-serif;
     font-weight: 600;
-    color: black;
+    color:#0F2E2A;
 }
