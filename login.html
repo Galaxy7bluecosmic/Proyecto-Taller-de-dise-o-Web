@@ -1,34 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css/estilo.css">
+    <link rel="stylesheet" href="css/loginEstilo.css">
     <title>RDA</title>
 </head>
+
 <body>
     <header>
-        <h1>
-            <a href="index.html">RDA</a>
-        </h1>
+        <a href="index.html">
+            <div class="contenedor_logo">
+                <img src="img/tienda-de-comestibles.gif" alt="Iconweb" width="50px" height="50px">
+                <h1>RDE</h1>
+            </div>
+        </a>
     </header>
     <main>
-        <div>
-          <form action="#">
-            <label for="Usuario">Usuario</label>
-            <input type="text" id="Usuario" name="Usuario" placeholder="Usuario" size="32"  ><br>
-            <label for="Contraseña" > Contraseña</label>
-            <input type="text" id="Contraseña" name="Contraseña" placeholder="Contraseña" size="32"><br>
+        <div class="contenedor_formulario">
+            <form action="#">
+                <label for="Usuario">Usuario</label>
+                <input type="text" id="Usuario" name="Usuario" placeholder="Usuario" size="32">
+                <label for="Contraseña"> Contraseña</label>
+                <input type="text" id="Contraseña" name="Contraseña" placeholder="Contraseña" size="32">
 
-           <a href="index.html" name="Iniciar" target="_self">
-            Iniciar Sesión
-           </a><br>
-           <a href="registrarUsuario.html" name="Registrarce" target="_self"> <!-- se debe cambiar el href donde tengas el proyecto y reemplazar la ruta por la que tengas de iniciar sesiony de reistrarce-->
-            Registrate
-           </a><br>
-
-                    
+                <input type="submit" value="Iniciar Sesión" id="botonIniciarSesion">
+                <a href="#">
+                    <small>¿Olvidaste tu contraseña?</small>
+                </a>
+                <hr width="250px">
+                <a href="registrarUsuario.html" name="Registrarce" target="_self">
+                    <!-- se debe cambiar el href donde tengas el proyecto y reemplazar la ruta por la que tengas de iniciar sesiony de reistrarce-->
+                    Registrate
+                </a>
+            </form>
         </div>
-        
     </main>
+    <footer>
+        <p>hola</p>
+    </footer>
 </body>
+
 </html>
