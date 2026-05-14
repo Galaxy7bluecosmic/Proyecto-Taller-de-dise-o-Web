@@ -12,12 +12,6 @@ header {
     align-items: center;
     margin-left: 10px;
 }
-.contenedor_logo .contenedor_letrasLogo {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0;
-}
-
 .contenedor_logo img {
     margin-right: 5px;
     background-color: white;
