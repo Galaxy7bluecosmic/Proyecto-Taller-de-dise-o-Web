@@ -2,8 +2,11 @@ header {
     width: 100%;
     /*background-color: #0F2E2A;*/
     background-color: white;
+    border-bottom: 1px solid black;
 }
-
+header a {
+    text-decoration: none;
+}
 .contenedor_logo {
     width: 200px;
     height: auto;
@@ -12,13 +15,16 @@ header {
     align-items: center;
     margin-left: 10px;
 }
+
 .contenedor_logo img {
     margin-right: 5px;
     background-color: white;
+    cursor: pointer;
 }
 
 .contenedor_logo h1 {
     font-family: 'Montserrat', sans-serif;
     font-weight: 600;
     color:#0F2E2A;
+    cursor: pointer;
 }
