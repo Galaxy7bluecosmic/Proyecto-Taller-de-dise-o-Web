@@ -6,9 +6,11 @@ header {
     display: flex;
     justify-content: center;
 }
+
 header a {
     text-decoration: none;
 }
+
 .contenedor_logo {
     width: 200px;
     height: auto;
@@ -17,8 +19,9 @@ header a {
     align-items: center;
     margin-left: 10px;
 }
+
 .contenedor_logo h1 {
-    color: #0F2E2A;
+    color: #BB231F;
 }
 
 
@@ -33,23 +36,36 @@ header a {
     padding: 20px;
     border-radius: 13px;
 }
+
 .contenedor_formulario form {
     display: flex;
     flex-direction: column;
     align-items: center;
     row-gap: 8px;
 }
+
 .contenedor_formulario label {
     width: 100%;
+    color: #362307;
 }
+
 .contenedor_formulario input {
     padding: 8px;
-    border: 1px solid gray;
+    border: 1px solid rgb(223, 214, 214);
     border-radius: 8px;
+    outline: none;
 }
+
 #botonIniciarSesion {
-    background-color: #0F2E2A;
-    color: white;
+    width: 140px;
+    border: none;
+    background-color: #F6BA12;
+    color: black;
+    border-radius: 20px;
+}
+
+#botonIniciarSesion:hover {
+    background-color: #FFD54A;
 }
 
 main {
