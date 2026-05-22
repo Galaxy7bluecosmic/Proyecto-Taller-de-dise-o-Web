@@ -1,0 +1,25 @@
+/* mejorarlo de urgencia */
+ body { 
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f7f6;
+            color: #333;
+        }
+
+        header {
+            margin-bottom: 20px;
+        }
+
+       
+        /* Estilos para el enlace de regreso */
+        .enlace-regreso {
+            display: inline-block;
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+            transition: color 0.2s;
+        }
+
+        .enlace-regreso:hover {
+            color: #2980b9;
+        }

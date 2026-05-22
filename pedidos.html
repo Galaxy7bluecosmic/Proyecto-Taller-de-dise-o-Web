@@ -4,12 +4,52 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>pedidos RDA</title>
+   <link rel="stylesheet" href="css/pedidos.css">
+    <link rel="stylesheet" href="css/grid/gred-menu.css">
 </head>
 <body>
+
     <header>
         <h2>Tus pedidos</h2>
     </header>
+
+    <!-- Componente Grid -->
+    <div class="tabla-grid">
+    <!-- Fila de Encabezados -->
+        <div class="celda encabezado">Nº Pedido</div>
+        <div class="celda encabezado">Cliente</div>
+        <div class="celda encabezado">Productos seleccionados</div>
+        <div class="celda encabezado">Cantidad</div>
+        <div class="celda encabezado">Total</div>
+        <div class="celda encabezado">Estado</div>
+
+        <!-- Fila 1 -->
+        <div class="celda">#1024</div>
+        <div class="celda">Carlos Mendoza</div>
+        <div class="celda">Ceviche Mixto + Chicha Morada (1L)</div>
+        <div class="celda">1</div>
+        <div class="celda">S/. 45.00</div>
+        <div class="celda"><span class="estado enviado">Enviado</span></div>
+
+        <!-- Fila 2 -->
+        <div class="celda">#1025</div>
+        <div class="celda">Ana Gómez</div>
+        <div class="celda">Lomo Saltado, Anticuchos de Corazón</div>
+        <div class="celda">2</div>
+        <div class="celda">S/. 68.50</div>
+        <div class="celda"><span class="estado en-proceso">En Proceso</span></div>
+
+        <!-- Fila 3 -->
+        <div class="celda">#1026</div>
+        <div class="celda">Luis Peralta</div>
+        <div class="celda">Aji de Gallina Familiar</div>
+        <div class="celda">1</div>
+        <div class="celda">S/. 38.00</div>
+        <div class="celda"><span class="estado preparando">Preparando</span></div>
     
+    <nav>
+        <a href="index.html" class="enlace-regreso">← Volver al Inicio</a>
+    </nav>
     
 </body>
 </html>
