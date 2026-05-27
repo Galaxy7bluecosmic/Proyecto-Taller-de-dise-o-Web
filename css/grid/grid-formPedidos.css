@@ -1,0 +1,32 @@
+/* ===== CARRITO ===== */
+
+.contenedor_carrito{
+    display: grid;
+    gap: 30px;
+}
+
+/* ===== GRID ANIDADO ===== */
+
+.producto_grid{
+    display: grid;
+    grid-template-columns: 220px 1fr 140px;
+    gap: 30px;
+    align-items: center;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:850px){
+
+    .producto_grid{
+        grid-template-columns: 1fr;
+    }
+
+    .producto_acciones{
+        justify-content: flex-start;
+    }
+
+    .modal_contenido{
+        width: 90%;
+    }
+}
