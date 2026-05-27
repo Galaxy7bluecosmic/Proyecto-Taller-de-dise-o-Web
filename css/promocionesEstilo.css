@@ -1,359 +1,460 @@
 /* ===== RESET ===== */
-
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
-    background: #f5f5f5;
+body {
+    background: #f8f9fa;
     color: #222;
+    overflow-x: hidden;
 }
 
-/* ===== CONTENEDOR ===== */
+/* ===== ANIMACIONES KEYFRAMES ===== */
 
-.contenedor_promos{
+/* Entrada suave desde abajo */
+@keyframes fadeUpPromos {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Brillo reflectante para capturar la atención en llamadas a la acción */
+@keyframes brilloEfecto {
+    0% { left: -150%; }
+    50% { left: 150%; }
+    100% { left: 150%; }
+}
+
+/* Pulso de advertencia/atención para las etiquetas de las ofertas */
+@keyframes latidoEtiqueta {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Pulso expandible para el carrito negro */
+@keyframes pulsoCarritoNegro {
+    0% { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
+    50% { box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5), 0 0 0 15px rgba(0, 0, 0, 0); }
+    100% { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
+}
+
+/* Feedback táctil al presionar botones */
+@keyframes clickBoton {
+    0% { transform: scale(1); }
+    50% { transform: scale(0.96); }
+    100% { transform: scale(1); }
+}
+
+
+/* ===== CONTENEDOR ===== */
+.contenedor_promos {
     width: 95%;
     max-width: 1500px;
     margin: 20px auto;
+    animation: fadeUpPromos 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-/* ===== HEADER ===== */
 
-header{
+/* ===== HEADER ===== */
+header {
     background: #111;
     padding: 20px 40px;
     border-radius: 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
 }
 
-.logo_link{
+.logo_link {
     text-decoration: none;
+    transition: transform 0.3s ease;
+}
+.logo_link:hover {
+    transform: scale(1.02);
 }
 
-.contenedor_logo{
+.contenedor_logo {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.contenedor_logo h1{
+.contenedor_logo h1 {
     color: #f5b400;
+    font-size: 30px;
+    font-weight: bold;
 }
 
-.contenedor_logo span{
+.contenedor_logo span {
     color: #ff5c5c;
 }
 
-.menu_principal{
+.menu_principal {
     display: flex;
     gap: 30px;
 }
 
-.menu_principal a{
+.menu_principal a {
     text-decoration: none;
     color: white;
-    transition: .3s;
+    font-weight: bold;
+    position: relative;
+    padding-bottom: 4px;
+    transition: color 0.3s ease;
 }
 
-.menu_principal a:hover{
+.menu_principal a::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    transform: scaleX(0);
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: #f5b400;
+    transform-origin: bottom right;
+    transition: transform 0.25s ease-out;
+}
+
+.menu_principal a:hover {
     color: #f5b400;
 }
 
-.btn_login{
+.menu_principal a:hover::after {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.btn_login {
     text-decoration: none;
     background: #ff5c5c;
     color: white;
     padding: 12px 25px;
     border-radius: 12px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 92, 92, 0.2);
 }
 
-/* ===== HERO ===== */
+.btn_login:hover {
+    background: #e04e4e;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 92, 92, 0.4);
+}
 
-.hero_promos{
+
+/* ===== HERO PROMOS ===== */
+.hero_promos {
     background: #f5b400;
     margin-top: 30px;
     border-radius: 35px;
     padding: 60px;
-    overflow: hidden;
     position: relative;
     overflow: hidden;
-    transition: .3s;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    box-shadow: 0 10px 30px rgba(245, 180, 0, 0.15);
 }
 
-.hero_promos:hover{
-
-    transform: translateY(-8px) scale(1.02);
+.hero_promos:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(245, 180, 0, 0.3);
 }
 
-.hero_texto h2{
-    font-size: 60px;
+.hero_texto h2 {
+    font-size: 55px;
     color: white;
     margin-bottom: 25px;
+    font-weight: 800;
+    line-height: 1.1;
 }
 
-.hero_texto p{
+.hero_texto p {
     color: white;
     line-height: 1.8;
     margin-bottom: 35px;
+    font-size: 1.1rem;
+    max-width: 800px;
 }
 
-.hero_texto a{
+.hero_texto a {
     text-decoration: none;
     background: #ff5c5c;
     color: white;
-    padding: 15px 30px;
+    padding: 16px 35px;
     border-radius: 30px;
     display: inline-block;
     font-weight: bold;
-    overflow: hidden;
     position: relative;
-    overflow: hidden;
-    transition: .3s;
-}
-.hero_texto a:hover{
-    background: #e04e4e;
-    transform: scale(1.05);
+    overflow: hidden; /* Crucial para el destello */
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(255, 92, 92, 0.3);
 }
 
-.hero_imagen img{
+/* Efecto Destello/Brillo en el botón del Hero */
+.hero_texto a::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -150%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.4) 50%, rgba(255,255,255,0) 100%);
+    transform: skewX(-20deg);
+    animation: brilloEfecto 4s infinite ease-in-out;
+}
+
+.hero_texto a:hover {
+    background: #e04e4e;
+    transform: scale(1.05) translateY(-2px);
+    box-shadow: 0 8px 25px rgba(255, 92, 92, 0.5);
+}
+
+.hero_imagen img {
     width: 100%;
     border-radius: 30px;
+    transition: transform 0.5s ease;
+}
+.hero_promos:hover .hero_imagen img {
+    transform: scale(1.02) rotate(1deg);
 }
 
-/* ===== PROMOS ===== */
 
-.promos_destacadas{
+/* ===== PROMOS DESTACADAS ===== */
+.promos_destacadas {
     margin: 60px 0;
 }
 
-.promo_grande{
+.promo_grande {
     border-radius: 35px;
-    overflow: hidden;
-    padding: 40px;
+    padding: 50px;
     color: white;
     position: relative;
-    min-height: 350px;
+    min-height: 380px;
     overflow: hidden;
-    transition: .3s;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
 }
 
-.promo_grande:hover{
-
-    transform: translateY(-8px) scale(1.02);
+.promo_grande:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 45px rgba(0,0,0,0.15);
 }
 
-
-.promo_grande img{
-    width: 250px;
+/* Efecto Zoom y rotación en la comida de las promos */
+.promo_grande img {
+    width: 280px;
+    height: 200px;
+    object-fit: cover;
     position: absolute;
-    right: 20px;
-    bottom: 20px;
+    right: 40px;
+    bottom: 40px;
     border-radius: 25px;
+    transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.5s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-.amarillo{
-    background: #f5b400;
+.promo_grande:hover img {
+    transform: scale(1.08) rotate(-2deg);
+    box-shadow: 0 15px 30px rgba(0,0,0,0.25);
 }
 
-.rojo{
-    background: #ff5c5c;
-}
+.amarillo { background: #f5b400; }
+.rojo { background: #ff5c5c; }
 
-.texto_promo h3{
+.texto_promo h3 {
     font-size: 42px;
-    margin: 20px 0;
+    margin: 25px 0 15px;
     width: 60%;
+    font-weight: 800;
+    letter-spacing: -1px;
+    line-height: 1.1;
 }
 
-.etiqueta{
-    background: rgba(255,255,255,0.2);
-    padding: 10px 18px;
+.etiqueta {
+    background: rgba(255,255,255,0.25);
+    padding: 10px 20px;
     border-radius: 20px;
+    font-weight: bold;
+    display: inline-block;
+    backdrop-filter: blur(5px);
+    animation: latidoEtiqueta 2.5s infinite ease-in-out;
 }
 
-.precios{
-    margin: 25px 0;
+.precios {
+    margin: 20px 0;
     display: flex;
     gap: 20px;
     align-items: center;
 }
 
-.precio_anterior{
+.precio_anterior {
     text-decoration: line-through;
-    opacity: .7;
+    opacity: .75;
     font-size: 24px;
 }
 
-.precio_nuevo{
-    font-size: 40px;
-    font-weight: bold;
+.precio_nuevo {
+    font-size: 44px;
+    font-weight: 900;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
-.descuento{
+.descuento {
     background: white;
     color: #ff5c5c;
     display: inline-block;
     padding: 10px 18px;
     border-radius: 15px;
-    font-weight: bold;
+    font-weight: 900;
     margin-bottom: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
 }
+.amarillo .descuento { color: #f5b400; }
 
-.promo_grande button{
+.promo_grande button {
     border: none;
     background: white;
-    color: #222;
-    padding: 15px 28px;
+    color: #111;
+    padding: 16px 35px;
     border-radius: 20px;
     cursor: pointer;
     font-weight: bold;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
 }
+
+.promo_grande button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+}
+.promo_grande button:active {
+    animation: clickBoton 0.2s ease-out;
+}
+
 
 /* ===== MINI PROMOS ===== */
-
-.mini_card{
-    padding: 35px;
+.mini_card {
+    padding: 40px 35px;
     border-radius: 30px;
     color: white;
-    min-height: 280px;
+    min-height: 300px;
     position: relative;
     overflow: hidden;
-    transition: .3s;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.05);
 }
 
-.mini_card:hover{
-
-    transform: translateY(-8px) scale(1.02);
+.mini_card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(0,0,0,0.15);
 }
 
-.mini_card h3{
-    font-size: 30px;
-    margin-bottom: 20px;
+.mini_card h3 {
+    font-size: 32px;
+    margin-bottom: 15px;
+    font-weight: 800;
+    line-height: 1.1;
 }
 
-.mini_card p{
-    line-height: 1.8;
+.mini_card p {
+    line-height: 1.7;
     margin-bottom: 25px;
+    opacity: 0.95;
+    font-size: 0.95rem;
 }
 
-.mini_precios{
+.mini_precios {
     margin-bottom: 25px;
+    display: flex;
+    align-items: center;
 }
 
-.tachado{
+.tachado {
     text-decoration: line-through;
     margin-right: 15px;
-    opacity: .8;
+    opacity: .75;
+    font-size: 1.1rem;
 }
 
-.nuevo{
-    font-size: 30px;
-    font-weight: bold;
+.nuevo {
+    font-size: 32px;
+    font-weight: 900;
 }
 
-.mini_card button{
+.mini_card button {
     border: none;
-    padding: 15px 25px;
-    border-radius: 15px;
+    padding: 15px 30px;
+    border-radius: 16px;
     background: white;
+    color: #111;
     font-weight: bold;
     cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
 }
 
-/* ===== COLORES ===== */
-
-.morado{
-    background: #b517ff;
+.mini_card button:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+.mini_card button:active {
+    animation: clickBoton 0.2s ease-out;
 }
 
-.verde{
-    background: #7ccf39;
-}
+/* ===== COLORES BBDD ===== */
+.morado { background: #b517ff; }
+.verde { background: #7ccf39; }
+.naranja { background: #ff914d; }
+.celeste { background: #3da5ff; }
 
-.naranja{
-    background: #ff914d;
-}
 
-.celeste{
-    background: #3da5ff;
-}
-
-/* ===== IMAGENES DE FONDO ===== */
-
-.promo_pollo{
-
-    background-image:
-    linear-gradient(
-    rgba(181,23,255,0.70),
-    rgba(181,23,255,0.70)),
-    url("../img/pollos.jpg");
-
+/* ===== CAPAS E IMÁGENES DE FONDO (CON ZOOM AL HOVER) ===== */
+.promo_pollo, .promo_Chifa, .promo_Postres, .promo_Parrilla {
     background-size: cover;
     background-position: center;
+    transition: transform 0.4s ease, background-size 0.4s ease, box-shadow 0.4s ease;
 }
 
-.promo_Chifa{
-
-    background-image:
-    linear-gradient(
-    rgba(124,207,57,0.75),
-    rgba(124,207,57,0.75)),
-    url("../img/chifa.jpg");
-
-    background-size: cover;
-    background-position: center;
-}
-
-.promo_Postres{
-
-    background-image:
-    linear-gradient(
-    rgba(255,145,77,0.75),
-    rgba(255,145,77,0.75)),
-    url("../img/postres.png");
-
-    background-size: cover;
-    background-position: center;
-}
-
-.promo_Parrilla{
-
-    background-image:
-    linear-gradient(
-    rgba(61,165,255,0.75),
-    rgba(61,165,255,0.75)),
-    url("../img/parrilla.jpg");
-
-    background-size: cover;
-    background-position: center;
-}
+.promo_pollo { background-image: linear-gradient(rgba(181,23,255,0.75), rgba(181,23,255,0.75)), url("../img/pollos.jpg"); }
+.promo_Chifa { background-image: linear-gradient(rgba(124,207,57,0.78), rgba(124,207,57,0.78)), url("../img/chifa.jpg"); }
+.promo_Postres { background-image: linear-gradient(rgba(255,145,77,0.78), rgba(255,145,77,0.78)), url("../img/postres.png"); }
+.promo_Parrilla { background-image: linear-gradient(rgba(61,165,255,0.78), rgba(61,165,255,0.78)), url("../img/parrilla.jpg"); }
 
 
-/* ===== MENSAJE ===== */
-
-.mensaje_final{
-    margin: 80px 0;
+/* ===== MENSAJE EMOCIONAL ===== */
+.mensaje_final {
+    margin: 100px 0;
     text-align: center;
+    padding: 0 20px;
 }
 
-.mensaje_final h2{
-    font-size: 45px;
+.mensaje_final h2 {
+    font-size: 42px;
     margin-bottom: 20px;
+    color: #111;
+    font-weight: 800;
 }
 
-.mensaje_final p{
+.mensaje_final p {
     color: #666;
+    font-size: 1.1rem;
 }
 
-/* ===== CARRITO ===== */
 
-.carrito_flotante{
-    position: fixed;
+/* ===== CARRITO FLOTANTE (FIJO EN PANTALLA) ===== */
+.carrito_flotante {
+    position: fixed !important;
     right: 30px;
     bottom: 30px;
     background: #000000;
@@ -365,9 +466,24 @@ header{
     align-items: center;
     gap: 15px;
     font-weight: bold;
+    z-index: 99999; /* Se superpone sin problemas a los banners y fondos */
+    
+    animation: pulsoCarritoNegro 3s ease-in-out infinite;
+    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-.carrito_flotante span{
+.carrito_flotante:hover {
+    background: #1a1a1a;
+    transform: scale(1.05) translateY(-3px);
+    animation-play-state: paused; /* Pausa el pulso para facilitar el click táctil */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
+}
+
+.carrito_flotante:active {
+    transform: scale(0.98) translateY(0);
+}
+
+.carrito_flotante span {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -376,33 +492,56 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
+    font-weight: 800;
+    transition: transform 0.4s ease;
 }
 
+.carrito_flotante:hover span {
+    transform: rotate(360deg);
+}
+
+
 /* ===== RESPONSIVE ===== */
-
 @media(max-width:950px){
-
-    header{
+    header {
         flex-direction: column;
         gap: 20px;
+        padding: 20px;
     }
 
-    .menu_principal{
+    .menu_principal {
         flex-wrap: wrap;
         justify-content: center;
+        gap: 15px;
     }
 
-    .hero_texto h2{
-        font-size: 40px;
+    .hero_promos {
+        padding: 40px 30px;
     }
 
-    .texto_promo h3{
+    .hero_texto h2 {
+        font-size: 38px;
+    }
+
+    .texto_promo h3 {
         width: 100%;
+        font-size: 32px;
     }
 
-    .promo_grande img{
+    .promo_grande {
+        padding: 35px;
+    }
+
+    .promo_grande img {
         position: static;
         width: 100%;
+        height: auto;
         margin-top: 30px;
+    }
+    
+    .carrito_flotante {
+        right: 20px;
+        bottom: 20px;
+        padding: 14px 22px;
     }
 }
