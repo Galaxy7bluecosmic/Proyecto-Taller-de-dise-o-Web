@@ -1,0 +1,74 @@
+/* ===== PANTALLA DE CARGA ===== */
+
+.pantalla_carga{
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    height: 100vh;
+
+    background: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    z-index: 9999;
+
+    animation: desaparecer 2s forwards;
+}
+
+.contenido_carga{
+    text-align: center;
+}
+
+.contenido_carga p{
+    font-size: 28px;
+    color: #555;
+    margin-bottom: 20px;
+}
+
+.contenido_carga img{
+    width: 120px;
+    margin-bottom: 20px;
+
+    animation: flotar 1.5s infinite ease-in-out;
+}
+
+.contenido_carga h1{
+    font-size: 45px;
+    color: #f5b400;
+}
+
+@keyframes desaparecer{
+
+    0%{
+        opacity: 1;
+        visibility: visible;
+    }
+
+    80%{
+        opacity: 1;
+    }
+
+    100%{
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes flotar{
+
+    0%{
+        transform: translateY(0px);
+    }
+
+    50%{
+        transform: translateY(-10px);
+    }
+
+    100%{
+        transform: translateY(0px);
+    }
+}

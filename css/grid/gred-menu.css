@@ -1,40 +1,39 @@
- /* Contenedor principal de la tabla Grid */
-        .tabla-grid {
-            display: grid;
-            /* Definimos 6 columnas con anchos proporcionales */
-            grid-template-columns: 1fr 1.5fr 2fr 1fr 1fr 1.2fr;
-            gap: 1px; /* Crea las líneas divisorias simulando bordes */
-            background-color: #ccc; /* Color del borde */
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-bottom: 30px;
-        }
+ /* ===== CATEGORIAS ===== */
 
-        /* Estilo común para celdas de encabezado y datos */
-        .celda {
-            padding: 12px;
-            background-color: #fff;
-            align-content: center;
-        }
+.categorias_menu{
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
 
-        /* Estilos específicos para el encabezado de la tabla */
-        .encabezado {
-            background-color: #2c3e50;
-            color: #fff;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-        }
+/* ===== PRODUCTOS ===== */
 
-        /* Clases de utilidad para los estados */
-        .estado {
-            display: inline-block;
-            padding: 4px 8px;
-            border-radius: 4px;
-            font-size: 0.85rem;
-            font-weight: bold;
-        }
-        .enviado { background-color: #d4edda; color: #155724; }
-        .en-proceso { background-color: #fff3cd; color: #856404; }
-        .preparando { background-color: #cce5ff; color: #004085; }
+.productos{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 35px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:1200px){
+
+    .productos{
+        grid-template-columns: repeat(3,1fr);
+    }
+}
+
+@media(max-width:900px){
+
+    .productos{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+
+    .productos{
+        grid-template-columns: 1fr;
+    }
+}

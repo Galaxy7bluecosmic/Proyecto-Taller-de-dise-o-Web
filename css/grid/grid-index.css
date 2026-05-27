@@ -1,0 +1,74 @@
+/* ===== HERO ===== */
+
+.hero{
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 40px;
+}
+
+/* ===== MENSAJES ===== */
+
+.mensajes{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 25px;
+}
+
+/* ===== SOBRE NOSOTROS ===== */
+
+.sobre_nosotros{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 50px;
+}
+
+/* ===== BENEFICIOS ===== */
+
+.beneficios{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 30px;
+}
+
+/* ===== FOOTER ===== */
+
+.footer_info{
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 40px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:950px){
+
+    .hero{
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+
+    .hero_imagen{
+        display: flex;
+        justify-content: center;
+    }
+
+    .hero_botones{
+        justify-content: center;
+    }
+
+    .mensajes{
+        grid-template-columns: 1fr;
+    }
+
+    .sobre_nosotros{
+        grid-template-columns: 1fr;
+    }
+
+    .beneficios{
+        grid-template-columns: 1fr;
+    }
+
+    .footer_info{
+        grid-template-columns: 1fr;
+    }
+}

@@ -1,20 +1,244 @@
-:root {
-    --colorResaltante: #b03000;
+/* ===== RESET ===== */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
-.contenedorTabla {
-    border-collapse: collapse;
-    border: 1px solid var(--colorResaltante);
-    border-radius: 8px;
-    overflow: hidden;
-    width: 100%;
-    display: inline-block;
+body{
+    background: #f5f5f5;
+    color: #222;
 }
-.contenedorTabla th, .contenedorTabla td {
-    border: 1px solid var(--colorResaltante);
-    padding: 12px 10px;
+
+/* ===== CONTENEDOR ===== */
+
+.contenedor_menu{
+    width: 95%;
+    max-width: 1500px;
+    margin: 20px auto;
 }
-.contenedorTabla th {
-    background-color: var(--colorResaltante);
+
+/* ===== HEADER ===== */
+
+header{
+    background: #111;
+    padding: 20px 40px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo_link{
+    text-decoration: none;
+}
+
+.contenedor_logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contenedor_logo h1{
+    color: #f5b400;
+    font-size: 30px;
+}
+
+.contenedor_logo span{
+    color: #ff5c5c;
+}
+
+/* ===== MENU ===== */
+
+.menu_principal{
+    display: flex;
+    gap: 35px;
+}
+
+.menu_principal a{
+    text-decoration: none;
     color: white;
+    transition: .3s;
+}
+
+.menu_principal a:hover{
+    color: #f5b400;
+}
+
+/* ===== LOGIN ===== */
+
+.btn_login{
+    text-decoration: none;
+    background: #ff5c5c;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-weight: bold;
+}
+
+/* ===== TITULO ===== */
+
+.titulo_menu{
+    text-align: center;
+    margin: 60px 0 30px;
+}
+
+.titulo_menu h2{
+    color: #ff5c5c;
+    font-size: 50px;
+}
+
+/* ===== CATEGORIAS ===== */
+
+.categorias_menu{
+    margin-bottom: 60px;
+}
+
+.categoria{
+    text-decoration: none;
+    background: white;
+    color: #555;
+    padding: 14px 28px;
+    border-radius: 30px;
+    transition: .3s;
+    box-shadow: 0px 3px 10px rgba(0,0,0,0.05);
+}
+
+.categoria:hover{
+    background: #f5b400;
+    color: white;
+}
+
+.activa{
+    background: #ff5c5c;
+    color: white;
+}
+
+/* ===== PRODUCTOS ===== */
+
+.card_producto{
+    background: white;
+    border-radius: 25px;
+    overflow: hidden;
+    box-shadow: 0px 5px 15px rgba(0,0,0,0.08);
+    transition: .3s;
+    display: flex;
+    flex-direction: column;
+}
+
+.card_producto:hover{
+    transform: translateY(-5px);
+}
+
+.card_producto img{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+/* ===== CONTENIDO ===== */
+
+.contenido_producto{
+    padding: 25px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.contenido_producto h3{
+    margin-bottom: 15px;
+    font-size: 28px;
+}
+
+.contenido_producto p{
+    color: #666;
+    line-height: 1.7;
+}
+
+/* ===== DETALLE ===== */
+
+.detalle_producto{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 25px 0;
+}
+
+.detalle_producto span{
+    color: #ff5c5c;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.detalle_producto p{
+    color: #777;
+}
+
+/* ===== BOTON ===== */
+
+.card_producto button{
+    margin-top: auto;
+    border: none;
+    background: #f5b400;
+    color: white;
+    padding: 16px;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: .3s;
+}
+
+.card_producto button:hover{
+    background: #ff5c5c;
+}
+
+/* ===== CARRITO ===== */
+
+.carrito_flotante{
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background: #ff5c5c;
+    color: white;
+    text-decoration: none;
+    padding: 18px 25px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: bold;
+    box-shadow: 0px 5px 20px rgba(0,0,0,0.2);
+}
+
+.carrito_flotante span{
+    background: white;
+    color: #ff5c5c;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:900px){
+
+    header{
+        flex-direction: column;
+        gap: 25px;
+    }
+
+    .menu_principal{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .titulo_menu h2{
+        font-size: 38px;
+    }
 }
