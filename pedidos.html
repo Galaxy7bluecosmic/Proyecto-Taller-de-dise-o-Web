@@ -1,233 +1,105 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Pedidos | BocadosDeAyuda</title>
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/pedidos.css">
-
     <link rel="stylesheet" href="css/grid/grid-pedidos.css">
-
 </head>
-
 <body>
 
     <div class="contenedor_pedidos">
-
-        <!-- HEADER -->
-
-        <header>
-
+        <header class="header_principal">
             <a href="index.html" class="logo_link">
-
                 <div class="contenedor_logo">
-
-                    <img src="img/tienda-de-comestibles.gif" width="50">
-
+                    <img src="img/tienda-de-comestibles.gif" width="50" alt="Logo">
                     <h1>Bocados<span>DeAyuda</span></h1>
-
                 </div>
-
             </a>
-
             <nav class="menu_principal">
-
                 <a href="index.html">Inicio</a>
-
                 <a href="menu.html">Menú</a>
-
                 <a href="promociones.html">Promociones</a>
-
-                <a href="form_pedidos.html">Delivery</a>
-
+                <a href="form_pedidos.html" class="active">Delivery</a>
             </nav>
-
-            <a href="login.html" class="btn_login">
-
-                Login
-
-            </a>
-
+            <a href="login.html" class="btn_login">Login</a>
         </header>
 
-        <!-- TITULO -->
-
-        <section class="titulo_pedidos">
-
-            <h2>
-                🛒 Tus pedidos seleccionados
-            </h2>
-
-            <p>
-                Revisa tus productos antes de finalizar tu compra.
-            </p>
-
+        <section class="banner_titulo">
+            <div class="banner_info">
+                <span class="tag_fastfood">Historial de Antojos</span>
+                <h2>FRESH, BOLD & TASTY</h2>
+                <p>Monitorea el estado de tus pedidos en tiempo real.</p>
+            </div>
         </section>
 
-        <!-- PEDIDOS -->
-
-        <section class="lista_pedidos">
-
-            <!-- CARD -->
-
-            <article class="card_pedido">
-
-                <img src="img/lomoSaltado.webp" alt="Lomo Saltado">
-
-                <div class="info_pedido">
-
-                    <h3>
-                        Lomo Saltado
-                    </h3>
-
-                    <p>
-                        Carne salteada con cebolla, tomate,
-                        papas fritas y arroz blanco.
-                    </p>
-
-                    <div class="detalle_pedido">
-
-                        <span>
-                            Cantidad: 2
-                        </span>
-
-                        <span class="precio">
-                            S/ 37.80
-                        </span>
-
+        <main class="seccion_pedidos">
+            <h3 class="titulo_lista">Mis Pedidos Recientes</h3>
+            
+            <div class="lista_pedidos_grid">
+                
+                <article class="card_pedido en_camino">
+                    <div class="foto_comida">
+                        <img src="img/lomoSaltado.webp" alt="Lomo Saltado">
                     </div>
-
-                </div>
-
-            </article>
-
-            <!-- CARD -->
-
-            <article class="card_pedido">
-
-                <img src="img/ceviche.webp" alt="Ceviche">
-
-                <div class="info_pedido">
-
-                    <h3>
-                        Ceviche Clásico
-                    </h3>
-
-                    <p>
-                        Pescado fresco con limón peruano,
-                        choclo, cancha y camote.
-                    </p>
-
-                    <div class="detalle_pedido">
-
-                        <span>
-                            Cantidad: 1
-                        </span>
-
-                        <span class="precio">
-                            S/ 24.90
-                        </span>
-
+                    <div class="info_comida">
+                        <h4>Lomo Saltado</h4>
+                        <p>Carne salteada con cebolla, tomate, papas fritas y arroz blanco.</p>
                     </div>
-
-                </div>
-
-            </article>
-
-            <!-- CARD -->
-
-            <article class="card_pedido">
-
-                <img src="img/picarones.jpg" alt="Picarones">
-
-                <div class="info_pedido">
-
-                    <h3>
-                        Picarones
-                    </h3>
-
-                    <p>
-                        Tradicional postre peruano con miel
-                        de chancaca artesanal.
-                    </p>
-
-                    <div class="detalle_pedido">
-
-                        <span>
-                            Cantidad: 3
-                        </span>
-
-                        <span class="precio">
-                            S/ 38.70
-                        </span>
-
+                    <div class="valores_comida">
+                        <span class="cantidad">Cant: 2</span>
+                        <span class="precio_total">S/ 75.60</span>
                     </div>
+                    <div class="estado_pedido">
+                        <span class="status badge_camino">🚚 En camino</span>
+                        <button class="btn_cancelar">Cancelar Pedido</button>
+                    </div>
+                </article>
 
-                </div>
+                <article class="card_pedido entregado">
+                    <div class="foto_comida">
+                        <img src="img/ceviche.webp" alt="Ceviche Clásico">
+                    </div>
+                    <div class="info_comida">
+                        <h4>Ceviche Clásico</h4>
+                        <p>Pescado fresco con limón peruano, choclo, cancha y camote.</p>
+                    </div>
+                    <div class="valores_comida">
+                        <span class="cantidad">Cant: 1</span>
+                        <span class="precio_total">S/ 24.90</span>
+                    </div>
+                    <div class="estado_pedido">
+                        <span class="status badge_entregado">✅ Entregado</span>
+                    </div>
+                </article>
 
-            </article>
-
-        </section>
-
-        <!-- RESUMEN -->
-
-        <section class="resumen_compra">
-
-            <div class="resumen_card">
-
-                <h3>
-                    Resumen de compra
-                </h3>
-
-                <div class="fila_resumen">
-
-                    <p>Productos</p>
-
-                    <span>6</span>
-
-                </div>
-
-                <div class="fila_resumen">
-
-                    <p>Subtotal</p>
-
-                    <span>S/ 101.40</span>
-
-                </div>
-
-                <div class="fila_resumen">
-
-                    <p>Delivery</p>
-
-                    <span>S/ 7.00</span>
-
-                </div>
-
-                <div class="fila_resumen total">
-
-                    <p>Total</p>
-
-                    <span>S/ 108.40</span>
-
-                </div>
-
-                <a href="Pago.html" class="btn_pagar">
-
-                    Pagar ahora
-
-                </a>
+                <article class="card_pedido en_camino">
+                    <div class="foto_comida">
+                        <img src="img/picarones.jpg" alt="Picarones">
+                    </div>
+                    <div class="info_comida">
+                        <h4>Picarones</h4>
+                        <p>Tradicional postre peruano con miel de chancaca artesanal.</p>
+                    </div>
+                    <div class="valores_comida">
+                        <span class="cantidad">Cant: 3</span>
+                        <span class="precio_total">S/ 38.70</span>
+                    </div>
+                    <div class="estado_pedido">
+                        <span class="status badge_camino">🚚 En camino</span>
+                        <button class="btn_cancelar">Cancelar Pedido</button>
+                    </div>
+                </article>
 
             </div>
 
-        </section>
-
+            <div class="contenedor_volver">
+                <a href="index.html" class="btn_volver">Volver al Inicio</a>
+            </div>
+        </main>
     </div>
 
 </body>
-
 </html>

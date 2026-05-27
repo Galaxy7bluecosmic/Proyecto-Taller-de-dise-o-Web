@@ -1,240 +1,253 @@
-/* ===== RESET ===== */
+/* ---- ESTILOS GENERALES Y VARIABLES ---- */
+:root {
+    --color-fondo: #fcf8f2;
+    --color-banner: #f4c444;
+    --color-texto-oscuro: #2c2c2c;
+    --color-texto-mutado: #6e6e6e;
+    --color-blanco: #ffffff;
+    --color-azul-btn: #2b78f6;
+    --color-azul-hover: #1a5ecb;
+    --color-rojo-coral: #ff4747;
+    --color-rojo-hover: #e03232;
+    --color-verde: #2ecc71;
+    --fuente-principal: 'Poppins', sans-serif;
+    --shadow-suave: 0 10px 30px rgba(0, 0, 0, 0.05);
+    --transition-rapida: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, Helvetica, sans-serif;
 }
 
-body{
-    background: #f5f5f5;
-    color: #222;
+body {
+    font-family: var(--fuente-principal);
+    background-color: var(--color-fondo);
+    color: var(--color-texto-oscuro);
+    overflow-x: hidden;
 }
 
-/* ===== CONTENEDOR ===== */
-
-.contenedor_pedidos{
-    width: 95%;
-    max-width: 1450px;
-    margin: 20px auto;
+/* ---- ANIMACIONES GENERALES ---- */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
-/* ===== HEADER ===== */
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.03); }
+    100% { transform: scale(1); }
+}
 
-header{
-    background: #111;
+/* ---- HEADER ---- */
+.header_principal {
+    background-color: var(--color-blanco);
     padding: 20px 40px;
-    border-radius: 20px;
+    box-shadow: var(--shadow-suave);
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.logo_link{
-    text-decoration: none;
-}
-
-.contenedor_logo{
+.contenedor_logo {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.contenedor_logo h1{
-    color: #f5b400;
-}
-
-.contenedor_logo span{
-    color: #ff5c5c;
-}
-
-.menu_principal{
-    display: flex;
-    gap: 30px;
-}
-
-.menu_principal a{
+.logo_link {
     text-decoration: none;
-    color: white;
-    transition: .3s;
+    color: inherit;
 }
 
-.menu_principal a:hover{
-    color: #f5b400;
+.contenedor_logo h1 {
+    font-size: 1.4rem;
+    font-weight: 700;
 }
 
-/* ===== LOGIN ===== */
+.contenedor_logo span {
+    color: var(--color-banner);
+}
 
-.btn_login{
+.menu_principal a {
     text-decoration: none;
-    background: #ff5c5c;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 12px;
-    transition: .3s;
+    color: var(--color-texto-mutado);
+    margin: 0 15px;
+    font-weight: 500;
+    transition: var(--transition-rapida);
 }
 
-.btn_login:hover{
-    transform: scale(1.05);
-    background: #f5b400;
+.menu_principal a:hover, .menu_principal a.active {
+    color: var(--color-texto-oscuro);
+    border-bottom: 2px solid var(--color-banner);
 }
 
-/* ===== TITULO ===== */
-
-.titulo_pedidos{
-    text-align: center;
-    margin: 60px 0;
+.btn_login {
+    background-color: var(--color-azul-btn);
+    color: var(--color-blanco);
+    text-decoration: none;
+    padding: 10px 24px;
+    border-radius: 25px;
+    font-weight: 500;
+    transition: var(--transition-rapida);
 }
 
-.titulo_pedidos h2{
-    font-size: 50px;
-    color: #ff5c5c;
-    margin-bottom: 15px;
+.btn_login:hover {
+    background-color: var(--color-azul-hover);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(43, 120, 246, 0.3);
 }
 
-.titulo_pedidos p{
-    color: #666;
-    font-size: 18px;
-}
-
-/* ===== CARD PEDIDOS ===== */
-
-.card_pedido{
-    background: white;
-    border-radius: 30px;
+/* ---- BANNER / HERO ---- */
+.banner_titulo {
+    background-color: var(--color-banner);
+    margin: 30px 40px;
+    padding: 50px;
+    border-radius: 24px;
+    color: var(--color-texto-oscuro);
+    animation: fadeInUp 0.6s ease-out;
+    position: relative;
     overflow: hidden;
-    box-shadow: 0px 5px 20px rgba(0,0,0,0.08);
-    transition: .3s;
 }
 
-.card_pedido:hover{
-    transform: translateY(-8px);
+.tag_fastfood {
+    background-color: rgba(255, 255, 255, 0.3);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
 }
 
-.card_pedido img{
+.banner_info h2 {
+    font-size: 2.8rem;
+    font-weight: 800;
+    margin: 15px 0 5px 0;
+    letter-spacing: -1px;
+}
+
+/* ---- TARJETAS DE PEDIDOS (ESTILOS INTERNOS) ---- */
+.card_pedido {
+    background-color: var(--color-blanco);
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: var(--shadow-suave);
+    transition: var(--transition-rapida);
+}
+
+.card_pedido:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+}
+
+.foto_comida img {
     width: 100%;
-    height: 250px;
+    height: 100%;
     object-fit: cover;
+    border-radius: 14px;
 }
 
-.info_pedido{
-    padding: 30px;
+.info_comida h4 {
+    font-size: 1.15rem;
+    color: var(--color-texto-oscuro);
+    margin-bottom: 6px;
 }
 
-.info_pedido h3{
-    font-size: 32px;
-    margin-bottom: 20px;
+.info_comida p {
+    font-size: 0.9rem;
+    color: var(--color-texto-mutado);
+    line-height: 1.4;
 }
 
-.info_pedido p{
-    color: #666;
-    line-height: 1.8;
-}
-
-/* ===== DETALLE ===== */
-
-.detalle_pedido{
-    margin-top: 25px;
+.valores_comida {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.precio{
-    color: #ff5c5c;
-    font-size: 30px;
-    font-weight: bold;
-}
-
-/* ===== RESUMEN ===== */
-
-.resumen_compra{
-    margin-top: 70px;
-    display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
-.resumen_card{
-    background: white;
-    width: 450px;
-    padding: 40px;
-    border-radius: 30px;
-    box-shadow: 0px 5px 20px rgba(0,0,0,0.08);
+.valores_comida .cantidad {
+    font-size: 0.85rem;
+    color: var(--color-texto-mutado);
 }
 
-.resumen_card h3{
-    font-size: 35px;
-    margin-bottom: 30px;
-    text-align: center;
+.valores_comida .precio_total {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--color-texto-oscuro);
+    margin-top: 2px;
 }
 
-.fila_resumen{
+/* ---- ESTADOS Y BADGES ---- */
+.estado_pedido {
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
-    color: #555;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
 }
 
-.total{
-    font-size: 24px;
-    font-weight: bold;
-    color: #222;
-    margin-top: 30px;
-}
-
-/* ===== BOTON PAGAR ===== */
-
-.btn_pagar{
-    margin-top: 35px;
-    display: block;
+.status {
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    font-weight: 600;
     text-align: center;
-    text-decoration: none;
-    background: #ff5c5c;
-    color: white;
-    padding: 18px;
-    border-radius: 18px;
-    font-size: 18px;
-    font-weight: bold;
-    transition: .3s;
 }
 
-.btn_pagar:hover{
-    background: #f5b400;
+.badge_camino {
+    background-color: #fff3cd;
+    color: #856404;
+    animation: pulse 2s infinite ease-in-out;
+}
+
+.badge_entregado {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* ---- BOTONES DE ACCIÓN Y ANIMACIONES ---- */
+.btn_cancelar {
+    background-color: var(--color-rojo-coral);
+    color: var(--color-blanco);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-family: var(--fuente-principal);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition-rapida);
+}
+
+.btn_cancelar:hover {
+    background-color: var(--color-rojo-hover);
     transform: scale(1.03);
 }
 
-/* ===== ANIMACIONES BOTONES ===== */
-
-button,
-a{
-    transition: .3s;
+.contenedor_volver {
+    margin-top: 40px;
+    text-align: center;
 }
 
-button:hover,
-a:hover{
+.btn_volver {
+    display: inline-block;
+    background-color: var(--color-texto-oscuro);
+    color: var(--color-blanco);
+    text-decoration: none;
+    padding: 14px 35px;
+    border-radius: 30px;
+    font-weight: 600;
+    transition: var(--transition-rapida);
+}
+
+.btn_volver:hover {
+    background-color: var(--color-banner);
+    color: var(--color-texto-oscuro);
     transform: translateY(-3px);
-}
-
-/* ===== RESPONSIVE ===== */
-
-@media(max-width:900px){
-
-    header{
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .menu_principal{
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .titulo_pedidos h2{
-        font-size: 38px;
-    }
-
-    .resumen_card{
-        width: 100%;
-    }
+    box-shadow: 0 8px 20px rgba(244, 196, 68, 0.4);
 }
