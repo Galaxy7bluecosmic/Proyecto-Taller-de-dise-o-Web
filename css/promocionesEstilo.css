@@ -1,0 +1,408 @@
+/* ===== RESET ===== */
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background: #f5f5f5;
+    color: #222;
+}
+
+/* ===== CONTENEDOR ===== */
+
+.contenedor_promos{
+    width: 95%;
+    max-width: 1500px;
+    margin: 20px auto;
+}
+
+/* ===== HEADER ===== */
+
+header{
+    background: #111;
+    padding: 20px 40px;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo_link{
+    text-decoration: none;
+}
+
+.contenedor_logo{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.contenedor_logo h1{
+    color: #f5b400;
+}
+
+.contenedor_logo span{
+    color: #ff5c5c;
+}
+
+.menu_principal{
+    display: flex;
+    gap: 30px;
+}
+
+.menu_principal a{
+    text-decoration: none;
+    color: white;
+    transition: .3s;
+}
+
+.menu_principal a:hover{
+    color: #f5b400;
+}
+
+.btn_login{
+    text-decoration: none;
+    background: #ff5c5c;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 12px;
+}
+
+/* ===== HERO ===== */
+
+.hero_promos{
+    background: #f5b400;
+    margin-top: 30px;
+    border-radius: 35px;
+    padding: 60px;
+    overflow: hidden;
+    position: relative;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.hero_promos:hover{
+
+    transform: translateY(-8px) scale(1.02);
+}
+
+.hero_texto h2{
+    font-size: 60px;
+    color: white;
+    margin-bottom: 25px;
+}
+
+.hero_texto p{
+    color: white;
+    line-height: 1.8;
+    margin-bottom: 35px;
+}
+
+.hero_texto a{
+    text-decoration: none;
+    background: #ff5c5c;
+    color: white;
+    padding: 15px 30px;
+    border-radius: 30px;
+    display: inline-block;
+    font-weight: bold;
+    overflow: hidden;
+    position: relative;
+    overflow: hidden;
+    transition: .3s;
+}
+.hero_texto a:hover{
+    background: #e04e4e;
+    transform: scale(1.05);
+}
+
+.hero_imagen img{
+    width: 100%;
+    border-radius: 30px;
+}
+
+/* ===== PROMOS ===== */
+
+.promos_destacadas{
+    margin: 60px 0;
+}
+
+.promo_grande{
+    border-radius: 35px;
+    overflow: hidden;
+    padding: 40px;
+    color: white;
+    position: relative;
+    min-height: 350px;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.promo_grande:hover{
+
+    transform: translateY(-8px) scale(1.02);
+}
+
+
+.promo_grande img{
+    width: 250px;
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    border-radius: 25px;
+}
+
+.amarillo{
+    background: #f5b400;
+}
+
+.rojo{
+    background: #ff5c5c;
+}
+
+.texto_promo h3{
+    font-size: 42px;
+    margin: 20px 0;
+    width: 60%;
+}
+
+.etiqueta{
+    background: rgba(255,255,255,0.2);
+    padding: 10px 18px;
+    border-radius: 20px;
+}
+
+.precios{
+    margin: 25px 0;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.precio_anterior{
+    text-decoration: line-through;
+    opacity: .7;
+    font-size: 24px;
+}
+
+.precio_nuevo{
+    font-size: 40px;
+    font-weight: bold;
+}
+
+.descuento{
+    background: white;
+    color: #ff5c5c;
+    display: inline-block;
+    padding: 10px 18px;
+    border-radius: 15px;
+    font-weight: bold;
+    margin-bottom: 25px;
+}
+
+.promo_grande button{
+    border: none;
+    background: white;
+    color: #222;
+    padding: 15px 28px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* ===== MINI PROMOS ===== */
+
+.mini_card{
+    padding: 35px;
+    border-radius: 30px;
+    color: white;
+    min-height: 280px;
+    position: relative;
+    overflow: hidden;
+    transition: .3s;
+}
+
+.mini_card:hover{
+
+    transform: translateY(-8px) scale(1.02);
+}
+
+.mini_card h3{
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+.mini_card p{
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.mini_precios{
+    margin-bottom: 25px;
+}
+
+.tachado{
+    text-decoration: line-through;
+    margin-right: 15px;
+    opacity: .8;
+}
+
+.nuevo{
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.mini_card button{
+    border: none;
+    padding: 15px 25px;
+    border-radius: 15px;
+    background: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+/* ===== COLORES ===== */
+
+.morado{
+    background: #b517ff;
+}
+
+.verde{
+    background: #7ccf39;
+}
+
+.naranja{
+    background: #ff914d;
+}
+
+.celeste{
+    background: #3da5ff;
+}
+
+/* ===== IMAGENES DE FONDO ===== */
+
+.promo_pollo{
+
+    background-image:
+    linear-gradient(
+    rgba(181,23,255,0.70),
+    rgba(181,23,255,0.70)),
+    url("../img/pollos.jpg");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.promo_Chifa{
+
+    background-image:
+    linear-gradient(
+    rgba(124,207,57,0.75),
+    rgba(124,207,57,0.75)),
+    url("../img/chifa.jpg");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.promo_Postres{
+
+    background-image:
+    linear-gradient(
+    rgba(255,145,77,0.75),
+    rgba(255,145,77,0.75)),
+    url("../img/postres.png");
+
+    background-size: cover;
+    background-position: center;
+}
+
+.promo_Parrilla{
+
+    background-image:
+    linear-gradient(
+    rgba(61,165,255,0.75),
+    rgba(61,165,255,0.75)),
+    url("../img/parrilla.jpg");
+
+    background-size: cover;
+    background-position: center;
+}
+
+
+/* ===== MENSAJE ===== */
+
+.mensaje_final{
+    margin: 80px 0;
+    text-align: center;
+}
+
+.mensaje_final h2{
+    font-size: 45px;
+    margin-bottom: 20px;
+}
+
+.mensaje_final p{
+    color: #666;
+}
+
+/* ===== CARRITO ===== */
+
+.carrito_flotante{
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background: #000000;
+    color: white;
+    text-decoration: none;
+    padding: 18px 25px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: bold;
+}
+
+.carrito_flotante span{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: white;
+    color: #b53838;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:950px){
+
+    header{
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .menu_principal{
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .hero_texto h2{
+        font-size: 40px;
+    }
+
+    .texto_promo h3{
+        width: 100%;
+    }
+
+    .promo_grande img{
+        position: static;
+        width: 100%;
+        margin-top: 30px;
+    }
+}

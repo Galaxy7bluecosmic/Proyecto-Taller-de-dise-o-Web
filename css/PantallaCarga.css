@@ -16,7 +16,7 @@
 
     z-index: 9999;
 
-    animation: desaparecer 2s forwards;
+    animation: desaparecer 1s forwards;
 }
 
 .contenido_carga{
@@ -40,6 +40,7 @@
     font-size: 45px;
     color: #f5b400;
 }
+
 
 @keyframes desaparecer{
 

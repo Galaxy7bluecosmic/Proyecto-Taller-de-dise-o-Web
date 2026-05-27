@@ -1,0 +1,51 @@
+/* ===== HERO ===== */
+
+.hero_promos{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+
+/* ===== PROMOS DESTACADAS ===== */
+
+.promos_destacadas{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+}
+
+/* ===== MINI PROMOS ===== */
+
+.mini_promos{
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    gap: 25px;
+}
+
+/* ===== RESPONSIVE ===== */
+
+@media(max-width:1100px){
+
+    .mini_promos{
+        grid-template-columns: repeat(2,1fr);
+    }
+}
+
+@media(max-width:900px){
+
+    .hero_promos{
+        grid-template-columns: 1fr;
+    }
+
+    .promos_destacadas{
+        grid-template-columns: 1fr;
+    }
+}
+
+@media(max-width:650px){
+
+    .mini_promos{
+        grid-template-columns: 1fr;
+    }
+}

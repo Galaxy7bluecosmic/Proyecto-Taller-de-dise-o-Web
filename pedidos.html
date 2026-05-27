@@ -1,55 +1,233 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>pedidos RDA</title>
-   <link rel="stylesheet" href="css/pedidos.css">
-    <link rel="stylesheet" href="css/grid/gred-menu.css">
+
+    <title>Pedidos | BocadosDeAyuda</title>
+
+    <link rel="stylesheet" href="css/pedidos.css">
+
+    <link rel="stylesheet" href="css/grid/grid-pedidos.css">
+
 </head>
+
 <body>
 
-    <header>
-        <h2>Tus pedidos</h2>
-    </header>
+    <div class="contenedor_pedidos">
 
-    <!-- Componente Grid -->
-    <div class="tabla-grid">
-    <!-- Fila de Encabezados -->
-        <div class="celda encabezado">Nº Pedido</div>
-        <div class="celda encabezado">Cliente</div>
-        <div class="celda encabezado">Productos seleccionados</div>
-        <div class="celda encabezado">Cantidad</div>
-        <div class="celda encabezado">Total</div>
-        <div class="celda encabezado">Estado</div>
+        <!-- HEADER -->
 
-        <!-- Fila 1 -->
-        <div class="celda">#1024</div>
-        <div class="celda">Carlos Mendoza</div>
-        <div class="celda">Ceviche Mixto + Chicha Morada (1L)</div>
-        <div class="celda">1</div>
-        <div class="celda">S/. 45.00</div>
-        <div class="celda"><span class="estado enviado">Enviado</span></div>
+        <header>
 
-        <!-- Fila 2 -->
-        <div class="celda">#1025</div>
-        <div class="celda">Ana Gómez</div>
-        <div class="celda">Lomo Saltado, Anticuchos de Corazón</div>
-        <div class="celda">2</div>
-        <div class="celda">S/. 68.50</div>
-        <div class="celda"><span class="estado en-proceso">En Proceso</span></div>
+            <a href="index.html" class="logo_link">
 
-        <!-- Fila 3 -->
-        <div class="celda">#1026</div>
-        <div class="celda">Luis Peralta</div>
-        <div class="celda">Aji de Gallina Familiar</div>
-        <div class="celda">1</div>
-        <div class="celda">S/. 38.00</div>
-        <div class="celda"><span class="estado preparando">Preparando</span></div>
-    
-    <nav>
-        <a href="index.html" class="enlace-regreso">← Volver al Inicio</a>
-    </nav>
-    
+                <div class="contenedor_logo">
+
+                    <img src="img/tienda-de-comestibles.gif" width="50">
+
+                    <h1>Bocados<span>DeAyuda</span></h1>
+
+                </div>
+
+            </a>
+
+            <nav class="menu_principal">
+
+                <a href="index.html">Inicio</a>
+
+                <a href="menu.html">Menú</a>
+
+                <a href="promociones.html">Promociones</a>
+
+                <a href="form_pedidos.html">Delivery</a>
+
+            </nav>
+
+            <a href="login.html" class="btn_login">
+
+                Login
+
+            </a>
+
+        </header>
+
+        <!-- TITULO -->
+
+        <section class="titulo_pedidos">
+
+            <h2>
+                🛒 Tus pedidos seleccionados
+            </h2>
+
+            <p>
+                Revisa tus productos antes de finalizar tu compra.
+            </p>
+
+        </section>
+
+        <!-- PEDIDOS -->
+
+        <section class="lista_pedidos">
+
+            <!-- CARD -->
+
+            <article class="card_pedido">
+
+                <img src="img/lomoSaltado.webp" alt="Lomo Saltado">
+
+                <div class="info_pedido">
+
+                    <h3>
+                        Lomo Saltado
+                    </h3>
+
+                    <p>
+                        Carne salteada con cebolla, tomate,
+                        papas fritas y arroz blanco.
+                    </p>
+
+                    <div class="detalle_pedido">
+
+                        <span>
+                            Cantidad: 2
+                        </span>
+
+                        <span class="precio">
+                            S/ 37.80
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- CARD -->
+
+            <article class="card_pedido">
+
+                <img src="img/ceviche.webp" alt="Ceviche">
+
+                <div class="info_pedido">
+
+                    <h3>
+                        Ceviche Clásico
+                    </h3>
+
+                    <p>
+                        Pescado fresco con limón peruano,
+                        choclo, cancha y camote.
+                    </p>
+
+                    <div class="detalle_pedido">
+
+                        <span>
+                            Cantidad: 1
+                        </span>
+
+                        <span class="precio">
+                            S/ 24.90
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+            <!-- CARD -->
+
+            <article class="card_pedido">
+
+                <img src="img/picarones.jpg" alt="Picarones">
+
+                <div class="info_pedido">
+
+                    <h3>
+                        Picarones
+                    </h3>
+
+                    <p>
+                        Tradicional postre peruano con miel
+                        de chancaca artesanal.
+                    </p>
+
+                    <div class="detalle_pedido">
+
+                        <span>
+                            Cantidad: 3
+                        </span>
+
+                        <span class="precio">
+                            S/ 38.70
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </article>
+
+        </section>
+
+        <!-- RESUMEN -->
+
+        <section class="resumen_compra">
+
+            <div class="resumen_card">
+
+                <h3>
+                    Resumen de compra
+                </h3>
+
+                <div class="fila_resumen">
+
+                    <p>Productos</p>
+
+                    <span>6</span>
+
+                </div>
+
+                <div class="fila_resumen">
+
+                    <p>Subtotal</p>
+
+                    <span>S/ 101.40</span>
+
+                </div>
+
+                <div class="fila_resumen">
+
+                    <p>Delivery</p>
+
+                    <span>S/ 7.00</span>
+
+                </div>
+
+                <div class="fila_resumen total">
+
+                    <p>Total</p>
+
+                    <span>S/ 108.40</span>
+
+                </div>
+
+                <a href="Pago.html" class="btn_pagar">
+
+                    Pagar ahora
+
+                </a>
+
+            </div>
+
+        </section>
+
+    </div>
+
 </body>
+
 </html>
