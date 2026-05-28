@@ -89,7 +89,7 @@ header {
 /* ===== MENÚ NAVEGACIÓN ===== */
 .menu_principal {
     display: flex;
-    gap: 35px;
+    gap: 30px;
 }
 
 .menu_principal a {
@@ -97,7 +97,7 @@ header {
     color: white;
     font-weight: bold;
     position: relative;
-    padding-bottom: 5px;
+    padding-bottom: 4px;
     transition: color 0.3s ease;
 }
 
@@ -123,8 +123,6 @@ header {
     transform-origin: bottom left;
 }
 
-
-/* ===== LOGIN ===== */
 .btn_login {
     text-decoration: none;
     background: #ff5c5c;
@@ -132,14 +130,14 @@ header {
     padding: 12px 25px;
     border-radius: 12px;
     font-weight: bold;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 10px rgba(255, 92, 92, 0.2);
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 92, 92, 0.2);
 }
 
 .btn_login:hover {
-    background: #e04b4b;
+    background: #e04e4e;
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(255, 92, 92, 0.35);
+    box-shadow: 0 6px 20px rgba(255, 92, 92, 0.4);
 }
 
 

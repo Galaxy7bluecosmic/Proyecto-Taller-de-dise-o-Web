@@ -65,6 +65,24 @@ header{
     color: #f5b400;
 }
 
+.btn_login {
+    text-decoration: none;
+    background: #ff5c5c;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 12px;
+    font-weight: bold;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 10px rgba(255, 92, 92, 0.2);
+}
+
+.btn_login:hover {
+    background: #e04b4b;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 15px rgba(255, 92, 92, 0.35);
+}
+
+
 /* ===== TITULO ===== */
 
 .titulo{

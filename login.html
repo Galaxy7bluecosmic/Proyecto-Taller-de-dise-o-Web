@@ -25,7 +25,7 @@
     <a href="promociones.html">Promociones</a>
   </nav>
 
-  <a href="login.html" class="btn_login">Login</a>
+  
 </header>
 
 <!-- MAIN -->
@@ -238,6 +238,7 @@
     if (!email || !pass)      { showToast('Por favor completa todos los campos.', true); return; }
     if (!email.includes('@')) { showToast('Ingresa un correo válido.', true); return; }
     showToast('¡Bienvenido de vuelta! 🌿');
+    window.location.href = 'index.html#inicio';
   }
 
   function handleRegister() {
