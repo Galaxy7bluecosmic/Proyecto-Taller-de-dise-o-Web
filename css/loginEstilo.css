@@ -626,3 +626,12 @@ footer a:hover {
     padding: 20px;
   }
 }
+
+.msg_error {
+  color: #ff5c5c;
+  font-size: 0.82rem;
+  margin-top: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+ 

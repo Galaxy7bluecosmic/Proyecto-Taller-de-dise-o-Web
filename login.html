@@ -26,8 +26,6 @@
       <a href="form_pedidos.html">Pedidos</a>
       <a href="promociones.html">Promociones</a>
     </nav>
-
-
   </header>
 
   <!-- MAIN -->
@@ -38,8 +36,9 @@
       <div class="panel_izquierdo">
         <div>
           <div class="panel_logo">
-            <div class="panel_logo_icon"><img src="img/tienda-de-comestibles.gif" alt="carrito" width="35px"
-                style="transform: scaleX(-1);"></div>
+            <div class="panel_logo_icon">
+              <img src="img/tienda-de-comestibles.gif" alt="carrito" width="35px" style="transform: scaleX(-1);">
+            </div>
             <span class="panel_logo_nombre">Bocados<span>DeAyuda</span></span>
           </div>
 
@@ -50,10 +49,6 @@
             Conectamos personas con restaurantes y marcas peruanas para rescatar
             alimentos de calidad y evitar el desperdicio. Comer rico también genera impacto.
           </p>
-
-          <button class="panel_switch_btn" id="panelSwitch">
-            ➜ <span id="panelSwitchText">Crear una cuenta</span>
-          </button>
         </div>
 
         <div class="panel_stats">
@@ -76,223 +71,154 @@
       <div class="panel_derecho">
 
         <div class="tabs">
-          <button class="tab_btn active" id="tabLogin" onclick="switchTab('login')">Iniciar Sesión</button>
-          <button class="tab_btn" id="tabRegister" onclick="switchTab('register')">Registrarse</button>
+          <button class="tab_btn active" onclick="mostrarPanel('login', this)">Iniciar Sesión</button>
+          <button class="tab_btn" onclick="mostrarPanel('register', this)">Registrarse</button>
         </div>
 
         <!-- LOGIN -->
-        <div class="form_panel active" id="formLogin">
-          <div class="form_titulo">¡Bienvenido de vuelta! <img src="img/ManoSaludoIcon.png" alt="Mano saludando"
-              width="30px"></div>
-          <div class="form_sub">¿No tienes cuenta? <a href="#" onclick="switchTab('register');return false;">Regístrate
+        <form class="form_panel active" id="login" action="php/login.php" method="post">
+          <div class="form_titulo">¡Bienvenido de vuelta! 👋</div>
+          <div class="form_sub">¿No tienes cuenta? <a href="#" onclick="mostrarPanel('register', null)">Regístrate
               gratis</a></div>
 
-          <div class="social_row">
-            <button class="social_btn">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                  fill="#4285F4" />
-                <path
-                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                  fill="#34A853" />
-                <path
-                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                  fill="#FBBC05" />
-                <path
-                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                  fill="#EA4335" />
-              </svg>
-              Google
-            </button>
-            <button class="social_btn">
-              <svg viewBox="0 0 24 24" fill="#1877F2">
-                <path
-                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-              </svg>
-              Facebook
-            </button>
+          <div class="campo">
+            <label for="loginEmail">Correo electrónico</label>
+            <input type="email" id="loginEmail" placeholder="tucorreo@ejemplo.com" />
           </div>
 
-          <div class="divider">o continúa con tu correo</div>
-
           <div class="campo">
-            <label>Correo electrónico</label>
-            <input type="email" placeholder="tucorreo@ejemplo.com" id="loginEmail" />
-          </div>
-          <div class="campo">
-            <label>Contraseña</label>
-            <input type="password" placeholder="••••••••" id="loginPass" />
-            <button class="ojo_btn" onclick="togglePass('loginPass')" type="button" tabindex="-1">
-              <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
-                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                <circle cx="12" cy="12" r="3" />
-              </svg>
-            </button>
+            <label for="loginPass">Contraseña</label>
+            <input type="password" id="loginPass" placeholder="••••••••" />
           </div>
 
           <div class="form_opciones">
-            <label class="recordarme"><input type="checkbox" /> Recuérdame</label>
+            <label class="recordarme">
+              <input type="checkbox" /> Recuérdame
+            </label>
             <a href="#" class="olvide">¿Olvidaste tu contraseña?</a>
           </div>
 
-          <button class="submit_btn" onclick="handleLogin()">
-            Iniciar Sesión →
-          </button>
-          <p class="nota_terminos">Al ingresar aceptas nuestros <a href="#">Términos</a> y <a href="#">Privacidad</a>.
-          </p>
-        </div>
+          <button class="submit_btn" onclick="validarLogin()" type="submit">Iniciar Sesión →</button>
+
+          <p id="errorLogin" class="msg_error"></p>
+        </form>
 
         <!-- REGISTRO -->
-        <div class="form_panel" id="formRegister">
+        <form class="form_panel" id="register" action="php/registro.php" method="post">
           <div class="form_titulo">Únete a la causa 🌱</div>
-          <div class="form_sub">¿Ya tienes cuenta? <a href="#" onclick="switchTab('login');return false;">Inicia sesión
+          <div class="form_sub">¿Ya tienes cuenta? <a href="#" onclick="mostrarPanel('login', null)">Inicia sesión
               aquí</a></div>
-
-          <div class="social_row">
-            <button class="social_btn">
-              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                <path
-                  d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
-                  fill="#4285F4" />
-                <path
-                  d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
-                  fill="#34A853" />
-                <path
-                  d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"
-                  fill="#FBBC05" />
-                <path
-                  d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
-                  fill="#EA4335" />
-              </svg>
-              Google
-            </button>
-            <button class="social_btn">
-              <svg viewBox="0 0 24 24" fill="#1877F2">
-                <path
-                  d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z" />
-              </svg>
-              Facebook
-            </button>
-          </div>
-
-          <div class="divider">o regístrate con tu correo</div>
 
           <div class="fila_campos">
             <div class="campo">
-              <label>Nombre</label>
-              <input type="text" placeholder="Juan" id="regNombre" />
+              <label for="regNombre">Nombre</label>
+              <input type="text" id="regNombre" name="regNombre" placeholder="Juan" />
             </div>
             <div class="campo">
-              <label>Apellido</label>
-              <input type="text" placeholder="Pérez" id="regApellido" />
+              <label for="regApellido">Apellido</label>
+              <input type="text" id="regApellido" name="regApellido" placeholder="Pérez" />
             </div>
           </div>
 
           <div class="campo">
-            <label>Correo electrónico</label>
-            <input type="email" placeholder="tucorreo@ejemplo.com" id="regEmail" />
+            <label for="regEmail">Correo electrónico</label>
+            <input type="email" id="regEmail" name="regEmail" placeholder="tucorreo@ejemplo.com" />
+          </div>
+
+          <div class="campo">
+            <label for="regTelefono">Telefono</label>
+            <input type="tel" name="regTelefono" id="regTelefono" placeholder="--- --- ---">
           </div>
 
           <div class="fila_campos">
             <div class="campo">
-              <label>Contraseña</label>
-              <input type="password" placeholder="••••••••" id="regPass" />
-              <button class="ojo_btn" onclick="togglePass('regPass')" type="button" tabindex="-1">
-                <svg fill="none" viewBox="0 0 24 24" stroke-width="2">
-                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z" />
-                  <circle cx="12" cy="12" r="3" />
-                </svg>
-              </button>
+              <label for="regPass">Contraseña</label>
+              <input type="password" id="regPass" name="regPass" placeholder="••••••••" />
             </div>
             <div class="campo">
-              <label>Confirmar contraseña</label>
-              <input type="password" placeholder="••••••••" id="regPass2" />
+              <label for="regPass2">Confirmar contraseña</label>
+              <input type="password" id="regPass2" placeholder="••••••••" />
             </div>
           </div>
 
-          <button class="submit_btn" onclick="handleRegister()">
-            Crear Cuenta Gratis →
-          </button>
-          <p class="nota_terminos">Al registrarte aceptas nuestros <a href="#">Términos</a> y <a href="#">Política de
-              Privacidad</a>.</p>
-        </div>
+          <button class="submit_btn" onclick="validarRegistro()" type="submit">Crear Cuenta Gratis →</button>
+
+          <p id="errorRegistro" class="msg_error"></p>
+        </form>
 
       </div>
     </div>
   </main>
-
-  <!-- TOAST -->
-  <div class="toast" id="toast">
-    <div class="toast_dot"></div>
-    <span id="toastMsg">Mensaje</span>
-  </div>
 
   <!-- FOOTER -->
   <footer>
     <span>© 2026 BocadosDeAyuda · Arequipa, Perú</span>
     <span>
       <a href="menu.html">Menú</a> ·
-      <a href="promociones.html">Promociones</a> ·
-      <a href="contacto.html">Contacto</a>
+      <a href="promociones.html">Promociones</a>
     </span>
   </footer>
 
   <script>
-    let currentTab = 'login';
+    // Cambia entre el panel login y registro
+    function mostrarPanel(cual, boton) {
+      document.getElementById('login').classList.remove('active');
+      document.getElementById('register').classList.remove('active');
+      document.getElementById(cual).classList.add('active');
 
-    function switchTab(tab) {
-      currentTab = tab;
-      document.getElementById('formLogin').classList.toggle('active', tab === 'login');
-      document.getElementById('formRegister').classList.toggle('active', tab === 'register');
-      document.getElementById('tabLogin').classList.toggle('active', tab === 'login');
-      document.getElementById('tabRegister').classList.toggle('active', tab === 'register');
-      document.getElementById('panelSwitchText').textContent =
-        tab === 'login' ? 'Crear una cuenta' : 'Ya tengo cuenta';
-    }
-
-    document.getElementById('panelSwitch').addEventListener('click', () => {
-      switchTab(currentTab === 'login' ? 'register' : 'login');
-    });
-
-    function togglePass(id) {
-      const inp = document.getElementById(id);
-      inp.type = inp.type === 'password' ? 'text' : 'password';
-    }
-
-    function showToast(msg, isError = false) {
-      const t = document.getElementById('toast');
-      document.getElementById('toastMsg').textContent = msg;
-      t.classList.toggle('error', isError);
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 3400);
-    }
-
-    function handleLogin() {
-      const email = document.getElementById('loginEmail').value.trim();
-      const pass = document.getElementById('loginPass').value;
-      if (!email || !pass) { showToast('Por favor completa todos los campos.', true); return; }
-      if (!email.includes('@')) { showToast('Ingresa un correo válido.', true); return; }
-      showToast('¡Bienvenido de vuelta! 🌿');
-      window.location.href = 'index.html#inicio';
-    }
-
-    function handleRegister() {
-      const nombre = document.getElementById('regNombre').value.trim();
-      const apellido = document.getElementById('regApellido').value.trim();
-      const email = document.getElementById('regEmail').value.trim();
-      const pass = document.getElementById('regPass').value;
-      const pass2 = document.getElementById('regPass2').value;
-      if (!nombre || !apellido || !email || !pass || !pass2) {
-        showToast('Por favor completa todos los campos.', true); return;
+      // actualiza el estilo de los tabs si se hizo clic en uno
+      if (boton) {
+        document.querySelectorAll('.tab_btn').forEach(function (btn) {
+          btn.classList.remove('active');
+        });
+        boton.classList.add('active');
       }
-      if (!email.includes('@')) { showToast('Ingresa un correo válido.', true); return; }
-      if (pass !== pass2) { showToast('Las contraseñas no coinciden.', true); return; }
-      if (pass.length < 6) { showToast('La contraseña debe tener al menos 6 caracteres.', true); return; }
-      showToast('¡Cuenta creada! Bienvenido/a a BocadosDeAyuda 🌱');
-      setTimeout(() => switchTab('login'), 1400);
+    }
+
+    // Valida el formulario de login
+    function validarLogin() {
+      var email = document.getElementById('loginEmail').value;
+      var pass = document.getElementById('loginPass').value;
+      var error = document.getElementById('errorLogin');
+
+      if (email === '' || pass === '') {
+        error.textContent = 'Por favor completa todos los campos.';
+        return;
+      }
+
+      error.textContent = '';
+      window.location.href = 'index.html';
+    }
+
+    // Valida el formulario de registro
+    function validarRegistro() {
+      var nombre = document.getElementById('regNombre').value;
+      var apellido = document.getElementById('regApellido').value;
+      var email = document.getElementById('regEmail').value;
+      var pass = document.getElementById('regPass').value;
+      var pass2 = document.getElementById('regPass2').value;
+      var error = document.getElementById('errorRegistro');
+
+      if (nombre === '' || apellido === '' || email === '' || pass === '' || pass2 === '') {
+        error.textContent = 'Por favor completa todos los campos.';
+        return;
+      }
+
+      if (pass !== pass2) {
+        error.textContent = 'Las contraseñas no coinciden.';
+        return;
+      }
+
+      if (pass.length < 6) {
+        error.textContent = 'La contraseña debe tener al menos 6 caracteres.';
+        return;
+      }
+
+      error.textContent = '';
+      mostrarPanel('login', null);
     }
   </script>
+
 </body>
 
 </html>
