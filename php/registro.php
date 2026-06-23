@@ -21,4 +21,17 @@ if($resultado){
     echo "Error al registrar usuario";
 }
 
+if($resultado){
+
+    session_start();
+
+    $_SESSION['nombre'] = $nombre;
+    $_SESSION['email'] = $email;
+
+    header("Location: ../index.php");
+    exit();
+
+}else{
+    echo "Error al registrar usuario";
+}
 ?>

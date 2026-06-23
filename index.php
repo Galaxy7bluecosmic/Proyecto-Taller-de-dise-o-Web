@@ -25,7 +25,7 @@
     <div class="contenedor_principal">
         <!-- HEADER -->
         <header>
-            <a href="index.html" class="logo_link">
+            <a href="index.php" class="logo_link">
                 <div class="contenedor_logo">
                     <img src="img/tienda-de-comestibles.gif" alt="logo" width="55">
                     <h1>Bocados<span>DeAyuda</span></h1>
@@ -37,7 +37,7 @@
                 <a href="promociones.html">Promociones</a>
             </nav>
             <a href="login.html" class="btn_login">
-                Login
+                <p>Acceder</p>
             </a>
         </header>
 
