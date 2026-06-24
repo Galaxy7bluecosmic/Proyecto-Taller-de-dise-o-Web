@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -36,9 +40,25 @@
                 <a href="pedidos.html">tus pedidos</a>
                 <a href="promociones.html">Promociones</a>
             </nav>
-            <a href="login.html" class="btn_login">
-                <p>Acceder</p>
-            </a>
+
+            <?php if (isset($_SESSION['nombre'])) { ?>
+
+                <div class="usuario_logueado">
+                    <span> <img src="img/avatar.png" alt="avatar" id="avatarIcon"> <?php echo $_SESSION['nombre']; ?></span>
+
+                    <a href="php/cerrarSesion.php" class="btn_cerrar">
+                        Cerrar sesión
+                    </a>
+                </div>
+
+            <?php } else { ?>
+
+                <a href="login.html" class="btn_login">
+                    <p>Acceder</p>
+                </a>
+
+            <?php } ?>
+
         </header>
 
         <!-- HERO -->
@@ -57,7 +77,7 @@
                     <a href="menu.html" class="btn_principal">
                         Ver Menú
                     </a>
-                    
+
                 </div>
             </div>
 

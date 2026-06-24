@@ -7,7 +7,8 @@
 }
 
 body {
-    background: #fcf8f2; /* Fondo crema muy sutil inspirado en la imagen */
+    background: #fcf8f2;
+    /* Fondo crema muy sutil inspirado en la imagen */
     color: #2c2c2c;
     overflow-x: hidden;
 }
@@ -21,6 +22,7 @@ body {
         transform: translateY(20px);
         filter: blur(10px);
     }
+
     to {
         opacity: 1;
         transform: translateY(0);
@@ -34,6 +36,7 @@ body {
         opacity: 0;
         transform: translateX(-40px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -45,6 +48,7 @@ body {
         opacity: 0;
         transform: translateX(40px);
     }
+
     to {
         opacity: 1;
         transform: translateX(0);
@@ -53,9 +57,17 @@ body {
 
 /* Efecto flotante sutil para la imagen principal */
 @keyframes flotarImagen {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-12px); }
-    100% { transform: translateY(0px); }
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-12px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
 }
 
 
@@ -67,7 +79,7 @@ body {
     background: #fff;
     border-radius: 30px;
     overflow: hidden;
-    box-shadow: 0px 10px 40px rgba(0,0,0,0.04);
+    box-shadow: 0px 10px 40px rgba(0, 0, 0, 0.04);
     animation: aparecerWeb 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
@@ -86,6 +98,7 @@ header {
     text-decoration: none;
     transition: transform 0.3s ease;
 }
+
 .logo_link:hover {
     transform: scale(1.02);
 }
@@ -122,6 +135,7 @@ header {
     transition: color 0.3s ease, transform 0.3s ease;
 }
 
+
 /* Barra inferior animada en los enlaces del menú */
 .menu_navegacion a::after {
     content: '';
@@ -148,7 +162,8 @@ header {
 
 .btn_login {
     text-decoration: none;
-    background: #2b78f6; /* Azul eléctrico de la imagen */
+    background: #2b78f6;
+    /* Azul eléctrico de la imagen */
     color: white;
     padding: 12px 28px;
     border-radius: 25px;
@@ -164,10 +179,28 @@ header {
     box-shadow: 0 8px 20px rgba(43, 120, 246, 0.35);
 }
 
+.usuario_logueado {
+    width: 300px;
+    background-color: #2b78f6;
+    color: white;
+    padding: 12px 28px;
+    border-radius: 25px;
+    display: flex;
+    flex-direction: row;
+}
+#avatarIcon {
+    width: 25px;
+}
+.usuario_logueado span {
+    display: flex;
+    align-items: center;
+}
 
+/* =========================================================== */
 /* ===== HERO ===== */
 .hero {
-    background: #f4c444; /* Amarillo vibrante principal de la imagen de referencia */
+    background: #f4c444;
+    /* Amarillo vibrante principal de la imagen de referencia */
     padding: 60px 80px;
     color: #2c2c2c;
 }
@@ -217,7 +250,7 @@ header {
     width: 100%;
     max-width: 480px;
     border-radius: 24px;
-    box-shadow: 0 20px 45px rgba(0,0,0,0.12);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.12);
     animation: flotarImagen 4.5s ease-in-out infinite;
 }
 
@@ -235,14 +268,14 @@ header {
     padding: 35px 30px;
     border-radius: 20px;
     text-align: center;
-    box-shadow: 0px 10px 30px rgba(0,0,0,0.04);
+    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.04);
     transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
     border: 1px solid #f0f0f0;
 }
 
 .mensaje:hover {
     transform: translateY(-6px);
-    box-shadow: 0px 18px 35px rgba(0,0,0,0.08);
+    box-shadow: 0px 18px 35px rgba(0, 0, 0, 0.08);
 }
 
 .mensaje h3 {
@@ -283,7 +316,8 @@ header {
     display: inline-block;
     margin-top: 15px;
     text-decoration: none;
-    background: #ff5c5c; /* Color coral dinámico alternativo */
+    background: #ff5c5c;
+    /* Color coral dinámico alternativo */
     color: white;
     padding: 15px 35px;
     border-radius: 30px;
@@ -303,7 +337,7 @@ header {
     max-height: 420px;
     object-fit: cover;
     border-radius: 24px;
-    box-shadow: 0 15px 35px rgba(0,0,0,0.06);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.06);
     transition: transform 0.5s ease;
 }
 

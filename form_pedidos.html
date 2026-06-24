@@ -22,32 +22,20 @@
         <!-- HEADER -->
 
         <header>
-
-            <a href="index.html" class="logo_link">
-
+            <a href="index.php" class="logo_link">
                 <div class="contenedor_logo">
-
                     <img src="img/tienda-de-comestibles.gif" width="50">
-
                     <h1>Bocados<span>DeAyuda</span></h1>
-
                 </div>
-
             </a>
 
             <nav class="menu_principal">
-
                 <a href="index.html">Inicio</a>
-
                 <a href="menu.html">Menú</a>
-
                 <a href="promociones.html">Promociones</a>
-
                 <a href="pedidos.html">Pedidos</a>
-
             </nav>
-                <div class="acciones_header">
-
+            <div class="acciones_header">
                 <a href="login.html" class="btn_login">
                     Login
                 </a>
@@ -56,15 +44,12 @@
         <!-- TITULO -->
 
         <section class="titulo">
-
             <h2>
                 Tu carrito de compras
             </h2>
-
             <p>
                 Revisa tus productos antes de realizar el pago.
             </p>
-
         </section>
 
         <!-- GRID PRINCIPAL -->
@@ -74,25 +59,16 @@
             <!-- PRODUCTO -->
 
             <article class="producto">
-
                 <!-- GRID ANIDADO -->
-
                 <div class="producto_grid">
-
                     <!-- IMAGEN -->
-
                     <div class="producto_imagen">
-
                         <img src="img/lomoSaltado.webp" alt="Lomo Saltado">
-
                     </div>
-
                     <!-- INFO -->
 
                     <div class="producto_info">
-
                         <h3>Lomo Saltado</h3>
-
                         <p>
                             Carne salteada con cebolla,
                             tomate, papas fritas y arroz blanco.
@@ -101,7 +77,6 @@
                         <span class="precio">
                             S/ 18.90
                         </span>
-
                     </div>
 
                     <!-- CANTIDAD -->
@@ -109,19 +84,13 @@
                     <div class="producto_acciones">
 
                         <div class="cantidad">
-
                             2
-
                         </div>
 
                         <button class="btn_eliminar">
-
                             eliminar
-
                         </button>
-
                     </div>
-
                 </div>
 
             </article>
@@ -129,19 +98,13 @@
             <!-- PRODUCTO -->
 
             <article class="producto">
-
                 <div class="producto_grid">
-
                     <div class="producto_imagen">
-
                         <img src="img/ceviche.webp" alt="Ceviche">
-
                     </div>
 
                     <div class="producto_info">
-
                         <h3>Ceviche Clásico</h3>
-
                         <p>
                             Pescado fresco con limón peruano,
                             choclo, cancha y camote.
@@ -150,23 +113,16 @@
                         <span class="precio">
                             S/ 24.90
                         </span>
-
                     </div>
 
                     <div class="producto_acciones">
-
                         <div class="cantidad">
-
                             1
-
                         </div>
 
                         <button class="btn_eliminar">
-
                             eliminar
-
                         </button>
-
                     </div>
 
                 </div>
@@ -180,7 +136,6 @@
         <section class="total_compra">
 
             <div class="total_card">
-
                 <h3>
                     Total a pagar
                 </h3>
@@ -188,17 +143,13 @@
                 <span>
                     S/ 43.80
                 </span>
-
                 <button id="abrirModal">
 
                     Pagar ahora
 
                 </button>
-
             </div>
-
         </section>
-
     </div>
 
     <!-- MODAL -->
@@ -206,31 +157,21 @@
     <div class="modal" id="modalPago">
 
         <div class="modal_contenido">
-
             <h2>
                 Método de pago
             </h2>
-
             <!-- METODOS -->
-
             <div class="metodos_pago">
-
                 <button class="metodo activo">
-
                     💳 Tarjeta
-
                 </button>
 
                 <button class="metodo">
-
                     📱 Yape
-
                 </button>
 
                 <button class="metodo">
-
                     💵 Efectivo
-
                 </button>
 
             </div>
@@ -266,78 +207,62 @@
                 <div class="dos_columnas">
 
                     <div>
-
                         <label>
                             Fecha
                         </label>
-
                         <input type="text" placeholder="MM/AA">
-
                     </div>
 
                     <div>
-
                         <label>
                             CVV
                         </label>
-
                         <input type="password" placeholder="123">
-
                     </div>
 
                 </div>
 
                 <button type="button" id="btnPagar">
-
                     Confirmar pago
-
                 </button>
-
             </form>
-
         </div>
-
     </div>
 
     <!-- LOADING -->
 
     <div class="pantalla_carga" id="pantallaCarga">
-
         <div class="loader">
-
             <div class="spinner"></div>
-
             <h2>
                 Procesando pago...
             </h2>
-
         </div>
-
     </div>
 
     <!-- JAVASCRIPT SOLO PARA PAGO -->
 
-  <script>
+    <script>
 
-    const abrirModal = document.getElementById("abrirModal");
-    const modal = document.getElementById("modalPago");
+        const abrirModal = document.getElementById("abrirModal");
+        const modal = document.getElementById("modalPago");
 
-    abrirModal.onclick = () => {
+        abrirModal.onclick = () => {
 
-        modal.classList.add("mostrar");
+            modal.classList.add("mostrar");
 
-    }
+        }
 
-    const btnPagar = document.getElementById("btnPagar");
-    const pantallaCarga = document.getElementById("pantallaCarga");
+        const btnPagar = document.getElementById("btnPagar");
+        const pantallaCarga = document.getElementById("pantallaCarga");
 
-    btnPagar.onclick = () => {
+        btnPagar.onclick = () => {
 
-        pantallaCarga.classList.add("mostrarCarga");
+            pantallaCarga.classList.add("mostrarCarga");
 
-        setTimeout(() => {
+            setTimeout(() => {
 
-            document.querySelector(".loader").innerHTML = `
+                document.querySelector(".loader").innerHTML = `
 
                 <div class="check_final">
                     ✓
@@ -353,17 +278,17 @@
 
             `;
 
-            setTimeout(() => {
+                setTimeout(() => {
 
-                window.location.href = "pedidos.html";
+                    window.location.href = "pedidos.html";
 
-            }, 2500);
+                }, 2500);
 
-        }, 3000);
+            }, 3000);
 
-    }
+        }
 
-</script>
+    </script>
 
 </body>
 
