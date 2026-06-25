@@ -21,7 +21,7 @@
     </a>
 
     <nav class="menu_navegacion">
-      <a href="#">Inicio</a>
+      <a href="index.php">Inicio</a>
       <a href="menu.html">Menú</a>
       <a href="form_pedidos.html">Pedidos</a>
       <a href="promociones.html">Promociones</a>
@@ -83,12 +83,13 @@
 
           <div class="campo">
             <label for="loginEmail">Correo electrónico</label>
-            <input type="email" id="loginEmail" name="loginEmail" placeholder="tucorreo@ejemplo.com" />
+            <input type="email" id="loginEmail" name="loginEmail" placeholder="tucorreo@ejemplo.com" autocomplete="off">
+            <img src="img/cerrado.png" alt="OJO CERRADO" id="ojoCerradoIconPass" onclick="mostrarContraseña()">
           </div>
 
           <div class="campo">
             <label for="loginPass">Contraseña</label>
-            <input type="password" id="loginPass" name="loginPass" placeholder="••••••••" />
+            <input type="password" id="loginPass" name="loginPass" placeholder="••••••••" autocomplete="off">
           </div>
 
           <div class="form_opciones">
@@ -112,22 +113,22 @@
           <div class="fila_campos">
             <div class="campo">
               <label for="regNombre">Nombre</label>
-              <input type="text" id="regNombre" name="regNombre" placeholder="Juan" />
+              <input type="text" id="regNombre" name="regNombre" placeholder="Juan" autocomplete="off">
             </div>
             <div class="campo">
               <label for="regApellido">Apellido</label>
-              <input type="text" id="regApellido" name="regApellido" placeholder="Pérez" />
+              <input type="text" id="regApellido" name="regApellido" placeholder="Pérez" autocomplete="off">
             </div>
           </div>
 
           <div class="campo">
             <label for="regEmail">Correo electrónico</label>
-            <input type="email" id="regEmail" name="regEmail" placeholder="tucorreo@ejemplo.com" />
+            <input type="email" id="regEmail" name="regEmail" placeholder="tucorreo@ejemplo.com" autocomplete="off">
           </div>
 
           <div class="campo">
             <label for="regTelefono">Telefono</label>
-            <input type="tel" name="regTelefono" id="regTelefono" placeholder="--- --- ---">
+            <input type="tel" name="regTelefono" id="regTelefono" placeholder="000 000 000" autocomplete="off">
           </div>
 
           <div class="fila_campos">
@@ -160,6 +161,11 @@
   </footer>
 
   <script>
+    // Mostrar contraseña
+    function mostrarContraseña() {
+      
+    }
+
     // Cambia entre el panel login y registro
     function mostrarPanel(cual, boton) {
       document.getElementById('login').classList.remove('active');
