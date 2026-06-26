@@ -43,12 +43,28 @@ session_start();
 
             <?php if (isset($_SESSION['nombre'])) { ?>
 
-                <div class="usuario_logueado">
-                    <span> <img src="img/avatar.png" alt="avatar" id="avatarIcon"> <?php echo $_SESSION['nombre']; ?></span>
-
-                    <a href="php/cerrarSesion.php" class="btn_cerrar">
-                        Cerrar sesión
-                    </a>
+                <div class="contenedorBotonSesio">
+                    <div class="usuario_logueado" onclick="mostrarMenu">
+                        <span>
+                            <img src="img/avatar.png" alt="avatar" id="avatarIcon">
+                            <p>
+                                <?php echo $_SESSION['nombre']; ?>
+                            </p>
+                            <img src="img/abajo.png" alt="abajo flecha abrir menu" id="avatarAbajo">
+                        </span>
+                    </div>
+                    <div class="menuDesplegable">
+                        <a href="#">Mi perfil</a>
+                        <a href="#">Mis pedidos</a>
+                        <a href="#">Favoritos</a>
+                        <a href="#">Direcciones</a>
+                        <div>
+                            <img src="img/cerrar-sesion.png" alt="icono salir de la pagina">
+                            <a href="php/cerrarSesion.php" class="btn_cerrar">
+                                Cerrar sesión
+                            </a>
+                        </div>
+                    </div>
                 </div>
 
             <?php } else { ?>

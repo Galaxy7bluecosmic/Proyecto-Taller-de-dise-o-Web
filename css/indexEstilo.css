@@ -160,9 +160,13 @@ header {
     transform-origin: bottom left;
 }
 
+/*================*/
+.contenedorBotonSesio {
+    position: relative;
+}
 .btn_login {
     text-decoration: none;
-    background: #2b78f6;
+    background: #5E8C31;
     /* Azul eléctrico de la imagen */
     color: white;
     padding: 12px 28px;
@@ -174,26 +178,59 @@ header {
 }
 
 .btn_login:hover {
-    background: #1a5ecb;
+    background: #4A7026;
     transform: translateY(-2px);
     box-shadow: 0 8px 20px rgba(43, 120, 246, 0.35);
 }
 
 .usuario_logueado {
-    width: 300px;
-    background-color: #2b78f6;
+    background-color: #5E8C31;
+    cursor: pointer;
     color: white;
     padding: 12px 28px;
     border-radius: 25px;
     display: flex;
     flex-direction: row;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    box-shadow: 0 4px 12px rgba(43, 120, 246, 0.2);
+}
+.usuario_logueado:hover {
+    background-color: #4A7026;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(43, 120, 246, 0.35);
 }
 #avatarIcon {
-    width: 25px;
+    width: 30px;
+    height: 30px;
+}
+#avatarAbajo {
+    width: 20px;
+    height: 20px;
 }
 .usuario_logueado span {
     display: flex;
     align-items: center;
+    gap: 15px;
+}
+.btn_cerrar {
+    background-color: yellow
+}
+
+.menuDesplegable {
+    position: absolute;
+    top: 60px;
+    right: 0px;
+    width: 300px;
+    height: auto;
+    border-radius: 18px;
+    background-color: white;
+    padding: 20px 20px;
+    z-index: 200000;
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+    display: flex;
+    flex-direction: column;
 }
 
 /* =========================================================== */
