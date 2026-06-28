@@ -71,14 +71,16 @@
       <div class="panel_derecho">
 
         <div class="tabs">
-          <button class="tab_btn active" onclick="mostrarPanel('login', this)">Iniciar Sesión</button>
-          <button class="tab_btn" onclick="mostrarPanel('register', this)">Registrarse</button>
+          <button class="tab_btn active">Iniciar Sesión</button>
+          <button class="tab_btn">
+            <a href="registrar.html" style="text-decoration: none; color: #888;">Registrarse</a>
+          </button>
         </div>
 
         <!-- LOGIN -->
         <form class="form_panel active" id="login" action="php/login.php" method="post">
           <div class="form_titulo">¡Bienvenido de vuelta! 👋</div>
-          <div class="form_sub">¿No tienes cuenta? <a href="#" onclick="mostrarPanel('register', null)">Regístrate
+          <div class="form_sub">¿No tienes cuenta? <a href="registrar.html">Regístrate
               gratis</a></div>
 
           <div class="campo">
@@ -103,50 +105,6 @@
 
           <p id="errorLogin" class="msg_error"></p>
         </form>
-
-        <!-- REGISTRO -->
-        <form class="form_panel" id="register" action="php/registro.php" method="post">
-          <div class="form_titulo">Únete a la causa 🌱</div>
-          <div class="form_sub">¿Ya tienes cuenta? <a href="#" onclick="mostrarPanel('login', null)">Inicia sesión
-              aquí</a></div>
-
-          <div class="fila_campos">
-            <div class="campo">
-              <label for="regNombre">Nombre</label>
-              <input type="text" id="regNombre" name="regNombre" placeholder="Juan" autocomplete="off">
-            </div>
-            <div class="campo">
-              <label for="regApellido">Apellido</label>
-              <input type="text" id="regApellido" name="regApellido" placeholder="Pérez" autocomplete="off">
-            </div>
-          </div>
-
-          <div class="campo">
-            <label for="regEmail">Correo electrónico</label>
-            <input type="email" id="regEmail" name="regEmail" placeholder="tucorreo@ejemplo.com" autocomplete="off">
-          </div>
-
-          <div class="campo">
-            <label for="regTelefono">Telefono</label>
-            <input type="tel" name="regTelefono" id="regTelefono" placeholder="000 000 000" autocomplete="off">
-          </div>
-
-          <div class="fila_campos">
-            <div class="campo">
-              <label for="regPass">Contraseña</label>
-              <input type="password" id="regPass" name="regPass" placeholder="••••••••" />
-            </div>
-            <div class="campo">
-              <label for="regPass2">Confirmar contraseña</label>
-              <input type="password" id="regPass2" placeholder="••••••••" />
-            </div>
-          </div>
-
-          <button class="submit_btn" onclick="validarRegistro()" type="submit">Crear Cuenta Gratis →</button>
-
-          <p id="errorRegistro" class="msg_error"></p>
-        </form>
-
       </div>
     </div>
   </main>
@@ -164,64 +122,6 @@
     // Mostrar contraseña
     function mostrarContraseña() {
       
-    }
-
-    // Cambia entre el panel login y registro
-    function mostrarPanel(cual, boton) {
-      document.getElementById('login').classList.remove('active');
-      document.getElementById('register').classList.remove('active');
-      document.getElementById(cual).classList.add('active');
-
-      // actualiza el estilo de los tabs si se hizo clic en uno
-      if (boton) {
-        document.querySelectorAll('.tab_btn').forEach(function (btn) {
-          btn.classList.remove('active');
-        });
-        boton.classList.add('active');
-      }
-    }
-
-    // Valida el formulario de login
-    function validarLogin() {
-      var email = document.getElementById('loginEmail').value;
-      var pass = document.getElementById('loginPass').value;
-      var error = document.getElementById('errorLogin');
-
-      if (email === '' || pass === '') {
-        error.textContent = 'Por favor completa todos los campos.';
-        return;
-      }
-
-      error.textContent = '';
-      window.location.href = 'index.html';
-    }
-
-    // Valida el formulario de registro
-    function validarRegistro() {
-      var nombre = document.getElementById('regNombre').value;
-      var apellido = document.getElementById('regApellido').value;
-      var email = document.getElementById('regEmail').value;
-      var pass = document.getElementById('regPass').value;
-      var pass2 = document.getElementById('regPass2').value;
-      var error = document.getElementById('errorRegistro');
-
-      if (nombre === '' || apellido === '' || email === '' || pass === '' || pass2 === '') {
-        error.textContent = 'Por favor completa todos los campos.';
-        return;
-      }
-
-      if (pass !== pass2) {
-        error.textContent = 'Las contraseñas no coinciden.';
-        return;
-      }
-
-      if (pass.length < 6) {
-        error.textContent = 'La contraseña debe tener al menos 6 caracteres.';
-        return;
-      }
-
-      error.textContent = '';
-      mostrarPanel('login', null);
     }
   </script>
 

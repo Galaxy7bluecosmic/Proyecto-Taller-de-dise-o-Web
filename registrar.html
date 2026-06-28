@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>BocadosDeAyuda – Login / Registro</title>
+    <link rel="shortcut icon" href="img/tienda-de-comestibles.gif" type="image/x-icon" />
+    <link rel="stylesheet" href="css/registrarEstilo.css">
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <a href="index.php" class="logo_link">
+            <div class="contenedor_logo">
+                <img src="img/tienda-de-comestibles.gif" alt="logo" width="45" onerror="this.style.display='none'">
+                <h1>Bocados<span>DeAyuda</span></h1>
+            </div>
+        </a>
+
+        <nav class="menu_navegacion">
+            <a href="index.php">Inicio</a>
+            <a href="menu.html">Menú</a>
+            <a href="form_pedidos.html">Pedidos</a>
+            <a href="promociones.html">Promociones</a>
+        </nav>
+    </header>
+
+    <!-- MAIN -->
+    <main>
+        <div class="auth_card">
+
+            <!-- PANEL IZQUIERDO -->
+            <div class="panel_izquierdo">
+                <div>
+                    <div class="panel_logo">
+                        <div class="panel_logo_icon">
+                            <img src="img/tienda-de-comestibles.gif" alt="carrito" width="35px"
+                                style="transform: scaleX(-1);">
+                        </div>
+                        <span class="panel_logo_nombre">Bocados<span>DeAyuda</span></span>
+                    </div>
+
+                    <h2 class="panel_titulo">
+                        Cada alimento salvado es una <em>ayuda para el planeta</em>
+                    </h2>
+                    <p class="panel_desc">
+                        Conectamos personas con restaurantes y marcas peruanas para rescatar
+                        alimentos de calidad y evitar el desperdicio. Comer rico también genera impacto.
+                    </p>
+                </div>
+
+                <div class="panel_stats">
+                    <div class="stat_item">
+                        <span class="stat_num">500+</span>
+                        <span class="stat_label">Alimentos rescatados</span>
+                    </div>
+                    <div class="stat_item">
+                        <span class="stat_num">80+</span>
+                        <span class="stat_label">Restaurantes aliados</span>
+                    </div>
+                    <div class="panel_tag">
+                        <span>♻️</span>
+                        <p>Menos desperdicio · Precios accesibles · Impacto positivo</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- PANEL DERECHO -->
+            <div class="panel_derecho">
+
+                <div class="tabs">
+                    <button class="tab_btn">
+                        <a href="login.html" style="text-decoration: none; color: #888;">Iniciar Sesión</a>
+                    </button>
+                    <button class="tab_btn active">Registrarse</button>
+                </div>
+
+                <!-- REGISTRO -->
+                <form class="form_panel active" id="register" action="php/registro.php" method="post">
+                    <div class="form_titulo">Únete a la causa 🌱</div>
+                    <div class="form_sub">¿Ya tienes cuenta? <a href="login.html"
+                            onclick="mostrarPanel('login', null)">Inicia
+                            sesión
+                            aquí</a></div>
+
+                    <div class="fila_campos">
+                        <div class="campo">
+                            <label for="regNombre">Nombre</label>
+                            <input type="text" id="regNombre" name="regNombre" placeholder="Juan" autocomplete="off">
+                        </div>
+                        <div class="campo">
+                            <label for="regApellido">Apellido</label>
+                            <input type="text" id="regApellido" name="regApellido" placeholder="Pérez"
+                                autocomplete="off">
+                        </div>
+                    </div>
+
+                    <div class="campo">
+                        <label for="regEmail">Correo electrónico</label>
+                        <input type="email" id="regEmail" name="regEmail" placeholder="tucorreo@ejemplo.com"
+                            autocomplete="off">
+                    </div>
+
+                    <div class="campo">
+                        <label for="regTelefono">Telefono</label>
+                        <input type="tel" name="regTelefono" id="regTelefono" placeholder="000 000 000"
+                            autocomplete="off">
+                    </div>
+
+                    <div class="fila_campos">
+                        <div class="campo">
+                            <label for="regPass">Contraseña</label>
+                            <input type="password" id="regPass" name="regPass" placeholder="••••••••" />
+                        </div>
+                        <div class="campo">
+                            <label for="regPass2">Confirmar contraseña</label>
+                            <input type="password" id="regPass2" placeholder="••••••••" />
+                        </div>
+                    </div>
+
+                    <button class="submit_btn" onclick="validarRegistro()" type="submit">Crear Cuenta Gratis →</button>
+
+                    <p id="errorRegistro" class="msg_error"></p>
+                </form>
+
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer>
+        <span>© 2026 BocadosDeAyuda · Arequipa, Perú</span>
+        <span>
+            <a href="menu.html">Menú</a> ·
+            <a href="promociones.html">Promociones</a>
+        </span>
+    </footer>
+
+    <script>
+        // Mostrar contraseña
+        function mostrarContraseña() {
+
+        }
+    </script>
+
+</body>
+
+</html>
