@@ -44,7 +44,7 @@ session_start();
             <?php if (isset($_SESSION['nombre'])) { ?>
 
                 <div class="contenedorBotonSesio">
-                    <div class="usuario_logueado" onclick="mostrarMenu">
+                    <div class="usuario_logueado" onclick="mostrarMenu()">
                         <span>
                             <img src="img/avatar.png" alt="avatar" id="avatarIcon">
                             <p>
@@ -53,7 +53,7 @@ session_start();
                             <img src="img/abajo.png" alt="abajo flecha abrir menu" id="avatarAbajo">
                         </span>
                     </div>
-                    <div class="menuDesplegable">
+                    <div class="menuDesplegable" id="menuDesplegableID">
                         <a href="#">Mi perfil</a>
                         <a href="#">Mis pedidos</a>
                         <a href="#">Favoritos</a>
@@ -134,34 +134,27 @@ session_start();
         <section class="sobre_nosotros">
 
             <div class="sobre_texto">
-
                 <h2>
                     ¿Por qué nace BocadosDeAyuda?
                 </h2>
-
                 <p>
                     Miles de alimentos en perfecto estado terminan desperdiciados cada día.
                     Nuestro objetivo es rescatar esos productos y ofrecerlos mediante
                     promociones responsables, ayudando tanto al consumidor como a los
                     restaurantes aliados.
                 </p>
-
                 <p>
                     Creemos que pequeñas acciones pueden generar grandes cambios.
                     Comprar alimentos rescatados significa ahorrar dinero y también
                     cuidar el medio ambiente.
                 </p>
-
                 <a href="promociones.html">
                     Ver promociones
                 </a>
-
             </div>
 
             <div class="sobre_imagen">
-
                 <img src="img/promos.jpg" alt="Comida">
-
             </div>
 
         </section>
@@ -171,33 +164,24 @@ session_start();
         <section class="beneficios">
 
             <div class="card_beneficio">
-
                 <h3>Compra consciente</h3>
-
                 <p>
                     Apoyas negocios locales mientras reduces el desperdicio alimentario.
                 </p>
-
             </div>
 
             <div class="card_beneficio">
-
                 <h3>Precios accesibles</h3>
-
                 <p>
                     Encuentra productos de calidad con descuentos especiales.
                 </p>
-
             </div>
 
             <div class="card_beneficio">
-
                 <h3>Impacto positivo</h3>
-
                 <p>
                     Cada pedido representa menos comida desperdiciada.
                 </p>
-
             </div>
 
         </section>
@@ -205,19 +189,9 @@ session_start();
         <!-- FRASE -->
 
         <section class="frase">
-
-            <h2>
-                “La comida no se desperdicia, se comparte.”
-            </h2>
-
-            <p>
-                Juntos podemos construir un consumo más responsable y sostenible.
-            </p>
-
-            <a href="menu.html">
-                Explorar alimentos
-            </a>
-
+            <h2>“La comida no se desperdicia, se comparte.”</h2>
+            <p>Juntos podemos construir un consumo más responsable y sostenible.</p>
+            <a href="menu.html">Explorar alimentos</a>
         </section>
 
         <!-- FOOTER -->
@@ -225,47 +199,32 @@ session_start();
         <footer>
 
             <div class="footer_info">
-
                 <div>
-
                     <h3>BocadosDeAyuda</h3>
-
-                    <p>
-                        Proyecto enfocado en rescatar alimentos y reducir el desperdicio.
+                    <p>Proyecto enfocado en rescatar alimentos y reducir el desperdicio.
                     </p>
-
                 </div>
 
                 <div>
-
                     <h3>Enlaces</h3>
-
                     <a href="menu.html">Menú</a>
                     <a href="promociones.html">Promociones</a>
-
                 </div>
 
                 <div>
-
                     <h3>Contacto</h3>
-
                     <p>+51 999 999 999</p>
                     <p>Arequipa - Perú</p>
-
                 </div>
 
             </div>
 
             <div class="redes">
-
                 <a href="https://facebook.com" target="_blank">Facebook</a>
-
                 <a href="https://instagram.com" target="_blank">Instagram</a>
-
                 <a href="https://whatsapp.com" target="_blank">WhatsApp</a>
 
             </div>
-
             <p class="copy">
                 © 2026 BocadosDeAyuda
             </p>
@@ -273,6 +232,17 @@ session_start();
         </footer>
 
     </div>
+
+    <script>
+        function mostrarMenu(){
+            const menuUsuario = document.getElementById("menuDesplegableID");
+            if(menuUsuario.style.display === "none"){
+                menuUsuario.style.display = "block";
+            } else {
+                menuUsuario.style.display = "none";
+            }
+        }
+    </script>
 
 </body>
 

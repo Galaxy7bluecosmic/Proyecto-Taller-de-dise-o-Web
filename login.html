@@ -86,12 +86,12 @@
           <div class="campo">
             <label for="loginEmail">Correo electrónico</label>
             <input type="email" id="loginEmail" name="loginEmail" placeholder="tucorreo@ejemplo.com" autocomplete="on">
-            <img src="img/cerrado.png" alt="OJO CERRADO" id="ojoCerradoIconPass" onclick="mostrarContraseña()">
           </div>
 
           <div class="campo">
             <label for="loginPass">Contraseña</label>
             <input type="password" id="loginPass" name="loginPass" placeholder="••••••••" autocomplete="off">
+            <img src="img/cerrado.png" alt="OJO CERRADO" id="ojoCerradoIconPass" onclick="mostrarContraseña()">
           </div>
 
           <div class="form_opciones">
@@ -121,7 +121,12 @@
   <script>
     // Mostrar contraseña
     function mostrarContraseña() {
-      
+      const input = document.getElementById("loginPass");
+      if (input.type === "password") {
+        input.type = "text";
+      } else {
+        input.type = "password";
+      }
     }
   </script>
 
