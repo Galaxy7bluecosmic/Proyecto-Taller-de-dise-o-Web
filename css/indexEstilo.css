@@ -92,6 +92,21 @@ header {
     padding: 25px 50px;
     background: #f8f8f8;
     border-bottom: 1px solid #f0f0f0;
+    position: relative;
+}
+
+.contenedorMenuLogo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+#menuIcon {
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+}
+#menuIcon:hover {
+    transform: scale(1.03);
 }
 
 .logo_link {
@@ -133,6 +148,28 @@ header {
     position: relative;
     padding-bottom: 4px;
     transition: color 0.3s ease, transform 0.3s ease;
+}
+
+#contenedorMenuIzquierda {
+    top: 100%;
+    left: 0px;
+    position: absolute;
+    width: 270px;
+    background-color: #f8f8f8;
+}
+.menu_navegacionIzquierda {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.menu_navegacionIzquierda a {
+    text-decoration: none;
+    width: 90%;
+    background-color: transparent;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
 
@@ -229,7 +266,6 @@ header {
     padding: 20px 20px;
     z-index: 200000;
     box-shadow:0 10px 30px rgba(0,0,0,.15);
-    display: none;
 }
 
 /* =========================================================== */

@@ -29,12 +29,15 @@ session_start();
     <div class="contenedor_principal">
         <!-- HEADER -->
         <header>
-            <a href="index.php" class="logo_link">
-                <div class="contenedor_logo">
-                    <img src="img/tienda-de-comestibles.gif" alt="logo" width="55">
-                    <h1>Bocados<span>DeAyuda</span></h1>
-                </div>
-            </a>
+            <div class="contenedorMenuLogo">
+                <img src="img/menu.png" alt="menu icon" id="menuIcon" onclick="mostrarMenuIzquierdo()">
+                <a href="index.php" class="logo_link">
+                    <div class="contenedor_logo">
+                        <img src="img/tienda-de-comestibles.gif" alt="logo" width="55">
+                        <h1>Bocados<span>DeAyuda</span></h1>
+                    </div>
+                </a>
+            </div>
             <nav class="menu_navegacion">
                 <a href="menu.html">Menú</a>
                 <a href="pedidos.html">tus pedidos</a>
@@ -53,7 +56,7 @@ session_start();
                             <img src="img/abajo.png" alt="abajo flecha abrir menu" id="avatarAbajo">
                         </span>
                     </div>
-                    <div class="menuDesplegable" id="menuDesplegableID">
+                    <div class="menuDesplegable" id="menuDesplegableID" style="display: none;">
                         <a href="#">Mi perfil</a>
                         <a href="#">Mis pedidos</a>
                         <a href="#">Favoritos</a>
@@ -75,6 +78,27 @@ session_start();
 
             <?php } ?>
 
+            <div id="contenedorMenuIzquierda" style="display: none;">
+                <nav class="menu_navegacionIzquierda">
+                    <div>
+                        <img src="img/x.png" alt="x" width="18px">
+                        <div class="contenedorLogoDentroMenu">
+                            <img src="img/tienda-de-comestibles.gif" alt="tienda comestiblre" width="30px">
+                            <h3>Bocados<span>DeAyuda</span></h3>
+                        </div>
+                    </div>
+                    <a href="menu.html">
+                        <img src="img/casa.png" alt="casita" width="23px">
+                        <span>Inicio</span>
+                    </a>
+                    <a href="pedidos.html">
+                        <span>tus pedidos</span>
+                    </a>
+                    <a href="promociones.html">
+                        <span>Promociones</span>
+                    </a>
+                </nav>
+            </div>
         </header>
 
         <!-- HERO -->
@@ -234,12 +258,39 @@ session_start();
     </div>
 
     <script>
-        function mostrarMenu(){
+        function mostrarMenu() {
             const menuUsuario = document.getElementById("menuDesplegableID");
-            if(menuUsuario.style.display === "none"){
+            const imageFlecha = document.getElementById("avatarAbajo");
+
+            if (menuUsuario.style.display === "none") {
                 menuUsuario.style.display = "block";
+                imageFlecha.src = "img/subir.png";
             } else {
                 menuUsuario.style.display = "none";
+                imageFlecha.src = "img/abajo.png";
+            }
+        }
+
+        document.addEventListener("click", function(event) {
+
+            const menu = document.getElementById("menuDesplegableID");
+            const boton = document.querySelector(".usuario_logueado");
+            const imageFlecha = document.getElementById("avatarAbajo");
+
+            if (!menu.contains(event.target) && !boton.contains(event.target)) {
+                menu.style.display = "none";
+                imageFlecha.src = "img/abajo.png";
+            }
+
+        });
+        //Mostrar Menu de la izquierda para responsive y pantalla normal
+        function mostrarMenuIzquierdo() {
+            const contenedorOcultarVer = document.getElementById("contenedorMenuIzquierda");
+
+            if (contenedorOcultarVer.style.display === "none") {
+                contenedorOcultarVer.style.display = "block";
+            } else {
+                contenedorOcultarVer.style.display = "none";
             }
         }
     </script>

@@ -93,6 +93,9 @@
         gap: 20px;
         padding: 25px 20px;
     }
+    .menuIcon {
+        display: block;
+    }
 
     .menu_navegacion {
         flex-wrap: wrap;
