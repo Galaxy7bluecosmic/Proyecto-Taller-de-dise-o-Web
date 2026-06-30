@@ -40,7 +40,7 @@ session_start();
             </div>
             <nav class="menu_navegacion">
                 <a href="menu.html">Menú</a>
-                <a href="pedidos.html">tus pedidos</a>
+                <a href="pedidos.php">tus pedidos</a>
                 <a href="promociones.html">Promociones</a>
             </nav>
 
@@ -57,22 +57,36 @@ session_start();
                         </span>
                     </div>
                     <div class="menuDesplegable" id="menuDesplegableID" style="display: none;">
-                        <a href="#">Mi perfil</a>
-                        <a href="#">Mis pedidos</a>
-                        <a href="#">Favoritos</a>
-                        <a href="#">Direcciones</a>
-                        <div>
-                            <img src="img/cerrar-sesion.png" alt="icono salir de la pagina">
-                            <a href="php/cerrarSesion.php" class="btn_cerrar">
-                                Cerrar sesión
-                            </a>
+                        <div class="contenedorMenuPerfil">
+                            <div class="MenuPerfil">
+                                <img src="img/usuario.png" alt="usuario icons" width="20px">
+                                <a href="perfil.html">Mi perfil</a>
+                            </div>
+                            <div class="MenuPerfil">
+                                <img src="img/bolsa-de-la-compra.png" alt="bolsa de compra" width="20px">
+                                <a href="#">Mis Pedidos</a>
+                            </div>
+                            <div class="MenuPerfil">
+                                <img src="img/favorito.png" alt="favoritos" width="20px">
+                                <a href="#">Favoritos</a>
+                            </div>
+                            <div class="MenuPerfil">
+                                <img src="img/mapas-y-banderas.png" alt="direccion" width="20px">
+                                <a href="#">Direcciones</a>
+                            </div>
+                            <div class="MenuPerfil">
+                                <img src="img/cerrar-sesion.png" alt="icono salir de la pagina" width="20px">
+                                <a href="php/cerrarSesion.php" class="btn_cerrar">
+                                    Cerrar sesión
+                                </a>
+                            </div>
                         </div>
                     </div>
                 </div>
 
             <?php } else { ?>
 
-                <a href="login.html" class="btn_login">
+                <a href="login.php" class="btn_login">
                     <p>Acceder</p>
                 </a>
 
