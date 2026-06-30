@@ -26,9 +26,9 @@ session_start();
 
     <nav class="menu_navegacion">
       <a href="index.php">Inicio</a>
-      <a href="menu.html">Menú</a>
-      <a href="form_pedidos.html">Pedidos</a>
-      <a href="promociones.html">Promociones</a>
+      <a href="menu.php">Menú</a>
+      <a href="form_pedidos.php">Pedidos</a>
+      <a href="promociones.php">Promociones</a>
     </nav>
   </header>
 
@@ -77,14 +77,14 @@ session_start();
         <div class="tabs">
           <button class="tab_btn active">Iniciar Sesión</button>
           <button class="tab_btn">
-            <a href="registrar.html" style="text-decoration: none; color: #888;">Registrarse</a>
+            <a href="registrar.php" style="text-decoration: none; color: #888;">Registrarse</a>
           </button>
         </div>
 
         <!-- LOGIN -->
         <form class="form_panel active" id="login" action="php/login.php" method="post">
           <div class="form_titulo">¡Bienvenido de vuelta! 👋</div>
-          <div class="form_sub">¿No tienes cuenta? <a href="registrar.html">Regístrate
+          <div class="form_sub">¿No tienes cuenta? <a href="registrar.php">Regístrate
               gratis</a></div>
 
           <div class="campo">
@@ -117,8 +117,8 @@ session_start();
   <footer>
     <span>© 2026 BocadosDeAyuda · Arequipa, Perú</span>
     <span>
-      <a href="menu.html">Menú</a> ·
-      <a href="promociones.html">Promociones</a>
+      <a href="menu.php">Menú</a> ·
+      <a href="promociones.php">Promociones</a>
     </span>
   </footer>
 

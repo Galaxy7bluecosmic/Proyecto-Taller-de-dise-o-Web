@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -34,16 +38,16 @@
             <nav class="menu_principal">
 
                 <a href="index.php">Inicio</a>
-                <a href="menu.html">Menú</a>
-                <a href="promociones.html">Promociones</a>
-                <a href="pedidos.html">Pedidos</a>
+                <a href="menu.php">Menú</a>
+                <a href="promociones.php">Promociones</a>
+                <a href="pedidos.php">Pedidos</a>
                
 
             </nav>
 
             <div class="acciones_header">
 
-                <a href="login.html" class="btn_login">
+                <a href="login.php" class="btn_login">
                     Login
                 </a>
 
@@ -337,7 +341,7 @@
 
         <!-- CARRITO -->
 
-        <a href="form_pedidos.html" class="carrito_flotante">
+        <a href="form_pedidos.php" class="carrito_flotante">
 
             Carrito
 

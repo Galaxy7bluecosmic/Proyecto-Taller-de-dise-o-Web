@@ -1,3 +1,13 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['nombre'])) {
+    echo "No has iniciado sesión.";
+    header("refresh:2; url=index.php");
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -30,13 +40,13 @@
             </a>
 
             <nav class="menu_principal">
-                <a href="index.html">Inicio</a>
-                <a href="menu.html">Menú</a>
-                <a href="promociones.html">Promociones</a>
-                <a href="pedidos.html">Pedidos</a>
+                <a href="index.php">Inicio</a>
+                <a href="menu.php">Menú</a>
+                <a href="promociones.php">Promociones</a>
+                <a href="pedidos.php">Pedidos</a>
             </nav>
             <div class="acciones_header">
-                <a href="login.html" class="btn_login">
+                <a href="login.php" class="btn_login">
                     Login
                 </a>
         </header>
@@ -280,7 +290,7 @@
 
                 setTimeout(() => {
 
-                    window.location.href = "pedidos.html";
+                    window.location.href = "pedidos.php";
 
                 }, 2500);
 

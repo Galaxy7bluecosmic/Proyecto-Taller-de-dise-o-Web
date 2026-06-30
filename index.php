@@ -39,9 +39,9 @@ session_start();
                 </a>
             </div>
             <nav class="menu_navegacion">
-                <a href="menu.html">Menú</a>
+                <a href="menu.php">Menú</a>
                 <a href="pedidos.php">tus pedidos</a>
-                <a href="promociones.html">Promociones</a>
+                <a href="promociones.php">Promociones</a>
             </nav>
 
             <?php if (isset($_SESSION['nombre'])) { ?>
@@ -60,7 +60,7 @@ session_start();
                         <div class="contenedorMenuPerfil">
                             <div class="MenuPerfil">
                                 <img src="img/usuario.png" alt="usuario icons" width="20px">
-                                <a href="perfil.html">Mi perfil</a>
+                                <a href="perfil.php">Mi perfil</a>
                             </div>
                             <div class="MenuPerfil">
                                 <img src="img/bolsa-de-la-compra.png" alt="bolsa de compra" width="20px">
@@ -101,14 +101,14 @@ session_start();
                             <h3>Bocados<span>DeAyuda</span></h3>
                         </div>
                     </div>
-                    <a href="menu.html">
+                    <a href="menu.php">
                         <img src="img/casa.png" alt="casita" width="23px">
                         <span>Inicio</span>
                     </a>
-                    <a href="pedidos.html">
+                    <a href="pedidos.php">
                         <span>tus pedidos</span>
                     </a>
-                    <a href="promociones.html">
+                    <a href="promociones.php">
                         <span>Promociones</span>
                     </a>
                 </nav>
@@ -128,7 +128,7 @@ session_start();
                     Comer rico también puede generar un impacto positivo.
                 </p>
                 <div class="hero_botones">
-                    <a href="menu.html" class="btn_principal">
+                    <a href="menu.php" class="btn_principal">
                         Ver Menú
                     </a>
 
@@ -186,7 +186,7 @@ session_start();
                     Comprar alimentos rescatados significa ahorrar dinero y también
                     cuidar el medio ambiente.
                 </p>
-                <a href="promociones.html">
+                <a href="promociones.php">
                     Ver promociones
                 </a>
             </div>
@@ -229,7 +229,7 @@ session_start();
         <section class="frase">
             <h2>“La comida no se desperdicia, se comparte.”</h2>
             <p>Juntos podemos construir un consumo más responsable y sostenible.</p>
-            <a href="menu.html">Explorar alimentos</a>
+            <a href="menu.php">Explorar alimentos</a>
         </section>
 
         <!-- FOOTER -->
@@ -245,8 +245,8 @@ session_start();
 
                 <div>
                     <h3>Enlaces</h3>
-                    <a href="menu.html">Menú</a>
-                    <a href="promociones.html">Promociones</a>
+                    <a href="menu.php">Menú</a>
+                    <a href="promociones.php">Promociones</a>
                 </div>
 
                 <div>

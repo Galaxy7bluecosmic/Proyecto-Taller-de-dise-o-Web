@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -22,9 +26,9 @@
 
         <nav class="menu_navegacion">
             <a href="index.php">Inicio</a>
-            <a href="menu.html">Menú</a>
-            <a href="form_pedidos.html">Pedidos</a>
-            <a href="promociones.html">Promociones</a>
+            <a href="menu.php">Menú</a>
+            <a href="form_pedidos.php">Pedidos</a>
+            <a href="promociones.php">Promociones</a>
         </nav>
     </header>
 
@@ -73,7 +77,7 @@
 
                 <div class="tabs">
                     <button class="tab_btn">
-                        <a href="login.html" style="text-decoration: none; color: #888;">Iniciar Sesión</a>
+                        <a href="login.php" style="text-decoration: none; color: #888;">Iniciar Sesión</a>
                     </button>
                     <button class="tab_btn active">Registrarse</button>
                 </div>
@@ -81,7 +85,7 @@
                 <!-- REGISTRO -->
                 <form class="form_panel active" id="register" action="php/registro.php" method="post">
                     <div class="form_titulo">Únete a la causa 🌱</div>
-                    <div class="form_sub">¿Ya tienes cuenta? <a href="login.html"
+                    <div class="form_sub">¿Ya tienes cuenta? <a href="login.php"
                             onclick="mostrarPanel('login', null)">Inicia
                             sesión
                             aquí</a></div>
@@ -134,8 +138,8 @@
     <footer>
         <span>© 2026 BocadosDeAyuda · Arequipa, Perú</span>
         <span>
-            <a href="menu.html">Menú</a> ·
-            <a href="promociones.html">Promociones</a>
+            <a href="menu.php">Menú</a> ·
+            <a href="promociones.php">Promociones</a>
         </span>
     </footer>
 

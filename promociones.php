@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
@@ -23,38 +27,67 @@
         <!-- HEADER -->
 
         <header>
-
             <a href="index.php" class="logo_link">
-
                 <div class="contenedor_logo">
-
                     <img src="img/tienda-de-comestibles.gif" width="50">
-
                     <h1>Bocados<span>DeAyuda</span></h1>
-
                 </div>
-
             </a>
 
             <nav class="menu_principal">
-
                 <a href="index.php">Inicio</a>
-
-                <a href="menu.html">Menú</a>
-                
-                <a href="pedidos.html">Pedidos</a>
-
-                <a href="promociones.html">Promociones</a>
-
-                
-
+                <a href="menu.php">Menú</a>
+                <a href="pedidos.php">Pedidos</a>
+                <a href="promociones.php">Promociones</a>
             </nav>
 
-            <a href="login.html" class="btn_login">
+            <?php if (isset($_SESSION['nombre'])) { ?>
 
-                Login
+                <div class="contenedorBotonSesio">
+                    <div class="usuario_logueado" onclick="mostrarMenu()">
+                        <span>
+                            <img src="img/avatar.png" alt="avatar" id="avatarIcon">
+                            <p>
+                                <?php echo $_SESSION['nombre']; ?>
+                            </p>
+                            <img src="img/abajo.png" alt="abajo flecha abrir menu" id="avatarAbajo">
+                        </span>
+                    </div>
+                    <div class="menuDesplegable" id="menuDesplegableID" style="display: none;">
+                        <div class="contenedorMenuPerfil">
+                            <div class="MenuPerfil">
+                                <img src="img/usuario.png" alt="usuario icons" width="20px">
+                                <a href="perfil.php">Mi perfil</a>
+                            </div>
+                            <div class="MenuPerfil">
+                                <img src="img/bolsa-de-la-compra.png" alt="bolsa de compra" width="20px">
+                                <a href="#">Mis Pedidos</a>
+                            </div>
+                            <div class="MenuPerfil">
+                                <img src="img/favorito.png" alt="favoritos" width="20px">
+                                <a href="#">Favoritos</a>
+                            </div>
+                            <div class="MenuPerfil">
+                                <img src="img/mapas-y-banderas.png" alt="direccion" width="20px">
+                                <a href="#">Direcciones</a>
+                            </div>
+                            <div class="MenuPerfil">
+                                <img src="img/cerrar-sesion.png" alt="icono salir de la pagina" width="20px">
+                                <a href="php/cerrarSesion.php" class="btn_cerrar">
+                                    Cerrar sesión
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-            </a>
+            <?php } else { ?>
+
+                <a href="login.php" class="btn_login">
+                    <p>Acceder</p>
+                </a>
+
+            <?php } ?>
 
         </header>
 
@@ -64,25 +97,17 @@
 
             <div class="hero_texto">
 
-                <h2>
-                    PROMOCIONES QUE RESCATAN SABOR
-                </h2>
-
+                <h2>PROMOCIONES QUE RESCATAN SABOR</h2>
                 <p>
                     Aprovecha nuestras ofertas especiales y ayuda a reducir el desperdicio
                     alimentario comprando alimentos deliciosos de restaurantes peruanos.
                 </p>
-
-                <a href="menu.html">
-                    Explorar Menú
-                </a>
+                <a href="menu.php">Explorar Menú</a>
 
             </div>
 
             <div class="hero_imagen">
-
                 <img src="img/promociones.jpg" alt="Promoción">
-
             </div>
 
         </section>
@@ -327,7 +352,7 @@
 
         <!-- CARRITO -->
 
-        <a href="form_pedidos.html" class="carrito_flotante">
+        <a href="form_pedidos.php" class="carrito_flotante">
 
              Carrito
 
@@ -338,6 +363,34 @@
         </a>
 
     </div>
+
+    <script>
+        function mostrarMenu() {
+            const menuUsuario = document.getElementById("menuDesplegableID");
+            const imageFlecha = document.getElementById("avatarAbajo");
+
+            if (menuUsuario.style.display === "none") {
+                menuUsuario.style.display = "block";
+                imageFlecha.src = "img/subir.png";
+            } else {
+                menuUsuario.style.display = "none";
+                imageFlecha.src = "img/abajo.png";
+            }
+        }
+
+        document.addEventListener("click", function(event) {
+
+            const menu = document.getElementById("menuDesplegableID");
+            const boton = document.querySelector(".usuario_logueado");
+            const imageFlecha = document.getElementById("avatarAbajo");
+
+            if (!menu.contains(event.target) && !boton.contains(event.target)) {
+                menu.style.display = "none";
+                imageFlecha.src = "img/abajo.png";
+            }
+
+        });
+    </script>
 
 </body>
 

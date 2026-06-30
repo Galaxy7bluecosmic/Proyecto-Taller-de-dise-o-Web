@@ -24,8 +24,8 @@ session_start();
             </a>
             <nav class="menu_principal">
                 <a href="index.php">Inicio</a>
-                <a href="menu.html">Menú</a>
-                <a href="promociones.html">Promociones</a>
+                <a href="menu.php">Menú</a>
+                <a href="promociones.php">Promociones</a>
                 
             </nav>
             
@@ -45,7 +45,7 @@ session_start();
                         <div class="contenedorMenuPerfil">
                             <div class="MenuPerfil">
                                 <img src="img/usuario.png" alt="usuario icons" width="20px">
-                                <a href="perfil.html">Mi perfil</a>
+                                <a href="perfil.php">Mi perfil</a>
                             </div>
                             <div class="MenuPerfil">
                                 <img src="img/bolsa-de-la-compra.png" alt="bolsa de compra" width="20px">
@@ -148,7 +148,7 @@ session_start();
             </div>
 
             <div class="contenedor_volver">
-                <a href="index.html" class="btn_volver">Volver al Inicio</a>
+                <a href="index.php" class="btn_volver">Volver al Inicio</a>
             </div>
         </main>
     </div>

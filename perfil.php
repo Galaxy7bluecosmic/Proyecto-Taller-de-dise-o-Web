@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -20,18 +24,18 @@
             </a>
             <nav class="menu_principal">
                 <a href="index.php">Inicio</a>
-                <a href="menu.html">Menú</a>
-                <a href="promociones.html">Promociones</a>
+                <a href="menu.php">Menú</a>
+                <a href="promociones.php">Promociones</a>
                 
             </nav>
-            <a href="login.html" class="btn_login">Login</a>
+            <a href="login.php" class="btn_login">Login</a>
         </header>
 
         <section class="banner_perfil">
             <div class="banner_info">
                 <span class="tag_fastfood">Nombre Usuario</span>
                 <img src="img/avatar.png" alt="">
-                <p>Monitorea el estado de tus pedidos en tiempo real.</p>
+                <p><strong>Correo: </strong>coreoejemplo@gmail.com.</p>
             </div>
         </section>
 
@@ -97,7 +101,7 @@
             </div>
 
             <div class="contenedor_volver">
-                <a href="index.html" class="btn_volver">Volver al Inicio</a>
+                <a href="index.php" class="btn_volver">Volver al Inicio</a>
             </div>
         </main>
     </div>
