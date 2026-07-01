@@ -24,33 +24,21 @@ session_start();
         <header>
 
             <a href="index.php" class="logo_link">
-
                 <div class="contenedor_logo">
-
                     <img src="img/tienda-de-comestibles.gif" width="50">
-
                     <h1>Bocados<span>DeAyuda</span></h1>
-
                 </div>
-
             </a>
 
             <nav class="menu_principal">
-
                 <a href="index.php">Inicio</a>
                 <a href="menu.php">Menú</a>
                 <a href="promociones.php">Promociones</a>
                 <a href="pedidos.php">Pedidos</a>
-               
-
             </nav>
 
             <div class="acciones_header">
-
-                <a href="login.php" class="btn_login">
-                    Login
-                </a>
-
+                <a href="login.php" class="btn_login">Login</a>
             </div>
 
         </header>
@@ -58,11 +46,7 @@ session_start();
         <!-- TITULO -->
 
         <section class="titulo_menu">
-
-            <h2>
-                MENÚ PERUANO
-            </h2>
-
+            <h2>MENÚ PERUANO</h2>
         </section>
 
         <!-- CATEGORIAS -->
@@ -70,17 +54,11 @@ session_start();
         <section class="categorias_menu">
 
             <a href="#" class="categoria activa">Criolla</a>
-
             <a href="#" class="categoria">Casera</a>
-
             <a href="#" class="categoria">Mariscos</a>
-
             <a href="#" class="categoria">Parrillas</a>
-
             <a href="#" class="categoria">Chifa</a>
-
             <a href="#" class="categoria">Postres</a>
-
             <a href="#" class="categoria">Bebidas</a>
 
         </section>
@@ -96,20 +74,15 @@ session_start();
                 <img src="img/lomoSaltado.webp" alt="Lomo Saltado">
 
                 <div class="contenido_producto">
-
                     <h3>Lomo Saltado</h3>
-
                     <p>
                         Jugosos trozos de carne salteados al wok con cebolla,
                         tomate, papas fritas crocantes y arroz blanco.
                     </p>
 
                     <div class="detalle_producto">
-
                         <span>S/ 18.90</span>
-
                         <p>20 min</p>
-
                     </div>
 
                     <button>
@@ -127,26 +100,18 @@ session_start();
                 <img src="img/aji de gallina.jpg" alt="Ají de Gallina">
 
                 <div class="contenido_producto">
-
                     <h3>Ají de Gallina</h3>
 
-                    <p>
-                        Cremoso ají amarillo con pollo deshilachado,
-                        acompañado de arroz, papa sancochada y huevo.
-                    </p>
+                    <p>Cremoso ají amarillo con pollo deshilachado, acompañado de arroz, papa sancochada y huevo.</p>
 
                     <div class="detalle_producto">
-
                         <span>S/ 16.50</span>
-
                         <p>15 min</p>
-
                     </div>
 
                     <button>
                         Añadir al carrito +
                     </button>
-
                 </div>
 
             </article>
@@ -160,23 +125,14 @@ session_start();
                 <div class="contenido_producto">
 
                     <h3>Ceviche Clásico</h3>
-
-                    <p>
-                        Pescado fresco marinado en limón peruano con cebolla,
-                        choclo, camote y cancha serrana.
-                    </p>
+                    <p>Pescado fresco marinado en limón peruano con cebolla, choclo, camote y cancha serrana.</p>
 
                     <div class="detalle_producto">
-
                         <span>S/ 24.90</span>
-
                         <p>25 min</p>
-
                     </div>
 
-                    <button>
-                        Añadir al carrito +
-                    </button>
+                    <button>Añadir al carrito +</button>
 
                 </div>
 
@@ -200,7 +156,6 @@ session_start();
                     <div class="detalle_producto">
 
                         <span>S/ 17.90</span>
-
                         <p>18 min</p>
 
                     </div>
@@ -260,11 +215,8 @@ session_start();
                     </p>
 
                     <div class="detalle_producto">
-
                         <span>S/ 18.00</span>
-
                         <p>22 min</p>
-
                     </div>
 
                     <button>
@@ -284,18 +236,11 @@ session_start();
                 <div class="contenido_producto">
 
                     <h3>Pollo a la Brasa</h3>
-
-                    <p>
-                        Pollo crocante y jugoso acompañado de papas fritas,
-                        ensalada y cremas peruanas.
-                    </p>
+                    <p>Pollo crocante y jugoso acompañado de papas fritas, ensalada y cremas peruanas.</p>
 
                     <div class="detalle_producto">
-
                         <span>S/ 22.90</span>
-
                         <p>20 min</p>
-
                     </div>
 
                     <button>
@@ -322,11 +267,8 @@ session_start();
                     </p>
 
                     <div class="detalle_producto">
-
                         <span>S/ 12.90</span>
-
                         <p>10 min</p>
-
                     </div>
 
                     <button>
