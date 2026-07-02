@@ -26,7 +26,7 @@ body {
     }
 }
 
-/* Efecto de onda r?pida al hacer click en los botones (Feedback táctil) */
+/* Efecto de onda rapida al hacer click en los botones (Feedback táctil) */
 @keyframes clickEfecto {
     0% { transform: scale(1); }
     50% { transform: scale(0.95); }
@@ -61,12 +61,12 @@ body {
     margin-bottom: 60px;
     display: flex;
     gap: 15px;
-    overflow-x: auto; /* Permite scroll horizontal fluido en móviles */
+    overflow-x: auto; 
     padding: 10px 5px;
-    scrollbar-width: none; /* Oculta barra en Firefox */
+    scrollbar-width: none; 
 }
 .categorias_menu::-webkit-scrollbar {
-    display: none; /* Oculta barra en Chrome/Safari */
+    display: none; 
 }
 
 .categoria {

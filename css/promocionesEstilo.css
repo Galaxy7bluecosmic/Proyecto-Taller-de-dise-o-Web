@@ -1,4 +1,4 @@
-/* ===== RESET ===== */
+ï»¿/* ===== RESET ===== */
 * {
     margin: 0;
     padding: 0;
@@ -26,14 +26,14 @@ body {
     }
 }
 
-/* Brillo reflectante para capturar la atención en llamadas a la acción */
+/* Brillo reflectante para capturar la atencion en llamadas a la accion */
 @keyframes brilloEfecto {
     0% { left: -150%; }
     50% { left: 150%; }
     100% { left: 150%; }
 }
 
-/* Pulso de advertencia/atención para las etiquetas de las ofertas */
+/* Pulso de advertencia/atencion para las etiquetas de las ofertas */
 @keyframes latidoEtiqueta {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
@@ -52,7 +52,7 @@ body {
     }
 }
 
-/* Feedback táctil al presionar botones */
+/* Feedback tactil al presionar botones */
 @keyframes clickBoton {
     0% { transform: scale(1); }
     50% { transform: scale(0.96); }
@@ -129,7 +129,7 @@ body {
     box-shadow: 0 5px 15px rgba(255, 92, 92, 0.3);
 }
 
-/* Efecto Destello/Brillo en el bot?n del Hero */
+/* Efecto Destello/Brillo en el boton del Hero */
 .hero_texto a::before {
     content: '';
     position: absolute;
@@ -181,7 +181,7 @@ body {
     box-shadow: 0 20px 45px rgba(0,0,0,0.15);
 }
 
-/* Efecto Zoom y rotaci?n en la comida de las promos */
+/* Efecto Zoom y rotaciÃ³n en la comida de las promos */
 .promo_grande img {
     width: 280px;
     height: 200px;
@@ -350,7 +350,7 @@ body {
 .celeste { background: #3da5ff; }
 
 
-/* ===== CAPAS E IMÁGENES DE FONDO (CON ZOOM AL HOVER) ===== */
+/* ===== CAPAS E IMAGENES DE FONDO (CON ZOOM AL HOVER) ===== */
 .promo_pollo, .promo_Chifa, .promo_Postres, .promo_Parrilla {
     background-size: cover;
     background-position: center;
