@@ -1,0 +1,171 @@
+@keyframes authGlow {
+    0%, 100% {
+        box-shadow: 0 8px 18px rgba(31, 95, 205, 0.22);
+    }
+    50% {
+        box-shadow: 0 12px 26px rgba(245, 180, 0, 0.32);
+    }
+}
+
+@keyframes authEnter {
+    from {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.96);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.site-auth {
+    display: flex;
+    align-items: center;
+    position: relative;
+    z-index: 20;
+}
+
+.site-auth .btn_login {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    background: #1f5fcd;
+    color: #fff;
+    min-height: 44px;
+    padding: 11px 24px;
+    border-radius: 24px;
+    font-weight: 700;
+    overflow: hidden;
+    position: relative;
+    animation: authEnter 0.45s ease both, authGlow 2.8s ease-in-out infinite;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.site-auth .btn_login::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(120deg, transparent 20%, rgba(255, 255, 255, 0.38), transparent 80%);
+    transform: translateX(-120%);
+    transition: transform 0.45s ease;
+}
+
+.site-auth .btn_login:hover {
+    background: #174faf;
+    transform: translateY(-2px) scale(1.03);
+}
+
+.site-auth .btn_login:hover::after {
+    transform: translateX(120%);
+}
+
+.site-auth .btn_login:active {
+    transform: scale(0.96);
+}
+
+.site-auth .usuario_logueado {
+    border: 0;
+    background: #1f5fcd;
+    cursor: pointer;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 24px;
+    display: flex;
+    font-weight: 700;
+    animation: authEnter 0.45s ease both, authGlow 3s ease-in-out infinite;
+    transition: transform 0.25s ease, background 0.25s ease;
+}
+
+.site-auth .usuario_logueado:hover,
+.site-auth .usuario_logueado[aria-expanded="true"] {
+    background: #174faf;
+    transform: translateY(-2px);
+}
+
+.site-auth .usuario_logueado:active {
+    transform: scale(0.96);
+}
+
+.site-auth .usuario_logueado span {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.site-auth .usuario_logueado p {
+    max-width: 120px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.site-auth #avatarIcon {
+    width: 30px;
+    height: 30px;
+}
+
+.site-auth #avatarAbajo {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.25s ease;
+}
+
+.site-auth .usuario_logueado[aria-expanded="true"] #avatarAbajo {
+    transform: rotate(180deg);
+}
+
+.site-auth .menuDesplegable {
+    position: absolute;
+    top: calc(100% + 12px);
+    right: 0;
+    width: 190px;
+    border-radius: 18px;
+    background: #fff;
+    padding: 12px;
+    z-index: 2000;
+    box-shadow: 0 14px 35px rgba(0, 0, 0, .16);
+    animation: authEnter 0.22s ease both;
+}
+
+.site-auth .menuDesplegable[hidden] {
+    display: none;
+}
+
+.site-auth .MenuPerfil {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 12px;
+    border-radius: 12px;
+}
+
+.site-auth .MenuPerfil:hover {
+    background: #fff7df;
+}
+
+.site-auth .MenuPerfil a {
+    color: #222;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+@media (max-width: 760px) {
+    .site-auth {
+        order: 9;
+    }
+
+    .site-auth .btn_login {
+        display: none;
+    }
+
+    .site-auth .usuario_logueado {
+        padding: 8px;
+        border-radius: 50%;
+    }
+
+    .site-auth .usuario_logueado p,
+    .site-auth #avatarAbajo {
+        display: none;
+    }
+}

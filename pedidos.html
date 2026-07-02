@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+﻿
 
 <!DOCTYPE html>
 <html lang="es">
@@ -9,33 +7,35 @@ session_start();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pedidos | BocadosDeAyuda</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/perfil.css">
-    <link rel="stylesheet" href="css/grid/grid-perfil.css">
+    <link rel="stylesheet" href="css/pedidos.css?v=2">
+    <link rel="stylesheet" href="assets/css/PantallaCarga.css?v=2">
+    <link rel="stylesheet" href="css/grid/grid-pedidos.css?v=2">
+    <link rel="stylesheet" href="assets/css/menu.css?v=2">
+    <link rel="stylesheet" href="assets/css/auth.css?v=2">
 </head>
 <body>
 
     <div class="contenedor_pedidos">
         <header class="header_principal">
-            <a href="index.php" class="logo_link">
+            <a href="index.html" class="logo_link">
                 <div class="contenedor_logo">
                     <img src="img/tienda-de-comestibles.gif" width="50" alt="Logo">
                     <h1>Bocados<span>DeAyuda</span></h1>
                 </div>
             </a>
             <nav class="menu_principal">
-                <a href="index.php">Inicio</a>
-                <a href="menu.php">Menú</a>
-                <a href="promociones.php">Promociones</a>
+                <a href="index.html">Inicio</a>
+                <a href="menu.html">Menú</a>
+                <a href="promociones.html">Promociones</a>
                 
             </nav>
-            <a href="login.php" class="btn_login">Login</a>
-        </header>
+</header>
 
-        <section class="banner_perfil">
+        <section class="banner_titulo">
             <div class="banner_info">
-                <span class="tag_fastfood">Nombre Usuario</span>
-                <img src="img/avatar.png" alt="">
-                <p><strong>Correo: </strong>coreoejemplo@gmail.com.</p>
+                <span class="tag_fastfood">Historial de Antojos</span>
+                <h2>FRESCO, RICO Y DELICIOSO</h2>
+                <p>Monitorea el estado de tus pedidos en tiempo real.</p>
             </div>
         </section>
 
@@ -101,10 +101,17 @@ session_start();
             </div>
 
             <div class="contenedor_volver">
-                <a href="index.php" class="btn_volver">Volver al Inicio</a>
+                <a href="index.html" class="btn_volver">Volver al Inicio</a>
             </div>
         </main>
     </div>
 
+    
+
+    <script type="module" src="assets/js/site.js"></script>
 </body>
 </html>
+
+
+
+

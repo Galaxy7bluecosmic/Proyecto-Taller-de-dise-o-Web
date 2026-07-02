@@ -1,4 +1,4 @@
-/* ===== RESET ===== */
+﻿/* ===== RESET ===== */
 * {
     margin: 0;
     padding: 0;
@@ -40,13 +40,6 @@ body {
     100% { transform: scale(1); }
 }
 
-/* Pulso expandible para el carrito negro */
-@keyframes pulsoCarritoNegro {
-    0% { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
-    50% { box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5), 0 0 0 15px rgba(0, 0, 0, 0); }
-    100% { box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
-}
-
 /* Feedback táctil al presionar botones */
 @keyframes clickBoton {
     0% { transform: scale(1); }
@@ -62,184 +55,6 @@ body {
     margin: 20px auto;
     animation: fadeUpPromos 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-
-
-/* ===== HEADER ===== */
-header {
-    background: #111;
-    padding: 20px 40px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-}
-
-.logo_link {
-    text-decoration: none;
-    transition: transform 0.3s ease;
-}
-.logo_link:hover {
-    transform: scale(1.02);
-}
-
-.contenedor_logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.contenedor_logo h1 {
-    color: #f5b400;
-    font-size: 30px;
-    font-weight: bold;
-}
-
-.contenedor_logo span {
-    color: #ff5c5c;
-}
-
-.menu_principal {
-    display: flex;
-    gap: 30px;
-}
-
-.menu_principal a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    position: relative;
-    padding-bottom: 4px;
-    transition: color 0.3s ease;
-}
-
-.menu_principal a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #f5b400;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-}
-
-.menu_principal a:hover {
-    color: #f5b400;
-}
-
-.menu_principal a:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
-
-.btn_login {
-    text-decoration: none;
-    background: #ff5c5c;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 12px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 92, 92, 0.2);
-}
-
-.btn_login:hover {
-    background: #e04e4e;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 92, 92, 0.4);
-}
-
-/*===============*/
-.contenedorBotonSesio {
-    position: relative;
-}
-.btn_login {
-    text-decoration: none;
-    background: #5E8C31;
-    /* Azul eléctrico de la imagen */
-    color: white;
-    padding: 12px 28px;
-    border-radius: 25px;
-    font-weight: bold;
-    font-size: 0.9rem;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 12px rgba(43, 120, 246, 0.2);
-}
-
-.btn_login:hover {
-    background: #4A7026;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(43, 120, 246, 0.35);
-}
-
-.usuario_logueado {
-    background-color: #5E8C31;
-    cursor: pointer;
-    color: white;
-    padding: 12px 28px;
-    border-radius: 25px;
-    display: flex;
-    flex-direction: row;
-    font-weight: bold;
-    font-size: 0.9rem;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 12px rgba(43, 120, 246, 0.2);
-}
-.usuario_logueado:hover {
-    background-color: #4A7026;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(43, 120, 246, 0.35);
-}
-#avatarIcon {
-    width: 30px;
-    height: 30px;
-}
-#avatarAbajo {
-    width: 20px;
-    height: 20px;
-}
-.usuario_logueado span {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-.btn_cerrar {
-    background-color: white
-}
-
-.menuDesplegable {
-    position: absolute;
-    top: 60px;
-    right: 0px;
-    width: 220px;
-    height: auto;
-    border-radius: 18px;
-    background-color: white;
-    padding: 20px 20px;
-    z-index: 200000;
-    box-shadow:0 10px 30px rgba(0,0,0,.15);
-}
-.contenedorMenuPerfil {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.contenedorMenuPerfil .MenuPerfil {
-    padding: 10px 20px;
-    border-radius: 13px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    gap: 15px;
-}
-.contenedorMenuPerfil .MenuPerfil a {
-    text-decoration: none;
-    color: #000;
-}
-
 
 /* ===== HERO PROMOS ===== */
 .hero_promos {
@@ -288,7 +103,7 @@ header {
     box-shadow: 0 5px 15px rgba(255, 92, 92, 0.3);
 }
 
-/* Efecto Destello/Brillo en el botón del Hero */
+/* Efecto Destello/Brillo en el bot?n del Hero */
 .hero_texto a::before {
     content: '';
     position: absolute;
@@ -338,7 +153,7 @@ header {
     box-shadow: 0 20px 45px rgba(0,0,0,0.15);
 }
 
-/* Efecto Zoom y rotación en la comida de las promos */
+/* Efecto Zoom y rotaci?n en la comida de las promos */
 .promo_grande img {
     width: 280px;
     height: 200px;
@@ -539,70 +354,8 @@ header {
     font-size: 1.1rem;
 }
 
-
-/* ===== CARRITO FLOTANTE (FIJO EN PANTALLA) ===== */
-.carrito_flotante {
-    position: fixed !important;
-    right: 30px;
-    bottom: 30px;
-    background: #000000;
-    color: white;
-    text-decoration: none;
-    padding: 18px 25px;
-    border-radius: 20px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-weight: bold;
-    z-index: 99999; /* Se superpone sin problemas a los banners y fondos */
-    
-    animation: pulsoCarritoNegro 3s ease-in-out infinite;
-    transition: background 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
-}
-
-.carrito_flotante:hover {
-    background: #1a1a1a;
-    transform: scale(1.05) translateY(-3px);
-    animation-play-state: paused; /* Pausa el pulso para facilitar el click táctil */
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-}
-
-.carrito_flotante:active {
-    transform: scale(0.98) translateY(0);
-}
-
-.carrito_flotante span {
-    width: 30px;
-    height: 30px;
-    border-radius: 50%;
-    background: white;
-    color: #b53838;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-weight: 800;
-    transition: transform 0.4s ease;
-}
-
-.carrito_flotante:hover span {
-    transform: rotate(360deg);
-}
-
-
 /* ===== RESPONSIVE ===== */
 @media(max-width:950px){
-    header {
-        flex-direction: column;
-        gap: 20px;
-        padding: 20px;
-    }
-
-    .menu_principal {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-    }
-
     .hero_promos {
         padding: 40px 30px;
     }
@@ -625,11 +378,5 @@ header {
         width: 100%;
         height: auto;
         margin-top: 30px;
-    }
-    
-    .carrito_flotante {
-        right: 20px;
-        bottom: 20px;
-        padding: 14px 22px;
     }
 }

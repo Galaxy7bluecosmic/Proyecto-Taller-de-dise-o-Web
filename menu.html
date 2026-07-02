@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+﻿
 
 <!DOCTYPE html>
 <html lang="es">
@@ -12,7 +10,11 @@ session_start();
     <title>Menú | BocadosDeAyuda</title>
 
     <link rel="stylesheet" href="css/menuEstilo.css">
-    <link rel="stylesheet" href="CSS/grid/gred-menu.css">
+    <link rel="stylesheet" href="css/grid/gred-menu.css">
+    <link rel="stylesheet" href="assets/css/PantallaCarga.css">
+    <link rel="stylesheet" href="assets/css/menu.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
+    <link rel="stylesheet" href="assets/css/cart.css">
 </head>
 
 <body>
@@ -23,7 +25,7 @@ session_start();
 
         <header>
 
-            <a href="index.php" class="logo_link">
+            <a href="index.html" class="logo_link">
 
                 <div class="contenedor_logo">
 
@@ -37,21 +39,13 @@ session_start();
 
             <nav class="menu_principal">
 
-                <a href="index.php">Inicio</a>
-                <a href="menu.php">Menú</a>
-                <a href="promociones.php">Promociones</a>
-                <a href="pedidos.php">Pedidos</a>
+                <a href="index.html">Inicio</a>
+                <a href="menu.html">Menú</a>
+                <a href="promociones.html">Promociones</a>
+                <a href="pedidos.html">Pedidos</a>
                
 
             </nav>
-
-            <div class="acciones_header">
-
-                <a href="login.php" class="btn_login">
-                    Login
-                </a>
-
-            </div>
 
         </header>
 
@@ -341,7 +335,7 @@ session_start();
 
         <!-- CARRITO -->
 
-        <a href="form_pedidos.php" class="carrito_flotante">
+        <a href="form_pedidos.html" class="carrito_flotante">
 
             Carrito
 
@@ -351,6 +345,10 @@ session_start();
 
     </div>
 
+    <script type="module" src="assets/js/site.js"></script>
 </body>
 
 </html>
+
+
+

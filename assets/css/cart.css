@@ -1,0 +1,64 @@
+@keyframes pulsoCarrito {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 5px 20px rgba(255, 92, 92, 0.4);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 8px 25px rgba(255, 92, 92, 0.6);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 5px 20px rgba(255, 92, 92, 0.4);
+    }
+}
+
+.carrito_flotante {
+    position: fixed;
+    right: 30px;
+    bottom: 30px;
+    background: #ff5c5c;
+    color: white;
+    text-decoration: none;
+    padding: 16px 28px;
+    border-radius: 50px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-weight: bold;
+    z-index: 99999;
+    animation: pulsoCarrito 3s ease-in-out infinite;
+    transition: background 0.3s ease, transform 0.25s ease;
+}
+
+.carrito_flotante:hover {
+    background: #e04b4b;
+    animation-play-state: paused;
+    transform: translateY(-3px) scale(1.04);
+}
+
+.carrito_flotante:active {
+    transform: scale(0.96);
+}
+
+.carrito_flotante span {
+    background: white;
+    color: #ff5c5c;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.9rem;
+    font-weight: 800;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 760px) {
+    .carrito_flotante {
+        right: 16px;
+        bottom: 16px;
+        padding: 13px 18px;
+    }
+}

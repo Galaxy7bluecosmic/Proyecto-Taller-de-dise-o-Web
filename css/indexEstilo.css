@@ -1,4 +1,4 @@
-/* ===== RESET ===== */
+﻿/* ===== RESET ===== */
 * {
     margin: 0;
     padding: 0;
@@ -83,208 +83,11 @@ body {
     animation: aparecerWeb 1.2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
 }
 
-
-/* ===== HEADER ===== */
-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 25px 50px;
-    background: #f8f8f8;
-    border-bottom: 1px solid #f0f0f0;
-    position: relative;
-}
-
 .contenedorMenuLogo {
     display: flex;
     align-items: center;
     gap: 20px;
 }
-#menuIcon {
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-}
-#menuIcon:hover {
-    transform: scale(1.03);
-}
-
-.logo_link {
-    text-decoration: none;
-    transition: transform 0.3s ease;
-}
-
-.logo_link:hover {
-    transform: scale(1.02);
-}
-
-.contenedor_logo {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.contenedor_logo h1 {
-    color: #f5b400;
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: -0.5px;
-}
-
-.contenedor_logo span {
-    color: #ff5c5c;
-}
-
-.menu_navegacion {
-    display: flex;
-    gap: 35px;
-}
-
-.menu_navegacion a {
-    text-decoration: none;
-    color: #6e6e6e;
-    font-weight: bold;
-    font-size: 0.95rem;
-    position: relative;
-    padding-bottom: 4px;
-    transition: color 0.3s ease, transform 0.3s ease;
-}
-
-#contenedorMenuIzquierda {
-    top: 100%;
-    left: 0px;
-    position: absolute;
-    width: 270px;
-    background-color: #f8f8f8;
-}
-.menu_navegacionIzquierda {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.menu_navegacionIzquierda a {
-    text-decoration: none;
-    width: 90%;
-    background-color: transparent;
-    padding: 10px 20px;
-    display: flex;
-    align-items: center;
-    gap: 20px;
-}
-
-
-/* Barra inferior animada en los enlaces del menú */
-.menu_navegacion a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #f5b400;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-}
-
-.menu_navegacion a:hover {
-    color: #2c2c2c;
-    transform: translateY(-1px);
-}
-
-.menu_navegacion a:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
-
-/*================*/
-.contenedorBotonSesio {
-    position: relative;
-}
-.btn_login {
-    text-decoration: none;
-    background: #5E8C31;
-    /* Azul eléctrico de la imagen */
-    color: white;
-    padding: 12px 28px;
-    border-radius: 25px;
-    font-weight: bold;
-    font-size: 0.9rem;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 12px rgba(43, 120, 246, 0.2);
-}
-
-.btn_login:hover {
-    background: #4A7026;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(43, 120, 246, 0.35);
-}
-
-.usuario_logueado {
-    background-color: #5E8C31;
-    cursor: pointer;
-    color: white;
-    padding: 12px 28px;
-    border-radius: 25px;
-    display: flex;
-    flex-direction: row;
-    font-weight: bold;
-    font-size: 0.9rem;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 12px rgba(43, 120, 246, 0.2);
-}
-.usuario_logueado:hover {
-    background-color: #4A7026;
-    transform: translateY(-2px);
-    box-shadow: 0 8px 20px rgba(43, 120, 246, 0.35);
-}
-#avatarIcon {
-    width: 30px;
-    height: 30px;
-}
-#avatarAbajo {
-    width: 20px;
-    height: 20px;
-}
-.usuario_logueado span {
-    display: flex;
-    align-items: center;
-    gap: 15px;
-}
-.btn_cerrar {
-    background-color: white
-}
-
-.menuDesplegable {
-    position: absolute;
-    top: 60px;
-    right: 0px;
-    width: 220px;
-    height: auto;
-    border-radius: 18px;
-    background-color: white;
-    padding: 20px 20px;
-    z-index: 200000;
-    box-shadow:0 10px 30px rgba(0,0,0,.15);
-}
-.contenedorMenuPerfil {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-.contenedorMenuPerfil .MenuPerfil {
-    padding: 10px 20px;
-    border-radius: 13px;
-    display: flex;
-    align-items: center;
-    cursor: pointer;
-    gap: 15px;
-}
-.contenedorMenuPerfil .MenuPerfil a {
-    text-decoration: none;
-    color: #000;
-}
-
 /* =========================================================== */
 /* ===== HERO ===== */
 .hero {
@@ -406,7 +209,7 @@ header {
     margin-top: 15px;
     text-decoration: none;
     background: #ff5c5c;
-    /* Color coral dinámico alternativo */
+    /* Color coral din?mico alternativo */
     color: white;
     padding: 15px 35px;
     border-radius: 30px;

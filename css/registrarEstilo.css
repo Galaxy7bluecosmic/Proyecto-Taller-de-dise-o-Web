@@ -15,52 +15,6 @@ body {
   flex-direction: column;
 }
 
-/* ===== HEADER ===== */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 25px 50px;
-  background: #f8f8f8;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-}
-
-.logo_link {
-  text-decoration: none;
-}
-
-.contenedor_logo {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.contenedor_logo h1 {
-  color: #f5b400;
-  font-size: 28px;
-}
-
-.contenedor_logo span {
-  color: #ff5c5c;
-}
-
-.menu_navegacion {
-  display: flex;
-  gap: 30px;
-}
-
-.menu_navegacion a {
-  text-decoration: none;
-  color: #444;
-  font-weight: bold;
-  transition: .3s;
-}
-
-.menu_navegacion a:hover {
-  color: #f5b400;
-  transform: scale(1.05);
-}
-
 /* ===== MAIN ===== */
 main {
   flex: 1;
@@ -562,18 +516,6 @@ footer a:hover {
 }
 
 /* ===== RESPONSIVE ===== */
-@media (max-width: 950px) {
-  header {
-    flex-direction: column;
-    gap: 20px;
-  }
-
-  .menu_navegacion {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-}
-
 @media (max-width: 720px) {
   .auth_card {
     grid-template-columns: 1fr;
@@ -596,10 +538,6 @@ footer a:hover {
     flex-direction: column;
     gap: 8px;
     text-align: center;
-  }
-
-  header {
-    padding: 20px;
   }
 }
 

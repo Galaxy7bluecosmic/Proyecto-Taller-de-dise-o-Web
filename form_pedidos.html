@@ -1,38 +1,24 @@
-<?php
-session_start();
-
-if (!isset($_SESSION['nombre'])) {
-    echo "No has iniciado sesión.";
-    header("refresh:2; url=index.php");
-    exit();
-}
-?>
-
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="es">
 
 <head>
-
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Formulario de Pedido | BocadosDeAyuda</title>
 
     <link rel="stylesheet" href="css/formPedidos.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/grid/grid-formPedidos.css">
-
+    <link rel="stylesheet" href="assets/css/menu.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
 </head>
 
 <body>
-
     <div class="contenedor_general">
 
         <!-- HEADER -->
-
         <header>
-            <a href="index.php" class="logo_link">
+            <a href="index.html" class="logo_link">
                 <div class="contenedor_logo">
                     <img src="img/tienda-de-comestibles.gif" width="50">
                     <h1>Bocados<span>DeAyuda</span></h1>
@@ -40,266 +26,149 @@ if (!isset($_SESSION['nombre'])) {
             </a>
 
             <nav class="menu_principal">
-                <a href="index.php">Inicio</a>
-                <a href="menu.php">Menú</a>
-                <a href="promociones.php">Promociones</a>
-                <a href="pedidos.php">Pedidos</a>
+                <a href="index.html">Inicio</a>
+                <a href="menu.html">Menú</a>
+                <a href="promociones.html">Promociones</a>
+                <a href="pedidos.html">Pedidos</a>
             </nav>
-            <div class="acciones_header">
-                <a href="login.php" class="btn_login">
-                    Login
-                </a>
         </header>
 
         <!-- TITULO -->
-
         <section class="titulo">
-            <h2>
-                Tu carrito de compras
-            </h2>
-            <p>
-                Revisa tus productos antes de realizar el pago.
-            </p>
+            <h2>Tu carrito de compras</h2>
+            <p>Revisa tus productos antes de realizar el pago.</p>
         </section>
 
         <!-- GRID PRINCIPAL -->
-
         <section class="contenedor_carrito">
 
             <!-- PRODUCTO -->
-
             <article class="producto">
-                <!-- GRID ANIDADO -->
                 <div class="producto_grid">
-                    <!-- IMAGEN -->
                     <div class="producto_imagen">
                         <img src="img/lomoSaltado.webp" alt="Lomo Saltado">
                     </div>
-                    <!-- INFO -->
-
                     <div class="producto_info">
                         <h3>Lomo Saltado</h3>
-                        <p>
-                            Carne salteada con cebolla,
-                            tomate, papas fritas y arroz blanco.
-                        </p>
-
-                        <span class="precio">
-                            S/ 18.90
-                        </span>
+                        <p>Carne salteada con cebolla, tomate, papas fritas y arroz blanco.</p>
+                        <span class="precio">S/ 18.90</span>
                     </div>
-
-                    <!-- CANTIDAD -->
-
                     <div class="producto_acciones">
-
-                        <div class="cantidad">
-                            2
-                        </div>
-
-                        <button class="btn_eliminar">
-                            eliminar
-                        </button>
+                        <div class="cantidad">2</div>
+                        <button class="btn_eliminar">Eliminar</button>
                     </div>
                 </div>
-
             </article>
 
             <!-- PRODUCTO -->
-
             <article class="producto">
                 <div class="producto_grid">
                     <div class="producto_imagen">
                         <img src="img/ceviche.webp" alt="Ceviche">
                     </div>
-
                     <div class="producto_info">
                         <h3>Ceviche Clásico</h3>
-                        <p>
-                            Pescado fresco con limón peruano,
-                            choclo, cancha y camote.
-                        </p>
-
-                        <span class="precio">
-                            S/ 24.90
-                        </span>
+                        <p>Pescado fresco con limón peruano, choclo, cancha y camote.</p>
+                        <span class="precio">S/ 24.90</span>
                     </div>
-
                     <div class="producto_acciones">
-                        <div class="cantidad">
-                            1
-                        </div>
-
-                        <button class="btn_eliminar">
-                            eliminar
-                        </button>
+                        <div class="cantidad">1</div>
+                        <button class="btn_eliminar">Eliminar</button>
                     </div>
-
                 </div>
-
             </article>
-
         </section>
 
         <!-- TOTAL -->
-
         <section class="total_compra">
-
             <div class="total_card">
-                <h3>
-                    Total a pagar
-                </h3>
-
-                <span>
-                    S/ 43.80
-                </span>
-                <button id="abrirModal">
-
-                    Pagar ahora
-
-                </button>
+                <h3>Total a pagar</h3>
+                <span>S/ 43.80</span>
+                <button id="abrirModal">Pagar ahora</button>
             </div>
         </section>
     </div>
 
     <!-- MODAL -->
-
     <div class="modal" id="modalPago">
-
         <div class="modal_contenido">
-            <h2>
-                Método de pago
-            </h2>
-            <!-- METODOS -->
+            <h2>Método de pago</h2>
             <div class="metodos_pago">
-                <button class="metodo activo">
-                    💳 Tarjeta
-                </button>
-
-                <button class="metodo">
-                    📱 Yape
-                </button>
-
-                <button class="metodo">
-                    💵 Efectivo
-                </button>
-
+                <button class="metodo activo">💳 Tarjeta</button>
+                <button class="metodo">📱 Yape</button>
+                <button class="metodo">💵 Efectivo</button>
             </div>
 
             <!-- FORM -->
-
             <form>
-
-                <label>
-                    Dirección
-                </label>
-
+                <label>Dirección</label>
                 <input type="text" placeholder="Distrito, calle, número">
 
-                <label>
-                    Teléfono
-                </label>
-
+                <label>Teléfono</label>
                 <input type="text" placeholder="+51 999 999 999">
 
-                <label>
-                    Número de tarjeta
-                </label>
-
+                <label>Número de tarjeta</label>
                 <input type="text" placeholder="1234 5678 9123 4567">
 
-                <label>
-                    Nombre del titular
-                </label>
-
+                <label>Nombre del titular</label>
                 <input type="text" placeholder="Nombre completo">
+
                 <br>
                 <div class="dos_columnas">
-
                     <div>
-                        <label>
-                            Fecha
-                        </label>
+                        <label>Fecha</label>
                         <input type="text" placeholder="MM/AA">
                     </div>
-
                     <div>
-                        <label>
-                            CVV
-                        </label>
+                        <label>CVV</label>
                         <input type="password" placeholder="123">
                     </div>
-
                 </div>
 
-                <button type="button" id="btnPagar">
-                    Confirmar pago
-                </button>
+                <button type="button" id="btnPagar">Confirmar pago</button>
             </form>
         </div>
     </div>
 
     <!-- LOADING -->
-
     <div class="pantalla_carga" id="pantallaCarga">
         <div class="loader">
             <div class="spinner"></div>
-            <h2>
-                Procesando pago...
-            </h2>
+            <h2>Procesando pago...</h2>
         </div>
     </div>
 
     <!-- JAVASCRIPT SOLO PARA PAGO -->
-
     <script>
-
         const abrirModal = document.getElementById("abrirModal");
         const modal = document.getElementById("modalPago");
 
         abrirModal.onclick = () => {
-
             modal.classList.add("mostrar");
-
         }
 
         const btnPagar = document.getElementById("btnPagar");
         const pantallaCarga = document.getElementById("pantallaCarga");
 
         btnPagar.onclick = () => {
-
             pantallaCarga.classList.add("mostrarCarga");
 
             setTimeout(() => {
-
                 document.querySelector(".loader").innerHTML = `
-
-                <div class="check_final">
-                    ✓
-                </div>
-
-                <h2 class="mensaje_exito">
-                    Gracias por su compra
-                </h2>
-
-                <p class="texto_exito">
-                    Su pedido está siendo preparado 
-                </p>
-
+                <div class="check_final">✓</div>
+                <h2 class="mensaje_exito">Gracias por su compra</h2>
+                <p class="texto_exito">Su pedido está siendo preparado</p>
             `;
 
                 setTimeout(() => {
-
-                    window.location.href = "pedidos.php";
-
+                    window.location.href = "pedidos.html";
                 }, 2500);
-
             }, 3000);
-
         }
-
     </script>
 
+    <script type="module" src="assets/js/site.js"></script>
 </body>
-
 </html>
+
+

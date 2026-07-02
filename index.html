@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+﻿
 
 <!DOCTYPE html>
 <html lang="es">
@@ -12,8 +10,10 @@ session_start();
     <link rel="shortcut icon" href="img/tienda-de-comestibles.gif" type="image/x-icon">
     <link rel="stylesheet" href="css/indexEstilo.css">
     <link rel="stylesheet" href="css/grid/grid-index.css">
-    <link rel="stylesheet" href="css/PantallaCarga.css">
+    <link rel="stylesheet" href="assets/css/PantallaCarga.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/menu.css">
+    <link rel="stylesheet" href="assets/css/auth.css">
 </head>
 
 <body>
@@ -30,8 +30,7 @@ session_start();
         <!-- HEADER -->
         <header>
             <div class="contenedorMenuLogo">
-                <img src="img/menu.png" alt="menu icon" id="menuIcon" onclick="mostrarMenuIzquierdo()">
-                <a href="index.php" class="logo_link">
+                <a href="index.html" class="logo_link">
                     <div class="contenedor_logo">
                         <img src="img/tienda-de-comestibles.gif" alt="logo" width="55">
                         <h1>Bocados<span>DeAyuda</span></h1>
@@ -39,80 +38,10 @@ session_start();
                 </a>
             </div>
             <nav class="menu_navegacion">
-                <a href="menu.php">Menú</a>
-                <a href="pedidos.php">tus pedidos</a>
-                <a href="promociones.php">Promociones</a>
+                <a href="menu.html">Menú</a>
+                <a href="pedidos.html">tus pedidos</a>
+                <a href="promociones.html">Promociones</a>
             </nav>
-
-            <?php if (isset($_SESSION['nombre'])) { ?>
-
-                <div class="contenedorBotonSesio">
-                    <div class="usuario_logueado" onclick="mostrarMenu()">
-                        <span>
-                            <img src="img/avatar.png" alt="avatar" id="avatarIcon">
-                            <p>
-                                <?php echo $_SESSION['nombre']; ?>
-                            </p>
-                            <img src="img/abajo.png" alt="abajo flecha abrir menu" id="avatarAbajo">
-                        </span>
-                    </div>
-                    <div class="menuDesplegable" id="menuDesplegableID" style="display: none;">
-                        <div class="contenedorMenuPerfil">
-                            <div class="MenuPerfil">
-                                <img src="img/usuario.png" alt="usuario icons" width="20px">
-                                <a href="perfil.php">Mi perfil</a>
-                            </div>
-                            <div class="MenuPerfil">
-                                <img src="img/bolsa-de-la-compra.png" alt="bolsa de compra" width="20px">
-                                <a href="#">Mis Pedidos</a>
-                            </div>
-                            <div class="MenuPerfil">
-                                <img src="img/favorito.png" alt="favoritos" width="20px">
-                                <a href="#">Favoritos</a>
-                            </div>
-                            <div class="MenuPerfil">
-                                <img src="img/mapas-y-banderas.png" alt="direccion" width="20px">
-                                <a href="#">Direcciones</a>
-                            </div>
-                            <div class="MenuPerfil">
-                                <img src="img/cerrar-sesion.png" alt="icono salir de la pagina" width="20px">
-                                <a href="php/cerrarSesion.php" class="btn_cerrar">
-                                    Cerrar sesión
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            <?php } else { ?>
-
-                <a href="login.php" class="btn_login">
-                    <p>Acceder</p>
-                </a>
-
-            <?php } ?>
-
-            <div id="contenedorMenuIzquierda" style="display: none;">
-                <nav class="menu_navegacionIzquierda">
-                    <div>
-                        <img src="img/x.png" alt="x" width="18px">
-                        <div class="contenedorLogoDentroMenu">
-                            <img src="img/tienda-de-comestibles.gif" alt="tienda comestiblre" width="30px">
-                            <h3>Bocados<span>DeAyuda</span></h3>
-                        </div>
-                    </div>
-                    <a href="menu.php">
-                        <img src="img/casa.png" alt="casita" width="23px">
-                        <span>Inicio</span>
-                    </a>
-                    <a href="pedidos.php">
-                        <span>tus pedidos</span>
-                    </a>
-                    <a href="promociones.php">
-                        <span>Promociones</span>
-                    </a>
-                </nav>
-            </div>
         </header>
 
         <!-- HERO -->
@@ -128,7 +57,7 @@ session_start();
                     Comer rico también puede generar un impacto positivo.
                 </p>
                 <div class="hero_botones">
-                    <a href="menu.php" class="btn_principal">
+                    <a href="menu.html" class="btn_principal">
                         Ver Menú
                     </a>
 
@@ -186,7 +115,7 @@ session_start();
                     Comprar alimentos rescatados significa ahorrar dinero y también
                     cuidar el medio ambiente.
                 </p>
-                <a href="promociones.php">
+                <a href="promociones.html">
                     Ver promociones
                 </a>
             </div>
@@ -229,7 +158,7 @@ session_start();
         <section class="frase">
             <h2>“La comida no se desperdicia, se comparte.”</h2>
             <p>Juntos podemos construir un consumo más responsable y sostenible.</p>
-            <a href="menu.php">Explorar alimentos</a>
+            <a href="menu.html">Explorar alimentos</a>
         </section>
 
         <!-- FOOTER -->
@@ -245,8 +174,8 @@ session_start();
 
                 <div>
                     <h3>Enlaces</h3>
-                    <a href="menu.php">Menú</a>
-                    <a href="promociones.php">Promociones</a>
+                    <a href="menu.html">Menú</a>
+                    <a href="promociones.html">Promociones</a>
                 </div>
 
                 <div>
@@ -271,44 +200,13 @@ session_start();
 
     </div>
 
-    <script>
-        function mostrarMenu() {
-            const menuUsuario = document.getElementById("menuDesplegableID");
-            const imageFlecha = document.getElementById("avatarAbajo");
+    
 
-            if (menuUsuario.style.display === "none") {
-                menuUsuario.style.display = "block";
-                imageFlecha.src = "img/subir.png";
-            } else {
-                menuUsuario.style.display = "none";
-                imageFlecha.src = "img/abajo.png";
-            }
-        }
-
-        document.addEventListener("click", function(event) {
-
-            const menu = document.getElementById("menuDesplegableID");
-            const boton = document.querySelector(".usuario_logueado");
-            const imageFlecha = document.getElementById("avatarAbajo");
-
-            if (!menu.contains(event.target) && !boton.contains(event.target)) {
-                menu.style.display = "none";
-                imageFlecha.src = "img/abajo.png";
-            }
-
-        });
-        //Mostrar Menu de la izquierda para responsive y pantalla normal
-        function mostrarMenuIzquierdo() {
-            const contenedorOcultarVer = document.getElementById("contenedorMenuIzquierda");
-
-            if (contenedorOcultarVer.style.display === "none") {
-                contenedorOcultarVer.style.display = "block";
-            } else {
-                contenedorOcultarVer.style.display = "none";
-            }
-        }
-    </script>
-
+    <script type="module" src="assets/js/site.js"></script>
 </body>
 
 </html>
+
+
+
+

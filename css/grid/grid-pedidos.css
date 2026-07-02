@@ -49,12 +49,6 @@
 }
 
 @media (max-width: 480px) {
-    .header_principal {
-        flex-direction: column;
-        gap: 15px;
-        padding: 20px;
-    }
-    
     .card_pedido {
         grid-template-columns: 1fr;
         text-align: center;

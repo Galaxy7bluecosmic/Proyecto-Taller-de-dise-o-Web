@@ -1,4 +1,4 @@
-/* ===== RESET ===== */
+﻿/* ===== RESET ===== */
 
 *{
     margin: 0;
@@ -19,69 +19,6 @@ body{
     max-width: 1450px;
     margin: 20px auto;
 }
-
-/* ===== HEADER ===== */
-
-header{
-    background: #111;
-    padding: 20px 40px;
-    border-radius: 20px;
-
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.logo_link{
-    text-decoration: none;
-}
-
-.contenedor_logo{
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.contenedor_logo h1{
-    color: #f5b400;
-}
-
-.contenedor_logo span{
-    color: #ff5c5c;
-}
-
-.menu_principal{
-    display: flex;
-    gap: 30px;
-}
-
-.menu_principal a{
-    color: white;
-    text-decoration: none;
-    transition: .3s;
-}
-
-.menu_principal a:hover{
-    color: #f5b400;
-}
-
-.btn_login {
-    text-decoration: none;
-    background: #ff5c5c;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 12px;
-    font-weight: bold;
-    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-    box-shadow: 0 4px 10px rgba(255, 92, 92, 0.2);
-}
-
-.btn_login:hover {
-    background: #e04b4b;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(255, 92, 92, 0.35);
-}
-
 
 /* ===== TITULO ===== */
 

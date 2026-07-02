@@ -1,4 +1,4 @@
-/* ===== RESET ===== */
+﻿/* ===== RESET ===== */
 * {
     margin: 0;
     padding: 0;
@@ -26,14 +26,7 @@ body {
     }
 }
 
-/* Vibración sutil e infinita para llamar la atención sobre el carrito */
-@keyframes pulsoCarrito {
-    0% { transform: scale(1); box-shadow: 0 5px 20px rgba(255,92,92,0.4); }
-    50% { transform: scale(1.05); box-shadow: 0 8px 25px rgba(255,92,92,0.6); }
-    100% { transform: scale(1); box-shadow: 0 5px 20px rgba(255,92,92,0.4); }
-}
-
-/* Efecto de onda rápida al hacer click en los botones (Feedback táctil) */
+/* Efecto de onda r?pida al hacer click en los botones (Feedback táctil) */
 @keyframes clickEfecto {
     0% { transform: scale(1); }
     50% { transform: scale(0.95); }
@@ -48,98 +41,6 @@ body {
     margin: 20px auto;
     animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-
-
-/* ===== HEADER ===== */
-header {
-    background: #111;
-    padding: 20px 40px;
-    border-radius: 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
-}
-
-.logo_link {
-    text-decoration: none;
-    transition: transform 0.3s ease;
-}
-.logo_link:hover {
-    transform: scale(1.03);
-}
-
-.contenedor_logo {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-}
-
-.contenedor_logo h1 {
-    color: #f5b400;
-    font-size: 30px;
-    font-weight: 800;
-}
-
-.contenedor_logo span {
-    color: #ff5c5c;
-}
-
-
-/* ===== MENÚ NAVEGACIÓN ===== */
-.menu_principal {
-    display: flex;
-    gap: 30px;
-}
-
-.menu_principal a {
-    text-decoration: none;
-    color: white;
-    font-weight: bold;
-    position: relative;
-    padding-bottom: 4px;
-    transition: color 0.3s ease;
-}
-
-.menu_principal a::after {
-    content: '';
-    position: absolute;
-    width: 100%;
-    transform: scaleX(0);
-    height: 2px;
-    bottom: 0;
-    left: 0;
-    background-color: #f5b400;
-    transform-origin: bottom right;
-    transition: transform 0.25s ease-out;
-}
-
-.menu_principal a:hover {
-    color: #f5b400;
-}
-
-.menu_principal a:hover::after {
-    transform: scaleX(1);
-    transform-origin: bottom left;
-}
-
-.btn_login {
-    text-decoration: none;
-    background: #ff5c5c;
-    color: white;
-    padding: 12px 25px;
-    border-radius: 12px;
-    font-weight: bold;
-    transition: all 0.3s ease;
-    box-shadow: 0 4px 15px rgba(255, 92, 92, 0.2);
-}
-
-.btn_login:hover {
-    background: #e04e4e;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(255, 92, 92, 0.4);
-}
-
 
 /* ===== TÍTULO SECCIÓN ===== */
 .titulo_menu {
@@ -306,67 +207,9 @@ header {
     animation: clickEfecto 0.2s ease-out;
 }
 
-
-/* ===== CARRITO FLOTANTE ===== */
-.carrito_flotante {
-    position: fixed;
-    right: 30px;
-    bottom: 30px;
-    background: #ff5c5c;
-    color: white;
-    text-decoration: none;
-    padding: 16px 28px;
-    border-radius: 50px;
-    display: flex;
-    align-items: center;
-    gap: 15px;
-    font-weight: bold;
-    z-index: 100;
-    animation: pulsoCarrito 3s ease-in-out infinite;
-    transition: background 0.3s ease;
-}
-
-.carrito_flotante:hover {
-    background: #e04b4b;
-    animation-play-state: paused; /* Se congela sutilmente al poner el cursor encima */
-}
-
-.carrito_flotante span {
-    background: white;
-    color: #ff5c5c;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 0.9rem;
-    font-weight: 800;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-}
-
-
 /* ===== RESPONSIVE ===== */
 @media(max-width:900px){
-    header {
-        flex-direction: column;
-        gap: 25px;
-        padding: 20px;
-    }
-
-    .menu_principal {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-    }
-
     .titulo_menu h2 {
         font-size: 38px;
-    }
-    
-    .carrito_flotante {
-        right: 20px;
-        bottom: 20px;
-        padding: 14px 22px;
     }
 }

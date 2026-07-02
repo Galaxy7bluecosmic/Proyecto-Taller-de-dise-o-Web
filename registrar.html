@@ -1,6 +1,4 @@
-<?php
-session_start();
-?>
+﻿
 
 <!DOCTYPE html>
 <html lang="es">
@@ -14,23 +12,6 @@ session_start();
 </head>
 
 <body>
-
-    <!-- HEADER -->
-    <header>
-        <a href="index.php" class="logo_link">
-            <div class="contenedor_logo">
-                <img src="img/tienda-de-comestibles.gif" alt="logo" width="45" onerror="this.style.display='none'">
-                <h1>Bocados<span>DeAyuda</span></h1>
-            </div>
-        </a>
-
-        <nav class="menu_navegacion">
-            <a href="index.php">Inicio</a>
-            <a href="menu.php">Menú</a>
-            <a href="form_pedidos.php">Pedidos</a>
-            <a href="promociones.php">Promociones</a>
-        </nav>
-    </header>
 
     <!-- MAIN -->
     <main>
@@ -77,16 +58,15 @@ session_start();
 
                 <div class="tabs">
                     <button class="tab_btn">
-                        <a href="login.php" style="text-decoration: none; color: #888;">Iniciar Sesión</a>
+                        <a href="login.html" style="text-decoration: none; color: #888;">Iniciar Sesión</a>
                     </button>
                     <button class="tab_btn active">Registrarse</button>
                 </div>
 
                 <!-- REGISTRO -->
-                <form class="form_panel active" id="register" action="php/registro.php" method="post">
+                <form class="form_panel active" id="register" action="php/auth/registro.php" method="post">
                     <div class="form_titulo">Únete a la causa 🌱</div>
-                    <div class="form_sub">¿Ya tienes cuenta? <a href="login.php"
-                            onclick="mostrarPanel('login', null)">Inicia
+                    <div class="form_sub">¿Ya tienes cuenta? <a href="login.html">Inicia
                             sesión
                             aquí</a></div>
 
@@ -109,7 +89,7 @@ session_start();
                     </div>
 
                     <div class="campo">
-                        <label for="regTelefono">Telefono</label>
+                        <label for="regTelefono">Teléfono</label>
                         <input type="tel" name="regTelefono" id="regTelefono" placeholder="000 000 000"
                             autocomplete="off">
                     </div>
@@ -125,7 +105,7 @@ session_start();
                         </div>
                     </div>
 
-                    <button class="submit_btn" onclick="validarRegistro()" type="submit">Crear Cuenta Gratis →</button>
+                    <button class="submit_btn" type="submit">Crear Cuenta Gratis →</button>
 
                     <p id="errorRegistro" class="msg_error"></p>
                 </form>
@@ -138,18 +118,29 @@ session_start();
     <footer>
         <span>© 2026 BocadosDeAyuda · Arequipa, Perú</span>
         <span>
-            <a href="menu.php">Menú</a> ·
-            <a href="promociones.php">Promociones</a>
+            <a href="menu.html">Menú</a> ·
+            <a href="promociones.html">Promociones</a>
         </span>
     </footer>
 
     <script>
         // Mostrar contraseña
         function mostrarContraseña() {
-
+            const input = document.getElementById("regPass");
+            const input2 = document.getElementById("regPass2");
+            if (input.type === "password") {
+                input.type = "text";
+                input2.type = "text";
+            } else {
+                input.type = "password";
+                input2.type = "password";
+            }
         }
     </script>
 
+    <script type="module" src="assets/js/site.js"></script>
 </body>
 
 </html>
+
+

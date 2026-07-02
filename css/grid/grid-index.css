@@ -87,19 +87,3 @@
     }
 }
 
-@media (max-width: 768px) {
-    header {
-        flex-direction: column;
-        gap: 20px;
-        padding: 25px 20px;
-    }
-    .menuIcon {
-        display: block;
-    }
-
-    .menu_navegacion {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 20px;
-    }
-}
