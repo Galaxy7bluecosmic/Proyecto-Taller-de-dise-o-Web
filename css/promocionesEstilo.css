@@ -22,7 +22,7 @@ body {
     }
     to {
         opacity: 1;
-        transform: translateY(0);
+        transform: none;
     }
 }
 
@@ -38,6 +38,18 @@ body {
     0% { transform: scale(1); }
     50% { transform: scale(1.05); }
     100% { transform: scale(1); }
+}
+
+/* Latido suave para destacar la imagen principal */
+@keyframes latidoImagenPrincipal {
+    0%, 100% {
+        transform: scale(1);
+        filter: saturate(1);
+    }
+    50% {
+        transform: scale(1.035);
+        filter: saturate(1.12);
+    }
 }
 
 /* Feedback táctil al presionar botones */
@@ -125,9 +137,11 @@ body {
 .hero_imagen img {
     width: 100%;
     border-radius: 30px;
+    animation: latidoImagenPrincipal 2.8s ease-in-out infinite;
     transition: transform 0.5s ease;
 }
 .hero_promos:hover .hero_imagen img {
+    animation-play-state: paused;
     transform: scale(1.02) rotate(1deg);
 }
 
