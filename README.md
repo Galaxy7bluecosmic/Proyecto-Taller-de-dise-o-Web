@@ -2,7 +2,7 @@
 # BocadosDeAyuda
 
 ## Cómo ver la página
-## Importante tener Xamp instalado
+## Importante tener Xamp instalado o levantar un localhost con pyton
 1. Descarga o clona el proyecto.
 
 2. Copia la carpeta del proyecto dentro de la carpeta de XAMPP:
