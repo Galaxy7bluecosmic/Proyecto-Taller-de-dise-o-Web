@@ -1,4 +1,5 @@
 import { protegerEnlace } from "./auth.js";
+import { actualizarContadoresCarrito } from "./cart-store.js";
 
 export function prepararCarrito(sesion) {
     document.querySelectorAll(".carrito_flotante").forEach((carrito) => {
@@ -6,18 +7,9 @@ export function prepararCarrito(sesion) {
         carrito.addEventListener("click", (event) => protegerEnlace(event, sesion));
     });
 
-    document.querySelectorAll(".card_producto button, .promo_grande button, .mini_card button").forEach((boton) => {
-        boton.addEventListener("click", (event) => {
-            if (!sesion.logueado) {
-                event.preventDefault();
-                window.location.href = "login.html?next=form_pedidos.html";
-                return;
-            }
-
-            const contador = document.querySelector(".carrito_flotante span");
-            if (contador) contador.textContent = String(Number(contador.textContent || 0) + 1);
-        });
-    });
+    actualizarContadoresCarrito(sesion);
+    window.addEventListener("carrito:actualizado", () => actualizarContadoresCarrito(sesion));
+    window.addEventListener("storage", () => actualizarContadoresCarrito(sesion));
 
     document.querySelectorAll('a[href="pedidos.html"], a[href="form_pedidos.html"]').forEach((enlace) => {
         enlace.addEventListener("click", (event) => protegerEnlace(event, sesion));

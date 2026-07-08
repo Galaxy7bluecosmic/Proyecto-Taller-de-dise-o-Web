@@ -150,6 +150,28 @@
     font-weight: 700;
 }
 
+.btn_guardar_admin {
+    border: none;
+    background: #7ccf39;
+    color: #fff;
+    padding: 12px 18px;
+    border-radius: 16px;
+    cursor: pointer;
+    font-weight: 800;
+}
+
+.aviso_admin_guardado {
+    position: fixed;
+    top: 22px;
+    right: 22px;
+    z-index: 100001;
+    background: #222;
+    color: #fff;
+    padding: 14px 18px;
+    border-radius: 14px;
+    box-shadow: 0 10px 24px rgba(0, 0, 0, .18);
+}
+
 @media (max-width: 760px) {
     .site-auth {
         order: 9;
@@ -165,7 +187,8 @@
     }
 
     .site-auth .usuario_logueado p,
-    .site-auth #avatarAbajo {
+    .site-auth #avatarAbajo,
+    .btn_guardar_admin {
         display: none;
     }
 }

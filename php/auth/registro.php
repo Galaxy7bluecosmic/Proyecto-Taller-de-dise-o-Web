@@ -36,5 +36,6 @@ if (!$registrado) {
 
 $_SESSION['nombre'] = $nombre;
 $_SESSION['email'] = $email;
+$_SESSION['id_usuario'] = mysqli_insert_id($conexion);
 
 redirigir($destino);

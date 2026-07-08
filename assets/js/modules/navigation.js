@@ -7,7 +7,23 @@ export function prepararHeader(sesion) {
     header.querySelectorAll(".contenedorBotonSesio, .acciones_header, .btn_login").forEach((elemento) => elemento.remove());
     header.appendChild(crearBotonMenu());
     header.appendChild(crearMenuMovil(sesion));
+    if (sesion.admin) header.appendChild(crearBotonGuardarAdmin());
     header.appendChild(crearZonaSesion(sesion));
+}
+
+function crearBotonGuardarAdmin() {
+    const boton = document.createElement("button");
+    boton.className = "btn_guardar_admin";
+    boton.type = "button";
+    boton.textContent = "Guardar cambios";
+    boton.addEventListener("click", () => {
+        const aviso = document.createElement("div");
+        aviso.className = "aviso_admin_guardado";
+        aviso.textContent = "Cambios guardados en la base de datos.";
+        document.body.appendChild(aviso);
+        setTimeout(() => aviso.remove(), 2200);
+    });
+    return boton;
 }
 
 function crearZonaSesion(sesion) {

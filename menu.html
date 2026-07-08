@@ -6,6 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 
     <title>Menú | BocadosDeAyuda</title>
 
@@ -15,6 +18,7 @@
     <link rel="stylesheet" href="assets/css/menu.css">
     <link rel="stylesheet" href="assets/css/auth.css">
     <link rel="stylesheet" href="assets/css/cart.css">
+    <link rel="stylesheet" href="assets/css/dinamico.css">
 </head>
 
 <body>
@@ -49,249 +53,27 @@
 
         <section class="titulo_menu">
             <h2>MENÚ PERUANO</h2>
+            <div data-admin-menu></div>
         </section>
 
         <!-- CATEGORIAS -->
 
-        <section class="categorias_menu">
-
-            <a href="#" class="categoria activa">Criolla</a>
-            <a href="#" class="categoria">Casera</a>
-            <a href="#" class="categoria">Mariscos</a>
-            <a href="#" class="categoria">Parrillas</a>
-            <a href="#" class="categoria">Chifa</a>
-            <a href="#" class="categoria">Postres</a>
-            <a href="#" class="categoria">Bebidas</a>
-
-        </section>
+        <section class="categorias_menu" data-menu-categorias></section>
 
         <!-- PRODUCTOS -->
 
-        <section class="productos">
-
-            <!-- PRODUCTO -->
-
-            <article class="card_producto">
-
-                <img src="img/lomoSaltado.webp" alt="Lomo Saltado">
-
-                <div class="contenido_producto">
-                    <h3>Lomo Saltado</h3>
-                    <p>
-                        Jugosos trozos de carne salteados al wok con cebolla,
-                        tomate, papas fritas crocantes y arroz blanco.
-                    </p>
-
-                    <div class="detalle_producto">
-                        <span>S/ 18.90</span>
-                        <p>20 min</p>
-                    </div>
-
-                    <button>
-                        Añadir al carrito +
-                    </button>
-
-                </div>
-
-            </article>
-
-            <!-- PRODUCTO -->
-
-            <article class="card_producto">
-
-                <img src="img/aji de gallina.jpg" alt="Ají de Gallina">
-
-                <div class="contenido_producto">
-                    <h3>Ají de Gallina</h3>
-
-                    <p>Cremoso ají amarillo con pollo deshilachado, acompañado de arroz, papa sancochada y huevo.</p>
-
-                    <div class="detalle_producto">
-                        <span>S/ 16.50</span>
-                        <p>15 min</p>
-                    </div>
-
-                    <button>
-                        Añadir al carrito +
-                    </button>
-                </div>
-
-            </article>
-
-            <!-- PRODUCTO -->
-
-            <article class="card_producto">
-
-                <img src="img/ceviche.webp" alt="Ceviche">
-
-                <div class="contenido_producto">
-
-                    <h3>Ceviche Clásico</h3>
-                    <p>Pescado fresco marinado en limón peruano con cebolla, choclo, camote y cancha serrana.</p>
-
-                    <div class="detalle_producto">
-                        <span>S/ 24.90</span>
-                        <p>25 min</p>
-                    </div>
-
-                    <button>Añadir al carrito +</button>
-
-                </div>
-
-            </article>
-
-            <!-- PRODUCTO -->
-
-            <article class="card_producto">
-
-                <img src="img/chaufa.jpg" alt="Arroz Chaufa">
-
-                <div class="contenido_producto">
-
-                    <h3>Arroz Chaufa</h3>
-
-                    <p>
-                        Arroz salteado al estilo chifa con pollo,
-                        tortilla de huevo, cebollita china y sillao.
-                    </p>
-
-                    <div class="detalle_producto">
-
-                        <span>S/ 17.90</span>
-                        <p>18 min</p>
-
-                    </div>
-
-                    <button>
-                        Añadir al carrito +
-                    </button>
-
-                </div>
-
-            </article>
-
-            <!-- PRODUCTO -->
-
-            <article class="card_producto">
-
-                <img src="img/parrillamixta.jpg" alt="Parrilla">
-
-                <div class="contenido_producto">
-
-                    <h3>Parrilla Mixta</h3>
-
-                    <p>
-                        Carne, pollo y chorizo a la parrilla con papas doradas,
-                        ensalada fresca y cremas especiales.
-                    </p>
-
-                    <div class="detalle_producto">
-
-                        <span>S/ 29.90</span>
-
-                        <p>30 min</p>
-
-                    </div>
-
-                    <button>
-                        Añadir al carrito +
-                    </button>
-
-                </div>
-
-            </article>
-
-            <!-- PRODUCTO -->
-
-            <article class="card_producto">
-
-                <img src="img/tallarines verdes.jpg" alt="Tallarines">
-
-                <div class="contenido_producto">
-
-                    <h3>Tallarines Verdes</h3>
-
-                    <p>
-                        Pasta bañada en salsa de albahaca y espinaca,
-                        acompañada de bistec jugoso.
-                    </p>
-
-                    <div class="detalle_producto">
-                        <span>S/ 18.00</span>
-                        <p>22 min</p>
-                    </div>
-
-                    <button>
-                        Añadir al carrito +
-                    </button>
-
-                </div>
-
-            </article>
-
-            <!-- PRODUCTO -->
-
-            <article class="card_producto">
-
-                <img src="img/pollo a la brasa.jpg" alt="Pollo">
-
-                <div class="contenido_producto">
-
-                    <h3>Pollo a la Brasa</h3>
-                    <p>Pollo crocante y jugoso acompañado de papas fritas, ensalada y cremas peruanas.</p>
-
-                    <div class="detalle_producto">
-                        <span>S/ 22.90</span>
-                        <p>20 min</p>
-                    </div>
-
-                    <button>
-                        Añadir al carrito +
-                    </button>
-
-                </div>
-
-            </article>
-
-            <!-- PRODUCTO -->
-
-            <article class="card_producto">
-
-                <img src="img/picarones.jpg" alt="Picarones">
-
-                <div class="contenido_producto">
-
-                    <h3>Picarones</h3>
-
-                    <p>
-                        Tradicional postre peruano preparado con zapallo
-                        y miel de chancaca artesanal.
-                    </p>
-
-                    <div class="detalle_producto">
-                        <span>S/ 12.90</span>
-                        <p>10 min</p>
-                    </div>
-
-                    <button>
-                        Añadir al carrito +
-                    </button>
-
-                </div>
-
-            </article>
-
-        </section>
+        <section class="productos" data-menu-productos></section>
 
     </div>
+    <div class="modal" data-modal-admin></div>
 
     <!-- CARRITO -->
     <a href="form_pedidos.html" class="carrito_flotante">
         Carrito
-        <span>3</span>
+        <span>0</span>
     </a>
 
-    <script type="module" src="assets/js/site.js"></script>
+    <script type="module" src="assets/js/site.js?v=4"></script>
 </body>
 
 </html>
