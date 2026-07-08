@@ -30,14 +30,14 @@ function usuario_actual()
 function exigir_login()
 {
     $usuario = usuario_actual();
-    if (!$usuario["id"]) responder(["ok" => false, "mensaje" => "Inicia sesiÃ³n para continuar."], 401);
+    if (!$usuario["id"]) responder(["ok" => false, "mensaje" => "Inicia sesión para continuar."], 401);
     return $usuario;
 }
 
 function exigir_admin()
 {
     $usuario = exigir_login();
-    if (!$usuario["admin"]) responder(["ok" => false, "mensaje" => "Solo el administrador puede realizar esta acciÃ³n."], 403);
+    if (!$usuario["admin"]) responder(["ok" => false, "mensaje" => "Solo el administrador puede realizar esta acción."], 403);
     return $usuario;
 }
 
@@ -131,12 +131,12 @@ function sembrar_datos($conexion)
     if ($menus === 0) {
         $datos = [
             ["Lomo Saltado", "Jugosos trozos de carne salteados al wok con cebolla, tomate, papas fritas crocantes y arroz blanco.", 18.90, "img/lomoSaltado.webp", 20, 1, 8],
-            ["AjÃ­ de Gallina", "Cremoso ajÃ­ amarillo con pollo deshilachado, acompaÃ±ado de arroz, papa sancochada y huevo.", 16.50, "img/aji de gallina.jpg", 15, 1, 5],
-            ["Ceviche ClÃ¡sico", "Pescado fresco marinado en limÃ³n peruano con cebolla, choclo, camote y cancha serrana.", 24.90, "img/ceviche.webp", 25, 3, 4],
+            ["Ají de Gallina", "Cremoso ají amarillo con pollo deshilachado, acompañado de arroz, papa sancochada y huevo.", 16.50, "img/aji de gallina.jpg", 15, 1, 5],
+            ["Ceviche Clásico", "Pescado fresco marinado en limón peruano con cebolla, choclo, camote y cancha serrana.", 24.90, "img/ceviche.webp", 25, 3, 4],
             ["Arroz Chaufa", "Arroz salteado al estilo chifa con pollo, tortilla de huevo, cebollita china y sillao.", 17.90, "img/chaufa.jpg", 18, 5, 10],
             ["Parrilla Mixta", "Carne, pollo y chorizo a la parrilla con papas doradas, ensalada fresca y cremas especiales.", 29.90, "img/parrillamixta.jpg", 30, 4, 2],
-            ["Tallarines Verdes", "Pasta baÃ±ada en salsa de albahaca y espinaca, acompaÃ±ada de bistec jugoso.", 18.00, "img/tallarines verdes.jpg", 22, 2, 7],
-            ["Pollo a la Brasa", "Pollo crocante y jugoso acompaÃ±ado de papas fritas, ensalada y cremas peruanas.", 22.90, "img/pollo a la brasa.jpg", 20, 2, 12],
+            ["Tallarines Verdes", "Pasta bañada en salsa de albahaca y espinaca, acompañada de bistec jugoso.", 18.00, "img/tallarines verdes.jpg", 22, 2, 7],
+            ["Pollo a la Brasa", "Pollo crocante y jugoso acompañado de papas fritas, ensalada y cremas peruanas.", 22.90, "img/pollo a la brasa.jpg", 20, 2, 12],
             ["Picarones", "Tradicional postre peruano preparado con zapallo y miel de chancaca artesanal.", 12.90, "img/picarones.jpg", 10, 6, 0]
         ];
         $stmt = mysqli_prepare($conexion, "INSERT INTO menus (nombre, descripcion, precio, imagen, demoraAPROX, id_categoria, stock) VALUES (?, ?, ?, ?, ?, ?, ?)");
@@ -150,9 +150,9 @@ function sembrar_datos($conexion)
     if ($promos === 0) {
         $datos = [
             ["2 Lomo Saltado + Inka Cola", "Restaurante: El Sabor Criollo", "SUPER PROMO", "El Sabor Criollo", 28.90, 18.90, "35% OFF", "img/lomoSaltado.webp", "amarillo", 6],
-            ["Combo Verano Marino", "Restaurante: Costa Azul", "CÃ“MPRALO YA", "Costa Azul", 54.90, 39.90, "27% OFF", "img/combomarino.jpg", "rojo", 5],
+            ["Combo Verano Marino", "Restaurante: Costa Azul", "CÓMPRALO YA", "Costa Azul", 54.90, 39.90, "27% OFF", "img/combomarino.jpg", "rojo", 5],
             ["2 Pollos a la Brasa", "Incluye papas familiares y cremas.", "PROMO FAMILIAR", "BocadosDeAyuda", 89.90, 64.90, "28% OFF", "img/pollos.jpg", "morado", 4],
-            ["Combo Familiar Chifa", "Chaufa + WantÃ¡n + Gaseosa 1.5L", "COMBO", "BocadosDeAyuda", 49.90, 34.90, "30% OFF", "img/chifa.jpg", "verde", 7],
+            ["Combo Familiar Chifa", "Chaufa + Wantán + Gaseosa 1.5L", "COMBO", "BocadosDeAyuda", 49.90, 34.90, "30% OFF", "img/chifa.jpg", "verde", 7],
             ["Postres Peruanos", "Picarones + Mazamorra + Arroz con leche", "DULCE", "BocadosDeAyuda", 24.90, 16.90, "32% OFF", "img/postres.png", "naranja", 3],
             ["Parrilla Doble", "Carne + pollo + chorizo + papas", "PARRILLA", "BocadosDeAyuda", 69.90, 49.90, "29% OFF", "img/parrilla.jpg", "celeste", 0]
         ];
@@ -217,7 +217,7 @@ if ($accion === "guardar_promocion") {
     $descuento = trim($d["descuento"] ?? "");
     $color = trim($d["color"] ?? "amarillo");
     $stock = entero($d["stock"] ?? 0);
-    if ($nombre === "" || $descripcion === "" || $etiqueta === "" || $imagen === "" || $precioNuevo <= 0) responder(["ok" => false, "mensaje" => "Completa los datos de la promociÃ³n."], 422);
+    if ($nombre === "" || $descripcion === "" || $etiqueta === "" || $imagen === "" || $precioNuevo <= 0) responder(["ok" => false, "mensaje" => "Completa los datos de la promoción."], 422);
 
     if ($id > 0) {
         $stmt = mysqli_prepare($conexion, "UPDATE promociones SET nombre=?, descripcion=?, etiqueta=?, restaurante=?, precio_anterior=?, precio_nuevo=?, descuento=?, imagen=?, color=?, stock=?, demoraAPROX=20 WHERE id_promocion=?");
@@ -233,10 +233,10 @@ if ($accion === "guardar_promocion") {
 if ($accion === "stock" || $accion === "eliminar") {
     exigir_admin();
     $d = cuerpo_json();
-    $tipo = $d["tipo"] ?? "menu";
+    $type = $d["tipo"] ?? "menu";
     $id = entero($d["id"] ?? 0);
-    $tabla = $tipo === "promocion" ? "promociones" : "menus";
-    $columna = $tipo === "promocion" ? "id_promocion" : "id_Menu";
+    $tabla = $type === "promocion" ? "promociones" : "menus";
+    $columna = $type === "promocion" ? "id_promocion" : "id_Menu";
     if ($accion === "eliminar") {
         mysqli_query($conexion, "DELETE FROM $tabla WHERE $columna = $id");
     } else {
@@ -258,19 +258,19 @@ if ($accion === "checkout") {
         $total = 0;
         $detalles = [];
         foreach ($items as $item) {
-            $tipo = ($item["tipo"] ?? "") === "promocion" ? "promocion" : "menu";
+            $type = ($item["tipo"] ?? "") === "promocion" ? "promocion" : "menu";
             $id = entero($item["id"] ?? 0);
             $cantidad = max(1, entero($item["cantidad"] ?? 1));
-            $tabla = $tipo === "promocion" ? "promociones" : "menus";
-            $columna = $tipo === "promocion" ? "id_promocion" : "id_Menu";
-            $precioCol = $tipo === "promocion" ? "precio_nuevo AS precio" : "precio";
+            $tabla = $type === "promocion" ? "promociones" : "menus";
+            $columna = $type === "promocion" ? "id_promocion" : "id_Menu";
+            $precioCol = $type === "promocion" ? "precio_nuevo AS precio" : "precio";
             $stmt = mysqli_prepare($conexion, "SELECT nombre, descripcion, imagen, $precioCol, demoraAPROX, stock FROM $tabla WHERE $columna = ? FOR UPDATE");
             mysqli_stmt_bind_param($stmt, "i", $id);
             mysqli_stmt_execute($stmt);
             $producto = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
             if (!$producto || (int)$producto["stock"] < $cantidad) throw new Exception("Stock insuficiente para " . ($producto["nombre"] ?? "un producto"));
             mysqli_query($conexion, "UPDATE $tabla SET stock = stock - $cantidad WHERE $columna = $id");
-            $producto["tipo"] = $tipo;
+            $producto["tipo"] = $type;
             $producto["id"] = $id;
             $producto["cantidad"] = $cantidad;
             $total += (float)$producto["precio"] * $cantidad;
@@ -345,5 +345,4 @@ if ($accion === "cancelar") {
     responder(["ok" => true]);
 }
 
-responder(["ok" => false, "mensaje" => "AcciÃ³n no vÃ¡lida."], 400);
-
+responder(["ok" => false, "mensaje" => "Acción no válida."], 400);

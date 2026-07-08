@@ -30,6 +30,7 @@ function pintarCarrito() {
 
     lista.innerHTML = items.map((item) => {
         const sinStock = Number(item.cantidad) >= Number(item.stock);
+        const disponible = Math.max(Number(item.stock) - Number(item.cantidad), 0);
         return `
             <article class="producto producto_carrito">
                 <div class="producto_grid">
@@ -40,7 +41,7 @@ function pintarCarrito() {
                         <h3>${escapar(item.nombre)}</h3>
                         <p>${escapar(item.descripcion)}</p>
                         <span class="precio">${moneda(item.precio)}</span>
-                        <small class="stock_linea">${item.tipo === "promocion" ? "Promoción" : "Menú"} · Stock disponible: ${Number(item.stock)}</small>
+                        <small class="stock_linea">${item.tipo === "promocion" ? "Promoción" : "Menú"} · Stock disponible: ${disponible}</small>
                     </div>
                     <div class="producto_acciones">
                         <button class="btn_cantidad" data-restar="${item.tipo}:${item.id}" type="button">-</button>
@@ -189,6 +190,7 @@ async function procesarPago(metodo = metodoActual) {
     cancelarTemporizador();
     const pantalla = document.getElementById("pantallaCarga");
     const loader = document.querySelector(".loader");
+    document.getElementById("modalPago")?.classList.remove("mostrar");
     loader.innerHTML = `
         <div class="spinner"></div>
         <h2>Procesando pago...</h2>
@@ -200,7 +202,7 @@ async function procesarPago(metodo = metodoActual) {
         await apiPost("checkout", { metodo_pago: metodo, items });
         vaciarCarrito(sesionActual);
         loader.innerHTML = `
-            <div class="check_final">✓</div>
+            <div class="check_final">&#10003;</div>
             <h2 class="mensaje_exito">Gracias por su compra</h2>
             <p class="texto_exito">Su pedido está siendo preparado</p>
         `;

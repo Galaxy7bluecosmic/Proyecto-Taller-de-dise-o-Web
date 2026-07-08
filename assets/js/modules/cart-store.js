@@ -24,6 +24,15 @@ export function totalItems(sesion) {
     return obtenerCarrito(sesion).reduce((total, item) => total + Number(item.cantidad || 0), 0);
 }
 
+export function cantidadEnCarrito(sesion, tipo, id) {
+    const item = obtenerCarrito(sesion).find((producto) => producto.tipo === tipo && Number(producto.id) === Number(id));
+    return Number(item?.cantidad || 0);
+}
+
+export function stockDisponible(sesion, tipo, id, stockBase) {
+    return Math.max(Number(stockBase || 0) - cantidadEnCarrito(sesion, tipo, id), 0);
+}
+
 export function actualizarContadoresCarrito(sesion) {
     document.querySelectorAll(".carrito_flotante span").forEach((contador) => {
         contador.textContent = String(totalItems(sesion));

@@ -1,5 +1,5 @@
 import { apiGet, apiPost, escapar, leerImagenComoDataUrl, moneda } from "../../assets/js/modules/api.js";
-import { agregarAlCarrito, actualizarContadoresCarrito } from "../../assets/js/modules/cart-store.js";
+import { agregarAlCarrito, actualizarContadoresCarrito, stockDisponible } from "../../assets/js/modules/cart-store.js";
 
 let catalogo = { categorias: [], menus: [], sesion: {} };
 let categoriaActiva = "Todas";
@@ -39,8 +39,9 @@ function pintarProductos() {
         : catalogo.menus.filter((plato) => plato.categoria === categoriaActiva);
 
     contenedor.innerHTML = platos.map((plato, index) => {
-        const agotado = Number(plato.stock) <= 0;
-        const ultimos = Number(plato.stock) > 0 && Number(plato.stock) <= 5;
+        const disponible = stockDisponible(catalogo.sesion, "menu", plato.id_Menu, plato.stock);
+        const agotado = disponible <= 0;
+        const ultimos = disponible > 0 && disponible <= 5;
         return `
             <article class="card_producto ${agotado ? "agotado" : ""}" style="--i:${index + 1}">
                 <div class="producto_etiquetas">
@@ -55,7 +56,7 @@ function pintarProductos() {
                         <span>${moneda(plato.precio)}</span>
                         <p>${Number(plato.demoraAPROX)} min</p>
                     </div>
-                    <small class="stock_linea">Stock: ${Number(plato.stock)}</small>
+                    <small class="stock_linea">Stock: ${disponible}</small>
                     <button type="button" data-agregar-menu="${Number(plato.id_Menu)}" ${agotado ? "disabled" : ""}>
                         ${agotado ? "Agotado" : "Añadir al carrito +"}
                     </button>
@@ -73,7 +74,10 @@ function pintarProductos() {
             }
             const plato = catalogo.menus.find((item) => Number(item.id_Menu) === Number(boton.dataset.agregarMenu));
             const ok = agregarAlCarrito(catalogo.sesion, normalizarPlato(plato), "menu");
-            if (ok) actualizarContadoresCarrito(catalogo.sesion);
+            if (ok) {
+                actualizarContadoresCarrito(catalogo.sesion);
+                pintarProductos();
+            }
         });
     });
 
@@ -95,6 +99,10 @@ function pintarProductos() {
         });
     });
 }
+
+window.addEventListener("carrito:actualizado", () => {
+    if (document.querySelector("[data-menu-productos]")) pintarProductos();
+});
 
 function controlesAdmin(plato) {
     return `

@@ -1,5 +1,5 @@
 import { apiGet, apiPost, escapar, leerImagenComoDataUrl, moneda } from "../../assets/js/modules/api.js";
-import { agregarAlCarrito, actualizarContadoresCarrito } from "../../assets/js/modules/cart-store.js";
+import { agregarAlCarrito, actualizarContadoresCarrito, stockDisponible } from "../../assets/js/modules/cart-store.js";
 
 let catalogo = { promociones: [], menus: [], sesion: {} };
 
@@ -18,7 +18,8 @@ function pintarHeroPromocion() {
     const promo = catalogo.promociones[0];
     if (!hero || !promo) return;
 
-    const agotado = Number(promo.stock) <= 0;
+    const disponible = stockDisponible(catalogo.sesion, "promocion", promo.id_promocion, promo.stock);
+    const agotado = disponible <= 0;
     hero.innerHTML = `
         <div class="hero_texto">
             <span class="hero_etiqueta">${escapar(promo.etiqueta)}</span>
@@ -43,7 +44,8 @@ function pintarHeroPromocion() {
 function pintarPromociones() {
     const contenedor = document.querySelector("[data-promociones]");
     contenedor.innerHTML = catalogo.promociones.map((promo, index) => {
-        const agotado = Number(promo.stock) <= 0;
+        const disponible = stockDisponible(catalogo.sesion, "promocion", promo.id_promocion, promo.stock);
+        const agotado = disponible <= 0;
         const grande = index < 2;
         return `
             <article class="promo_card ${grande ? "promo_grande" : "mini_card"} ${escapar(promo.color)} ${agotado ? "agotado" : ""}">
@@ -56,7 +58,7 @@ function pintarPromociones() {
                         <span class="${grande ? "precio_nuevo" : "nuevo"}">${moneda(promo.precio_nuevo)}</span>
                     </div>
                     <div class="descuento">${escapar(promo.descuento)}</div>
-                    <small class="stock_linea">Stock: ${Number(promo.stock)} · 20 min</small>
+                    <small class="stock_linea">Stock: ${disponible} · 20 min</small>
                     ${agotado ? `<span class="tag_stock agotado_tag">Agotado</span>` : ""}
                     <button class="btn_agregar_promo" type="button" data-agregar-promo="${Number(promo.id_promocion)}" ${agotado ? "disabled" : ""}>
                         ${agotado ? "Agotado" : "Añádelo ya"}
@@ -89,7 +91,11 @@ function enlazarBotonesPromos(raiz) {
                 demoraAPROX: 20,
                 stock: promo.stock
             }, "promocion");
-            if (ok) actualizarContadoresCarrito(catalogo.sesion);
+            if (ok) {
+                actualizarContadoresCarrito(catalogo.sesion);
+                pintarHeroPromocion();
+                pintarPromociones();
+            }
         });
     });
 
@@ -114,6 +120,13 @@ function enlazarBotonesPromos(raiz) {
         });
     });
 }
+
+window.addEventListener("carrito:actualizado", () => {
+    if (document.querySelector("[data-promociones]")) {
+        pintarHeroPromocion();
+        pintarPromociones();
+    }
+});
 
 async function recargarPromociones() {
     catalogo = await apiGet("catalogo");

@@ -317,11 +317,13 @@ form button:hover{
     visibility: hidden;
 
     transition: .3s;
+    z-index: 200000;
 }
 
 .mostrarCarga{
     opacity: 1;
     visibility: visible;
+    z-index: 200000;
 }
 
 .loader{
