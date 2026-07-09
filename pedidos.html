@@ -5,6 +5,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
     <title>Pedidos | BocadosDeAyuda</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/pedidos.css?v=2">
@@ -12,6 +15,7 @@
     <link rel="stylesheet" href="css/grid/grid-pedidos.css">
     <link rel="stylesheet" href="assets/css/menu.css">
     <link rel="stylesheet" href="assets/css/auth.css">
+    <link rel="stylesheet" href="assets/css/dinamico.css">
 </head>
 <body>
 
@@ -41,63 +45,7 @@
         <main class="seccion_pedidos">
             <h3 class="titulo_lista">Mis Pedidos Recientes</h3>
             
-            <div class="lista_pedidos_grid">
-                
-                <article class="card_pedido en_camino">
-                    <div class="foto_comida">
-                        <img src="img/lomoSaltado.webp" alt="Lomo Saltado">
-                    </div>
-                    <div class="info_comida">
-                        <h4>Lomo Saltado</h4>
-                        <p>Carne salteada con cebolla, tomate, papas fritas y arroz blanco.</p>
-                    </div>
-                    <div class="valores_comida">
-                        <span class="cantidad">Cant: 2</span>
-                        <span class="precio_total">S/ 18.90</span>
-                    </div>
-                    <div class="estado_pedido">
-                        <span class="status badge_camino"> En camino</span>
-                        <button class="btn_cancelar">Cancelar Pedido</button>
-                    </div>
-                </article>
-
-                <article class="card_pedido entregado">
-                    <div class="foto_comida">
-                        <img src="img/ceviche.webp" alt="Ceviche Clásico">
-                    </div>
-                    <div class="info_comida">
-                        <h4>Ceviche Clásico</h4>
-                        <p>Pescado fresco con limón peruano, choclo, cancha y camote.</p>
-                    </div>
-                    <div class="valores_comida">
-                        <span class="cantidad">Cant: 1</span>
-                        <span class="precio_total">S/ 24.90</span>
-                    </div>
-                    <div class="estado_pedido">
-                       <span class="status badge_camino">En camino</span>
-                       <button class="btn_cancelar">Cancelar Pedido</button>
-                    </div>
-                </article>
-
-                <article class="card_pedido en_camino">
-                    <div class="foto_comida">
-                        <img src="img/picarones.jpg" alt="Picarones">
-                    </div>
-                    <div class="info_comida">
-                        <h4>Picarones</h4>
-                        <p>Tradicional postre peruano con miel de chancaca artesanal.</p>
-                    </div>
-                    <div class="valores_comida">
-                        <span class="cantidad">Cant: 3</span>
-                        <span class="precio_total">S/ 38.70</span>
-                    </div>
-                    <div class="estado_pedido">
-                         <span class="status badge_entregado"> Entregado</span>
-                        
-                    </div>
-                </article>
-
-            </div>
+            <div class="lista_pedidos_grid" data-lista-pedidos></div>
 
             <div class="contenedor_volver">
                 <a href="index.html" class="btn_volver">Volver al Inicio</a>
@@ -105,9 +53,13 @@
         </main>
     </div>
 
+    <div class="modal" id="modalCancelarPedido">
+        <div class="modal_contenido" data-mensaje-cancelar></div>
+    </div>
+
     
 
-    <script type="module" src="assets/js/site.js"></script>
+    <script type="module" src="assets/js/site.js?v=6"></script>
 </body>
 </html>
 

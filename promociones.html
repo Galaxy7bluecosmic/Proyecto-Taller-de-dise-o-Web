@@ -8,6 +8,9 @@
     <meta charset="UTF-8">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-store">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
 
     <title>Promociones | BocadosDeAyuda</title>
 
@@ -19,6 +22,7 @@
     <link rel="stylesheet" href="assets/css/menu.css?v=2">
     <link rel="stylesheet" href="assets/css/auth.css?v=2">
     <link rel="stylesheet" href="assets/css/cart.css?v=2">
+    <link rel="stylesheet" href="assets/css/dinamico.css?v=2">
 </head>
 
 <body>
@@ -66,227 +70,9 @@
 
         <!-- PROMOS DESTACADAS -->
 
-        <section class="promos_destacadas">
-
-            <!-- CARD -->
-
-            <article class="promo_grande amarillo">
-
-                <div class="texto_promo">
-
-                    <span class="etiqueta">
-                        🔥 SUPER PROMO
-                    </span>
-
-                    <h3>
-                        2 Lomo Saltado + Inka Cola
-                    </h3>
-
-                    <p>
-                        Restaurante: El Sabor Criollo
-                    </p>
-
-                    <div class="precios">
-
-                        <span class="precio_anterior">
-                            S/ 28.90
-                        </span>
-
-                        <span class="precio_nuevo">
-                            S/ 18.90
-                        </span>
-
-                    </div>
-
-                    <div class="descuento">
-
-                        35% OFF
-
-                    </div>
-
-                    <button>
-                        Añádelo ya
-                    </button>
-
-                </div>
-
-                <img src="img/lomoSaltado.webp" alt="Lomo Saltado">
-
-            </article>
-
-            <!-- CARD -->
-
-            <article class="promo_grande rojo">
-
-                <div class="texto_promo">
-
-                    <span class="etiqueta">
-                        🛒 CÓMPRALO YA
-                    </span>
-
-                    <h3>
-                        Combo Verano Marino
-                    </h3>
-
-                    <p>
-                        Restaurante: Costa Azul
-                    </p>
-
-                    <div class="precios">
-
-                        <span class="precio_anterior">
-                            S/ 54.90
-                        </span>
-
-                        <span class="precio_nuevo">
-                            S/ 39.90
-                        </span>
-
-                    </div>
-
-                    <div class="descuento">
-
-                        27% OFF
-
-                    </div>
-
-                    <button>
-                        Añádelo ya
-                    </button>
-
-                </div>
-
-                <img src="img/combomarino.jpg" alt="Ceviche">
-
-            </article>
-
-        </section>
-
-        <!-- MINI PROMOS -->
-
-        <section class="mini_promos">
-
-            <!-- MINI CARD -->
-
-            <article class="mini_card morado promo_pollo">
-
-                <h3>
-                    2 Pollos a la Brasa
-                </h3>
-
-                <p>
-                    Incluye papas familiares y cremas.
-                </p>
-
-                <div class="mini_precios">
-
-                    <span class="tachado">
-                        S/ 89.90
-                    </span>
-
-                    <span class="nuevo">
-                        S/ 64.90
-                    </span>
-
-                </div>
-
-                <button>
-                    Añádelo ya
-                </button>
-
-            </article>
-
-            <!-- MINI CARD -->
-
-            <article class="mini_card verde promo_Chifa">
-
-                <h3>
-                    Combo Familiar Chifa
-                </h3>
-
-                <p>
-                    Chaufa + Wantán + Gaseosa 1.5L
-                </p>
-
-                <div class="mini_precios">
-
-                    <span class="tachado">
-                        S/ 49.90
-                    </span>
-
-                    <span class="nuevo">
-                        S/ 34.90
-                    </span>
-
-                </div>
-
-                <button>
-                    Añádelo ya
-                </button>
-
-            </article>
-
-            <!-- MINI CARD -->
-
-            <article class="mini_card naranja promo_Postres">
-
-                <h3>
-                    Postres Peruanos
-                </h3>
-
-                <p>
-                    Picarones + Mazamorra + Arroz con leche
-                </p>
-
-                <div class="mini_precios">
-
-                    <span class="tachado">
-                        S/ 24.90
-                    </span>
-
-                    <span class="nuevo">
-                        S/ 16.90
-                    </span>
-
-                </div>
-
-                <button>
-                    Añádelo ya
-                </button>
-
-            </article>
-
-            <!-- MINI CARD -->
-
-            <article class="mini_card celeste promo_Parrilla">
-
-                <h3>
-                    Parrilla Doble
-                </h3>
-
-                <p>
-                    Carne + pollo + chorizo + papas
-                </p>
-
-                <div class="mini_precios">
-
-                    <span class="tachado">
-                        S/ 69.90
-                    </span>
-
-                    <span class="nuevo">
-                        S/ 49.90
-                    </span>
-
-                </div>
-
-                <button>
-                    Añádelo ya
-                </button>
-
-            </article>
-
-        </section>
+        <section class="admin_zona" data-admin-promos></section>
+        <section class="promos_destacadas mini_promos_grid" data-promociones></section>
+        <section class="ultimos_platos" data-ultimos-platos></section>
 
         <!-- FRASE -->
 
@@ -303,16 +89,17 @@
         </section>
 
     </div>
+    <div class="modal" data-modal-admin></div>
 
     <!-- CARRITO -->
     <a href="form_pedidos.html" class="carrito_flotante">
         Carrito
-        <span>3</span>
+        <span>0</span>
     </a>
 
     
 
-    <script type="module" src="assets/js/site.js"></script>
+    <script type="module" src="assets/js/site.js?v=6"></script>
 </body>
 
 </html>

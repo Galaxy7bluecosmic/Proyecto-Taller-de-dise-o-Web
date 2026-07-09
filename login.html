@@ -4,6 +4,9 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-store" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>BocadosDeAyuda – Login / Registro</title>
   <link rel="shortcut icon" href="img/tienda-de-comestibles.gif" type="image/x-icon" />
   <link rel="stylesheet" href="css/loginEstilo.css">
@@ -75,7 +78,7 @@
           <div class="campo">
             <label for="loginPass">Contraseña</label>
             <input type="password" id="loginPass" name="loginPass" placeholder="••••••••" autocomplete="off">
-            <img src="img/cerrado.png" alt="OJO CERRADO" id="ojoCerradoIconPass" onclick="mostrarContraseña()">
+            <img src="img/cerrado.png" alt="OJO CERRADO" id="ojoCerradoIconPass">
           </div>
 
           <div class="form_opciones">
@@ -102,19 +105,7 @@
     </span>
   </footer>
 
-  <script>
-    // Mostrar contraseña
-    function mostrarContraseña() {
-      const input = document.getElementById("loginPass");
-      if (input.type === "password") {
-        input.type = "text";
-      } else {
-        input.type = "password";
-      }
-    }
-  </script>
-
-  <script type="module" src="assets/js/site.js"></script>
+  <script type="module" src="assets/js/site.js?v=6"></script>
 </body>
 
 </html>

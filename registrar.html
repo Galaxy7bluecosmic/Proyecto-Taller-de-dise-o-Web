@@ -6,6 +6,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="Cache-Control" content="no-store" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>BocadosDeAyuda – Login / Registro</title>
     <link rel="shortcut icon" href="img/tienda-de-comestibles.gif" type="image/x-icon" />
     <link rel="stylesheet" href="css/registrarEstilo.css">
@@ -123,22 +126,7 @@
         </span>
     </footer>
 
-    <script>
-        // Mostrar contraseña
-        function mostrarContraseña() {
-            const input = document.getElementById("regPass");
-            const input2 = document.getElementById("regPass2");
-            if (input.type === "password") {
-                input.type = "text";
-                input2.type = "text";
-            } else {
-                input.type = "password";
-                input2.type = "password";
-            }
-        }
-    </script>
-
-    <script type="module" src="assets/js/site.js"></script>
+    <script type="module" src="assets/js/site.js?v=6"></script>
 </body>
 
 </html>
