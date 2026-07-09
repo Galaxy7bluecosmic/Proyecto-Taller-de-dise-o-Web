@@ -206,21 +206,40 @@ button:disabled,
 
 .mini_promos_grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 28px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 24px;
     align-items: stretch;
 }
 
 .promo_card {
     display: grid !important;
-    grid-template-rows: 1fr auto;
-    gap: 18px;
+    grid-template-columns: minmax(0, 1.05fr) minmax(180px, .85fr);
+    gap: 20px;
+    align-items: stretch;
     min-height: 0 !important;
     height: auto;
     overflow: hidden;
+    padding: clamp(24px, 3vw, 34px) !important;
+    border-radius: 26px !important;
+}
+
+.promo_card.promo_grande,
+.promo_card.mini_card {
+    min-height: auto !important;
+}
+
+.promo_card.promo_grande {
+    padding: clamp(24px, 3vw, 34px) !important;
+}
+
+.promo_card.mini_card {
+    padding: clamp(24px, 3vw, 34px) !important;
 }
 
 .promo_card .promo_card_texto {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 100%;
     min-width: 0;
 }
@@ -230,7 +249,14 @@ button:disabled,
     width: 100% !important;
     max-width: 100%;
     overflow-wrap: anywhere;
-    font-size: clamp(1.85rem, 3vw, 2.65rem);
+    font-size: clamp(1.55rem, 2.4vw, 2.25rem);
+    line-height: 1.08;
+    margin: 12px 0 10px;
+}
+
+.promo_card p {
+    line-height: 1.4;
+    margin-bottom: 14px;
 }
 
 .promo_card .precios,
@@ -241,16 +267,19 @@ button:disabled,
 
 .promo_card .precio_nuevo,
 .promo_card .nuevo {
-    font-size: clamp(2rem, 4vw, 2.9rem);
+    font-size: clamp(1.8rem, 3vw, 2.45rem);
 }
 
 .promo_card .promo_card_img {
     position: static !important;
     width: 100% !important;
-    height: clamp(150px, 22vw, 230px) !important;
+    height: 100% !important;
+    min-height: 210px;
+    max-height: 280px;
     object-fit: cover;
-    border-radius: 22px;
+    border-radius: 20px;
     margin: 0;
+    align-self: stretch;
 }
 
 .mini_promos_grid .descuento {
@@ -267,6 +296,8 @@ button:disabled,
     border-radius: 16px;
     cursor: pointer;
     font-weight: 800;
+    width: fit-content;
+    min-width: 150px;
 }
 
 .hero_promos {
@@ -499,6 +530,20 @@ button:disabled,
         height: 210px;
     }
 
+    .mini_promos_grid {
+        grid-template-columns: 1fr;
+    }
+
+    .promo_card {
+        grid-template-columns: 1fr;
+    }
+
+    .promo_card .promo_card_img {
+        height: 190px !important;
+        min-height: 190px;
+        max-height: 190px;
+    }
+
     .tarjeta_grid {
         grid-template-columns: 1fr;
     }
@@ -514,14 +559,18 @@ button:disabled,
     }
 }
 
-@media (min-width: 1100px) {
+@media (min-width: 701px) and (max-width: 1080px) {
     .mini_promos_grid {
-        grid-template-columns: repeat(3, minmax(0, 1fr));
+        grid-template-columns: 1fr;
+    }
+
+    .promo_card {
+        grid-template-columns: minmax(0, 1fr) minmax(220px, .85fr);
     }
 }
 
-@media (min-width: 1450px) {
+@media (min-width: 1081px) {
     .mini_promos_grid {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+        grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 }
