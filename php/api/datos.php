@@ -288,8 +288,10 @@ if ($accion === "checkout") {
             mysqli_stmt_execute($stmtDetalle);
         }
 
+        $numeroPedido = (int)mysqli_fetch_row(mysqli_query($conexion, "SELECT COUNT(*) FROM pedidos WHERE id_usuario = " . (int)$usuario["id"]))[0];
+
         mysqli_commit($conexion);
-        responder(["ok" => true, "id_pedido" => $idPedido]);
+        responder(["ok" => true, "id_pedido" => $idPedido, "numero_pedido" => $numeroPedido]);
     } catch (Exception $e) {
         mysqli_rollback($conexion);
         responder(["ok" => false, "mensaje" => $e->getMessage()], 409);
@@ -298,16 +300,21 @@ if ($accion === "checkout") {
 
 if ($accion === "pedidos") {
     $usuario = exigir_login();
-    $stmt = mysqli_prepare($conexion, "SELECT * FROM pedidos WHERE id_usuario = ? ORDER BY creado_en DESC");
+    $stmt = mysqli_prepare($conexion, "SELECT * FROM pedidos WHERE id_usuario = ? ORDER BY creado_en DESC, id_pedido DESC");
     mysqli_stmt_bind_param($stmt, "i", $usuario["id"]);
     mysqli_stmt_execute($stmt);
     $pedidos = [];
     $res = mysqli_stmt_get_result($stmt);
     while ($pedido = mysqli_fetch_assoc($res)) {
         $id = (int)$pedido["id_pedido"];
-        $pedido["detalles"] = consulta_todos($conexion, "SELECT * FROM pedido_detalles WHERE id_pedido = $id");
+        $pedido["detalles"] = consulta_todos($conexion, "SELECT * FROM pedido_detalles WHERE id_pedido = $id ORDER BY id_detalle");
         $pedidos[] = $pedido;
     }
+    $totalPedidos = count($pedidos);
+    foreach ($pedidos as $indice => &$pedido) {
+        $pedido["numero_pedido"] = $totalPedidos - $indice;
+    }
+    unset($pedido);
     responder(["ok" => true, "pedidos" => $pedidos, "sesion" => usuario_actual()]);
 }
 

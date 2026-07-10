@@ -1,5 +1,5 @@
-import { apiGet, apiPost, escapar, leerImagenComoDataUrl, moneda } from "../../assets/js/modules/api.js";
-import { agregarAlCarrito, actualizarContadoresCarrito, stockDisponible } from "../../assets/js/modules/cart-store.js";
+import { apiGet, apiPost, escapar, leerImagenComoDataUrl, moneda } from "../../modules/api.js";
+import { agregarAlCarrito, actualizarContadoresCarrito, stockDisponible } from "../../modules/cart-store.js";
 
 let catalogo = { categorias: [], menus: [], sesion: {} };
 let categoriaActiva = "Todas";

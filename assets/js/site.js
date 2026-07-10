@@ -2,11 +2,11 @@ import { obtenerSesion, prepararFormularios, protegerPagina } from "./modules/au
 import { prepararHeader } from "./modules/navigation.js";
 import { prepararCarrito, prepararPago } from "./modules/cart.js?v=6";
 import { actualizarPerfil } from "./modules/profile.js";
-import { iniciarMenu } from "../../JSscripts/menu/menu.js?v=6";
-import { iniciarPromociones } from "../../JSscripts/promociones/promociones.js?v=6";
-import { iniciarFormularioPedidos } from "../../JSscripts/form_pedidos/form_pedidos.js?v=6";
-import { iniciarPedidos } from "../../JSscripts/pedidos/pedidos.js?v=6";
-import { iniciarMostrarContrasena } from "../../JSscripts/auth/password.js?v=6";
+import { iniciarMenu } from "./pages/menu/menu.js?v=7";
+import { iniciarPromociones } from "./pages/promotions/promociones.js?v=7";
+import { iniciarFormularioPedidos } from "./pages/orders/form_pedidos.js?v=7";
+import { iniciarPedidos } from "./pages/orders/pedidos.js?v=7";
+import { iniciarMostrarContrasena } from "./pages/auth/password.js?v=7";
 
 document.addEventListener("DOMContentLoaded", iniciarSitio);
 

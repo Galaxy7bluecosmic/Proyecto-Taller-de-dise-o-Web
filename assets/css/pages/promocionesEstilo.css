@@ -357,10 +357,10 @@ body {
     transition: transform 0.4s ease, background-size 0.4s ease, box-shadow 0.4s ease;
 }
 
-.promo_pollo { background-image: linear-gradient(rgba(181,23,255,0.75), rgba(181,23,255,0.75)), url("../img/pollos.jpg"); }
-.promo_Chifa { background-image: linear-gradient(rgba(124,207,57,0.78), rgba(124,207,57,0.78)), url("../img/chifa.jpg"); }
-.promo_Postres { background-image: linear-gradient(rgba(255,145,77,0.78), rgba(255,145,77,0.78)), url("../img/postres.png"); }
-.promo_Parrilla { background-image: linear-gradient(rgba(61,165,255,0.78), rgba(61,165,255,0.78)), url("../img/parrilla.jpg"); }
+.promo_pollo { background-image: linear-gradient(rgba(181,23,255,0.75), rgba(181,23,255,0.75)), url("../../../img/pollos.jpg"); }
+.promo_Chifa { background-image: linear-gradient(rgba(124,207,57,0.78), rgba(124,207,57,0.78)), url("../../../img/chifa.jpg"); }
+.promo_Postres { background-image: linear-gradient(rgba(255,145,77,0.78), rgba(255,145,77,0.78)), url("../../../img/postres.png"); }
+.promo_Parrilla { background-image: linear-gradient(rgba(61,165,255,0.78), rgba(61,165,255,0.78)), url("../../../img/parrilla.jpg"); }
 
 
 /* ===== MENSAJE EMOCIONAL ===== */

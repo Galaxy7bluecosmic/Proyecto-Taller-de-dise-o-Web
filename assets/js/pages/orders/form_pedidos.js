@@ -1,5 +1,5 @@
-import { apiPost, escapar, moneda } from "../../assets/js/modules/api.js";
-import { actualizarContadoresCarrito, cambiarCantidad, obtenerCarrito, quitarProducto, vaciarCarrito } from "../../assets/js/modules/cart-store.js";
+import { apiPost, escapar, moneda } from "../../modules/api.js";
+import { actualizarContadoresCarrito, cambiarCantidad, obtenerCarrito, quitarProducto, vaciarCarrito } from "../../modules/cart-store.js";
 
 let sesionActual = {};
 let metodoActual = "tarjeta";

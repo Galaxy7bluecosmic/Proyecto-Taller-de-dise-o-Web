@@ -1,4 +1,4 @@
-import { apiGet, apiPost, escapar, moneda } from "../../assets/js/modules/api.js";
+import { apiGet, apiPost, escapar, moneda } from "../../modules/api.js";
 
 let pedidos = [];
 let sesionActual = {};
@@ -35,7 +35,7 @@ function pintarPedidos() {
                 <div class="info_comida">
                     <h4>${escapar(detalle.nombre)}</h4>
                     <p>${escapar(detalle.descripcion)}</p>
-                    <small>Pedido #${Number(pedido.id_pedido)} · ${escapar(pedido.metodo_pago)}</small>
+                    <small>Pedido #${Number(pedido.numero_pedido || pedido.id_pedido)} · ${escapar(pedido.metodo_pago)}</small>
                 </div>
                 <div class="valores_comida">
                     <span class="cantidad">Cant: ${Number(detalle.cantidad)}</span>
