@@ -1,11 +1,11 @@
-import { obtenerSesion, prepararFormularios, protegerPagina } from "./modules/auth.js";
-import { prepararHeader } from "./modules/navigation.js";
+import { obtenerSesion, prepararFormularios, protegerPagina } from "./modules/auth.js?v=8";
+import { prepararHeader } from "./modules/navigation.js?v=8";
 import { prepararCarrito, prepararPago } from "./modules/cart.js?v=6";
 import { actualizarPerfil } from "./modules/profile.js";
 import { iniciarMenu } from "./pages/menu/menu.js?v=7";
 import { iniciarPromociones } from "./pages/promotions/promociones.js?v=7";
-import { iniciarFormularioPedidos } from "./pages/orders/form_pedidos.js?v=7";
-import { iniciarPedidos } from "./pages/orders/pedidos.js?v=7";
+import { iniciarFormularioPedidos } from "./pages/orders/form_pedidos.js?v=8";
+import { iniciarPedidos } from "./pages/orders/pedidos.js?v=8";
 import { iniciarMostrarContrasena } from "./pages/auth/password.js?v=7";
 
 document.addEventListener("DOMContentLoaded", iniciarSitio);

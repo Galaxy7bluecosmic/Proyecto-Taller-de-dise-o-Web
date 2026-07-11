@@ -41,7 +41,7 @@ function pintarCarrito() {
                         <h3>${escapar(item.nombre)}</h3>
                         <p>${escapar(item.descripcion)}</p>
                         <span class="precio">${moneda(item.precio)}</span>
-                        <small class="stock_linea">${item.tipo === "promocion" ? "Promoción" : "Menú"} · Stock disponible: ${disponible}</small>
+                        <small class="stock_linea">${item.tipo === "promocion" ? "Promocion" : "Menu"} · Stock disponible: ${disponible}</small>
                     </div>
                     <div class="producto_acciones">
                         <button class="btn_cantidad" data-restar="${item.tipo}:${item.id}" type="button">-</button>
@@ -107,20 +107,21 @@ function pintarMetodo() {
     cancelarTemporizador();
     document.querySelectorAll("[data-metodo]").forEach((boton) => boton.classList.toggle("activo", boton.dataset.metodo === metodoActual));
     const zona = document.querySelector("[data-campos-pago]");
+    const direccion = escapar(sesionActual.direccion || "");
 
     if (metodoActual === "tarjeta") {
         zona.innerHTML = `
             <div class="tarjeta_grid">
                 <label class="campo_pago ancho">
-                    <span>Dirección</span>
-                    <input name="direccion" type="text" placeholder="Distrito, calle, número" required>
+                    <span>Direccion</span>
+                    <input name="direccion" type="text" placeholder="Distrito, calle, numero" value="${direccion}" required>
                 </label>
                 <label class="campo_pago">
-                    <span>Teléfono</span>
+                    <span>Telefono</span>
                     <input name="telefono" type="text" placeholder="+51 999 999 999" required>
                 </label>
                 <label class="campo_pago ancho">
-                    <span>Número de tarjeta</span>
+                    <span>Numero de tarjeta</span>
                     <input name="tarjeta" type="text" minlength="12" placeholder="1234 5678 9123 4567" required>
                 </label>
                 <label class="campo_pago ancho">
@@ -146,8 +147,9 @@ function pintarMetodo() {
             <div class="pago_simulado">
                 <h3>Yape al 987 654 321</h3>
                 <div class="qr_falso">QR</div>
-                <p>La página se actualizará una vez se haya pagado.</p>
-                <small>Esperando confirmación simulada por 10 segundos.</small>
+                <p class="aviso_pago">Entrega en: ${direccion || "direccion registrada en tu cuenta"}</p>
+                <p>La pagina se actualizara una vez se haya pagado.</p>
+                <small>Esperando confirmacion simulada por 10 segundos.</small>
             </div>
         `;
         iniciarPagoAutomatico("yape");
@@ -158,10 +160,11 @@ function pintarMetodo() {
         <div class="pago_simulado">
             <h3>Pago en efectivo BCP</h3>
             <p>Cuenta BCP: 191-23456789-0-99</p>
-            <p>Acércate a una agencia, agente BCP o local Multired. Indica el código de pago 456789 y conserva tu comprobante.</p>
-            <p class="aviso_pago">Se envió un correo a ${escapar(sesionActual.email)} con la información detallada para el pago, el pago debe realizarce en 1 hora o será cancelado, no podrá continuar hasta realizar el pago o cancelarlo.</p>
+            <p>Acercate a una agencia, agente BCP o local Multired. Indica el codigo de pago 456789 y conserva tu comprobante.</p>
+            <p class="aviso_pago">Entrega en: ${direccion || "direccion registrada en tu cuenta"}</p>
+            <p class="aviso_pago">Se envio un correo a ${escapar(sesionActual.email)} con la informacion detallada para el pago. El pago debe realizarse en 1 hora o sera cancelado.</p>
             <button type="button" id="cancelarPagoPendiente">Cancelar pago</button>
-            <small>Esperando confirmación simulada por 10 segundos.</small>
+            <small>Esperando confirmacion simulada por 10 segundos.</small>
         </div>
     `;
     document.getElementById("cancelarPagoPendiente").addEventListener("click", cancelarPagoPendiente);
@@ -199,14 +202,15 @@ async function procesarPago(metodo = metodoActual) {
 
     try {
         const items = obtenerCarrito(sesionActual).map((item) => ({ tipo: item.tipo, id: item.id, cantidad: item.cantidad }));
-        await apiPost("checkout", { metodo_pago: metodo, items });
+        const direccion = document.querySelector('[name="direccion"]')?.value || sesionActual.direccion || "";
+        const resultado = await apiPost("checkout", { metodo_pago: metodo, direccion_envio: direccion, items });
         vaciarCarrito(sesionActual);
         loader.innerHTML = `
             <div class="check_final">&#10003;</div>
             <h2 class="mensaje_exito">Gracias por su compra</h2>
-            <p class="texto_exito">Su pedido está siendo preparado</p>
+            <p class="texto_exito">Su pedido esta siendo preparado</p>
         `;
-        setTimeout(() => { window.location.href = "pedidos.html"; }, 1800);
+        setTimeout(() => { window.location.href = `pedidos.html?pedido=${Number(resultado.id_pedido)}`; }, 1800);
     } catch (error) {
         pantalla.classList.remove("mostrarCarga");
         alert(error.message);

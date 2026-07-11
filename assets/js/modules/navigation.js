@@ -1,4 +1,5 @@
 import { escaparHtml, protegerEnlace } from "./auth.js";
+import { apiPost } from "./api.js";
 
 export function prepararHeader(sesion) {
     const header = document.querySelector("header");
@@ -47,6 +48,10 @@ function crearZonaSesion(sesion) {
         <div class="menuDesplegable user-menu" hidden>
             <div class="contenedorMenuPerfil">
                 <div class="MenuPerfil">
+                    <span class="menu_icono" aria-hidden="true">⌂</span>
+                    <button class="btn_menu_perfil" type="button" data-cambiar-direccion>Cambiar dirección</button>
+                </div>
+                <div class="MenuPerfil">
                     <img src="img/cerrar-sesion.png" alt="" width="20">
                     <a href="php/auth/cerrar-sesion.php" class="btn_cerrar">Cerrar sesión</a>
                 </div>
@@ -57,6 +62,7 @@ function crearZonaSesion(sesion) {
     const boton = contenedor.querySelector(".usuario_logueado");
     const menu = contenedor.querySelector(".user-menu");
     const flecha = contenedor.querySelector("#avatarAbajo");
+    const cambiarDireccion = contenedor.querySelector("[data-cambiar-direccion]");
 
     boton.addEventListener("click", (event) => {
         event.stopPropagation();
@@ -72,7 +78,65 @@ function crearZonaSesion(sesion) {
         if (flecha) flecha.src = "img/abajo.png";
     });
 
+    cambiarDireccion?.addEventListener("click", (event) => {
+        event.stopPropagation();
+        menu.setAttribute("hidden", "");
+        abrirModalDireccion(sesion);
+    });
+
     return contenedor;
+}
+
+function abrirModalDireccion(sesion) {
+    let modal = document.getElementById("modalDireccionUsuario");
+    if (!modal) {
+        modal = document.createElement("div");
+        modal.className = "modal modal_direccion";
+        modal.id = "modalDireccionUsuario";
+        document.body.appendChild(modal);
+    }
+
+    modal.innerHTML = `
+        <div class="modal_contenido modal_direccion_contenido">
+            <button class="cerrar_modal" type="button" data-cerrar-direccion>×</button>
+            <h2>Cambiar dirección</h2>
+            <p>Esta dirección se usará como destino por defecto en tus próximos pedidos.</p>
+            <form data-form-direccion>
+                <label class="campo_direccion">
+                    <span>Dirección de delivery</span>
+                    <input name="direccion" type="text" value="${escaparHtml(sesion.direccion || "")}" placeholder="Distrito, calle, número y referencia" required>
+                </label>
+                <button type="submit">Guardar dirección</button>
+                <small data-mensaje-direccion></small>
+            </form>
+        </div>
+    `;
+    modal.classList.add("mostrar");
+
+    modal.querySelector("[data-cerrar-direccion]").addEventListener("click", () => modal.classList.remove("mostrar"));
+    modal.onclick = (event) => {
+        if (event.target === modal) modal.classList.remove("mostrar");
+    };
+
+    modal.querySelector("[data-form-direccion]").addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const form = event.currentTarget;
+        const mensaje = form.querySelector("[data-mensaje-direccion]");
+        const direccion = form.direccion.value.trim();
+        if (!direccion) {
+            mensaje.textContent = "Escribe una dirección válida.";
+            return;
+        }
+        try {
+            const respuesta = await apiPost("actualizar_direccion", { direccion });
+            sesion.direccion = respuesta.direccion;
+            if (window.__SESION_ACTUAL__) window.__SESION_ACTUAL__.direccion = respuesta.direccion;
+            mensaje.textContent = "Dirección actualizada.";
+            setTimeout(() => modal.classList.remove("mostrar"), 900);
+        } catch (error) {
+            mensaje.textContent = error.message;
+        }
+    });
 }
 
 function crearBotonMenu() {

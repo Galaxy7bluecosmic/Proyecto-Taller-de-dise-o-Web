@@ -8,9 +8,12 @@ $apellido = trim($_POST['regApellido'] ?? '');
 $email = trim($_POST['regEmail'] ?? '');
 $contrasena = $_POST['regPass'] ?? '';
 $telefono = trim($_POST['regTelefono'] ?? '');
+$direccion = trim($_POST['regDireccion'] ?? '');
 $destino = destino_seguro($_POST['next'] ?? 'index.html');
 
-if ($nombre === '' || $apellido === '' || $email === '' || $contrasena === '') {
+@mysqli_query($conexion, "ALTER TABLE usuarios ADD COLUMN direccion TEXT DEFAULT NULL");
+
+if ($nombre === '' || $apellido === '' || $email === '' || $contrasena === '' || $direccion === '') {
     redirigir("registrar.html?error=campos&next=" . urlencode($destino));
 }
 
@@ -25,9 +28,9 @@ if (mysqli_fetch_assoc($resultadoEmail)) {
 
 $consulta = mysqli_prepare(
     $conexion,
-    "INSERT INTO usuarios (nombre, apellido, email, contrasena, telefono) VALUES (?, ?, ?, ?, ?)"
+    "INSERT INTO usuarios (nombre, apellido, email, contrasena, telefono, direccion) VALUES (?, ?, ?, ?, ?, ?)"
 );
-mysqli_stmt_bind_param($consulta, "sssss", $nombre, $apellido, $email, $contrasena, $telefono);
+mysqli_stmt_bind_param($consulta, "ssssss", $nombre, $apellido, $email, $contrasena, $telefono, $direccion);
 $registrado = mysqli_stmt_execute($consulta);
 
 if (!$registrado) {
@@ -35,7 +38,9 @@ if (!$registrado) {
 }
 
 $_SESSION['nombre'] = $nombre;
+$_SESSION['apellido'] = $apellido;
 $_SESSION['email'] = $email;
+$_SESSION['direccion'] = $direccion;
 $_SESSION['id_usuario'] = mysqli_insert_id($conexion);
 
 redirigir($destino);

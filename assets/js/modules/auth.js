@@ -9,7 +9,7 @@ export async function obtenerSesion() {
         const respuesta = await fetch("php/api/sesion.php", { credentials: "same-origin" });
         return await respuesta.json();
     } catch (error) {
-        return { logueado: false, nombre: "", email: "" };
+        return { logueado: false, nombre: "", email: "", direccion: "" };
     }
 }
 
@@ -75,10 +75,11 @@ function prepararValidacionRegistro() {
         const nombre = document.getElementById("regNombre")?.value.trim();
         const apellido = document.getElementById("regApellido")?.value.trim();
         const email = document.getElementById("regEmail")?.value.trim();
+        const direccion = document.getElementById("regDireccion")?.value.trim();
         const pass = document.getElementById("regPass")?.value;
         const pass2 = document.getElementById("regPass2")?.value;
 
-        if (!nombre || !apellido || !email || !pass) {
+        if (!nombre || !apellido || !email || !direccion || !pass) {
             event.preventDefault();
             escribirError("errorRegistro", "Completa todos los campos obligatorios.");
             return;

@@ -505,11 +505,6 @@ button:disabled,
     color: #842029;
 }
 
-.card_pedido.cancelado {
-    opacity: .72;
-    filter: grayscale(.7);
-}
-
 @media (max-width: 700px) {
     .producto_acciones {
         flex-wrap: wrap;

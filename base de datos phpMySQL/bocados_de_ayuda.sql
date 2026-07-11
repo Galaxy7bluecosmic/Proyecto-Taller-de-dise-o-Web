@@ -74,22 +74,26 @@ CREATE TABLE `usuarios` (
   `email` varchar(100) NOT NULL,
   `contrasena` varchar(255) NOT NULL,
   `telefono` varchar(20) DEFAULT NULL,
+  `direccion` text DEFAULT NULL,
   `rol` varchar(20) NOT NULL DEFAULT 'cliente'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `email`, `contrasena`, `telefono`, `rol`) VALUES
-(1, 'Paolo Josue', 'Coaquira Anccori', 'paolojosuecoaquiraanccori@gmail.com', 'pao20505', '937319442', 'cliente'),
-(2, 'Juan', 'Pérez Quispe', 'juanperezquispe@gmail.com', 'Abc123', '93734859', 'cliente'),
-(3, 'Admin', 'General', 'Admin@admin.com', 'Admin12345', '', 'admin');
+INSERT INTO `usuarios` (`id_usuario`, `nombre`, `apellido`, `email`, `contrasena`, `telefono`, `direccion`, `rol`) VALUES
+(1, 'Paolo Josue', 'Coaquira Anccori', 'paolojosuecoaquiraanccori@gmail.com', 'pao20505', '937319442', 'Arequipa, direccion pendiente', 'cliente'),
+(2, 'Juan', 'Pérez Quispe', 'juanperezquispe@gmail.com', 'Abc123', '93734859', 'Arequipa, direccion pendiente', 'cliente'),
+(3, 'Admin', 'General', 'Admin@admin.com', 'Admin12345', '', 'Arequipa, oficina principal', 'admin');
 
 CREATE TABLE `pedidos` (
   `id_pedido` int(11) NOT NULL,
   `id_usuario` int(11) NOT NULL,
   `total` double NOT NULL,
   `metodo_pago` varchar(30) NOT NULL,
+  `direccion_envio` text DEFAULT NULL,
   `estado` varchar(30) NOT NULL DEFAULT 'en_camino',
   `creado_en` timestamp NULL DEFAULT current_timestamp(),
-  `cancelado_en` datetime DEFAULT NULL
+  `cancelado_en` datetime DEFAULT NULL,
+  `boleta_emitida` tinyint(1) NOT NULL DEFAULT 0,
+  `boleta_emitida_en` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 CREATE TABLE `pedido_detalles` (
@@ -104,7 +108,8 @@ CREATE TABLE `pedido_detalles` (
   `cantidad` int(11) NOT NULL,
   `demoraAPROX` int(11) NOT NULL,
   `estado` varchar(30) NOT NULL DEFAULT 'en_camino',
-  `cancelado_en` datetime DEFAULT NULL
+  `cancelado_en` datetime DEFAULT NULL,
+  `entregado_en` datetime DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 ALTER TABLE `categoriasmenu`

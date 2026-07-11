@@ -11,7 +11,9 @@ if ($email === '' || $contrasena === '') {
     redirigir("login.html?error=campos&next=" . urlencode($destino));
 }
 
-$consulta = mysqli_prepare($conexion, "SELECT id_usuario, nombre, email, contrasena FROM usuarios WHERE email = ? LIMIT 1");
+@mysqli_query($conexion, "ALTER TABLE usuarios ADD COLUMN direccion TEXT DEFAULT NULL");
+
+$consulta = mysqli_prepare($conexion, "SELECT id_usuario, nombre, apellido, email, contrasena, direccion FROM usuarios WHERE email = ? LIMIT 1");
 mysqli_stmt_bind_param($consulta, "s", $email);
 mysqli_stmt_execute($consulta);
 $resultado = mysqli_stmt_get_result($consulta);
@@ -23,6 +25,8 @@ if (!$usuario || $contrasena !== $usuario['contrasena']) {
 
 $_SESSION['id_usuario'] = $usuario['id_usuario'];
 $_SESSION['nombre'] = $usuario['nombre'];
+$_SESSION['apellido'] = $usuario['apellido'];
 $_SESSION['email'] = $usuario['email'];
+$_SESSION['direccion'] = $usuario['direccion'] ?? '';
 
 redirigir($destino);

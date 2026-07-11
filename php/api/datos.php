@@ -22,7 +22,10 @@ function usuario_actual()
 {
     return [
         "id" => $_SESSION["id_usuario"] ?? null,
+        "nombre" => $_SESSION["nombre"] ?? "",
+        "apellido" => $_SESSION["apellido"] ?? "",
         "email" => $_SESSION["email"] ?? "",
+        "direccion" => $_SESSION["direccion"] ?? "",
         "admin" => strtolower($_SESSION["email"] ?? "") === "admin@admin.com"
     ];
 }
@@ -59,6 +62,15 @@ function entero($valor)
     return is_numeric($valor) ? (int)$valor : 0;
 }
 
+function direccion_usuario($conexion, $idUsuario)
+{
+    $stmt = mysqli_prepare($conexion, "SELECT direccion FROM usuarios WHERE id_usuario = ? LIMIT 1");
+    mysqli_stmt_bind_param($stmt, "i", $idUsuario);
+    mysqli_stmt_execute($stmt);
+    $usuario = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+    return trim($usuario["direccion"] ?? "");
+}
+
 function asegurar_columnas($conexion)
 {
     // Estas consultas permiten que el proyecto funcione aunque se importe una base antigua.
@@ -66,6 +78,7 @@ function asegurar_columnas($conexion)
     @mysqli_query($conexion, "ALTER TABLE menus ADD COLUMN creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP");
     @mysqli_query($conexion, "ALTER TABLE menus MODIFY imagen TEXT NOT NULL");
     @mysqli_query($conexion, "ALTER TABLE usuarios ADD COLUMN rol VARCHAR(20) NOT NULL DEFAULT 'cliente'");
+    @mysqli_query($conexion, "ALTER TABLE usuarios ADD COLUMN direccion TEXT DEFAULT NULL");
 
     @mysqli_query($conexion, "CREATE TABLE IF NOT EXISTS promociones (
         id_promocion INT NOT NULL AUTO_INCREMENT,
@@ -89,12 +102,18 @@ function asegurar_columnas($conexion)
         id_usuario INT NOT NULL,
         total DOUBLE NOT NULL,
         metodo_pago VARCHAR(30) NOT NULL,
+        direccion_envio TEXT DEFAULT NULL,
         estado VARCHAR(30) NOT NULL DEFAULT 'en_camino',
         creado_en TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
         cancelado_en DATETIME DEFAULT NULL,
+        boleta_emitida TINYINT(1) NOT NULL DEFAULT 0,
+        boleta_emitida_en DATETIME DEFAULT NULL,
         PRIMARY KEY (id_pedido),
         KEY id_usuario (id_usuario)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");
+    @mysqli_query($conexion, "ALTER TABLE pedidos ADD COLUMN direccion_envio TEXT DEFAULT NULL");
+    @mysqli_query($conexion, "ALTER TABLE pedidos ADD COLUMN boleta_emitida TINYINT(1) NOT NULL DEFAULT 0");
+    @mysqli_query($conexion, "ALTER TABLE pedidos ADD COLUMN boleta_emitida_en DATETIME DEFAULT NULL");
 
     @mysqli_query($conexion, "CREATE TABLE IF NOT EXISTS pedido_detalles (
         id_detalle INT NOT NULL AUTO_INCREMENT,
@@ -112,6 +131,7 @@ function asegurar_columnas($conexion)
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci");
     @mysqli_query($conexion, "ALTER TABLE pedido_detalles ADD COLUMN estado VARCHAR(30) NOT NULL DEFAULT 'en_camino'");
     @mysqli_query($conexion, "ALTER TABLE pedido_detalles ADD COLUMN cancelado_en DATETIME DEFAULT NULL");
+    @mysqli_query($conexion, "ALTER TABLE pedido_detalles ADD COLUMN entregado_en DATETIME DEFAULT NULL");
 }
 
 function sembrar_datos($conexion)
@@ -177,6 +197,23 @@ if ($accion === "catalogo") {
         "menus" => consulta_todos($conexion, "SELECT m.*, c.nombre AS categoria FROM menus m INNER JOIN categoriasmenu c ON c.id_categoria = m.id_categoria ORDER BY m.creado_en DESC, m.id_Menu DESC"),
         "promociones" => consulta_todos($conexion, "SELECT * FROM promociones ORDER BY creado_en DESC, id_promocion DESC")
     ]);
+}
+
+if ($accion === "actualizar_direccion") {
+    $usuario = exigir_login();
+    $d = cuerpo_json();
+    $direccion = trim($d["direccion"] ?? "");
+
+    if ($direccion === "") {
+        responder(["ok" => false, "mensaje" => "Escribe una direccion valida."], 422);
+    }
+
+    $stmt = mysqli_prepare($conexion, "UPDATE usuarios SET direccion = ? WHERE id_usuario = ?");
+    mysqli_stmt_bind_param($stmt, "si", $direccion, $usuario["id"]);
+    mysqli_stmt_execute($stmt);
+    $_SESSION["direccion"] = $direccion;
+
+    responder(["ok" => true, "direccion" => $direccion, "sesion" => usuario_actual()]);
 }
 
 if ($accion === "guardar_menu") {
@@ -251,7 +288,11 @@ if ($accion === "checkout") {
     $d = cuerpo_json();
     $items = $d["items"] ?? [];
     $metodo = trim($d["metodo_pago"] ?? "tarjeta");
+    $direccion = trim($d["direccion_envio"] ?? "");
+    if ($direccion === "") $direccion = trim($usuario["direccion"] ?? "");
+    if ($direccion === "") $direccion = direccion_usuario($conexion, (int)$usuario["id"]);
     if (!is_array($items) || count($items) === 0) responder(["ok" => false, "mensaje" => "Sin pedidos."], 422);
+    if ($direccion === "") responder(["ok" => false, "mensaje" => "Agrega una dirección de delivery antes de pagar."], 422);
 
     mysqli_begin_transaction($conexion);
     try {
@@ -277,8 +318,8 @@ if ($accion === "checkout") {
             $detalles[] = $producto;
         }
 
-        $stmtPedido = mysqli_prepare($conexion, "INSERT INTO pedidos (id_usuario, total, metodo_pago, estado) VALUES (?, ?, ?, 'en_camino')");
-        mysqli_stmt_bind_param($stmtPedido, "ids", $usuario["id"], $total, $metodo);
+        $stmtPedido = mysqli_prepare($conexion, "INSERT INTO pedidos (id_usuario, total, metodo_pago, direccion_envio, estado) VALUES (?, ?, ?, ?, 'en_camino')");
+        mysqli_stmt_bind_param($stmtPedido, "idss", $usuario["id"], $total, $metodo, $direccion);
         mysqli_stmt_execute($stmtPedido);
         $idPedido = mysqli_insert_id($conexion);
 
@@ -323,13 +364,19 @@ if ($accion === "cancelar") {
     $d = cuerpo_json();
     $idDetalle = entero($d["id_detalle"] ?? 0);
 
-    $stmt = mysqli_prepare($conexion, "SELECT d.*, p.id_usuario FROM pedido_detalles d INNER JOIN pedidos p ON p.id_pedido = d.id_pedido WHERE d.id_detalle = ? AND p.id_usuario = ? LIMIT 1");
+    $stmt = mysqli_prepare($conexion, "SELECT d.*, p.id_usuario, p.boleta_emitida FROM pedido_detalles d INNER JOIN pedidos p ON p.id_pedido = d.id_pedido WHERE d.id_detalle = ? AND p.id_usuario = ? LIMIT 1");
     mysqli_stmt_bind_param($stmt, "ii", $idDetalle, $usuario["id"]);
     mysqli_stmt_execute($stmt);
     $detalle = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
 
     if (!$detalle || $detalle["estado"] === "cancelado") {
         responder(["ok" => false, "mensaje" => "No se encontro el producto del pedido."], 404);
+    }
+    if ((int)$detalle["boleta_emitida"] === 1) {
+        responder(["ok" => false, "mensaje" => "La boleta ya fue emitida. Por seguridad no se puede cancelar este pedido."], 409);
+    }
+    if ($detalle["estado"] === "entregado") {
+        responder(["ok" => false, "mensaje" => "Este producto ya fue marcado como entregado."], 409);
     }
 
     mysqli_begin_transaction($conexion);
@@ -349,6 +396,46 @@ if ($accion === "cancelar") {
         mysqli_query($conexion, "UPDATE pedidos SET estado = 'cancelado', cancelado_en = NOW() WHERE id_pedido = $idPedido");
     }
     mysqli_commit($conexion);
+    responder(["ok" => true]);
+}
+
+if ($accion === "entregar") {
+    $usuario = exigir_login();
+    $d = cuerpo_json();
+    $idDetalle = entero($d["id_detalle"] ?? 0);
+
+    $stmt = mysqli_prepare($conexion, "SELECT d.*, p.id_usuario FROM pedido_detalles d INNER JOIN pedidos p ON p.id_pedido = d.id_pedido WHERE d.id_detalle = ? AND p.id_usuario = ? LIMIT 1");
+    mysqli_stmt_bind_param($stmt, "ii", $idDetalle, $usuario["id"]);
+    mysqli_stmt_execute($stmt);
+    $detalle = mysqli_fetch_assoc(mysqli_stmt_get_result($stmt));
+
+    if (!$detalle || $detalle["estado"] === "cancelado") {
+        responder(["ok" => false, "mensaje" => "No se encontro un producto activo para marcar como entregado."], 404);
+    }
+
+    $idPedido = (int)$detalle["id_pedido"];
+    mysqli_query($conexion, "UPDATE pedido_detalles SET estado = 'entregado', entregado_en = NOW() WHERE id_detalle = $idDetalle");
+    $enCamino = (int)mysqli_fetch_row(mysqli_query($conexion, "SELECT COUNT(*) FROM pedido_detalles WHERE id_pedido = $idPedido AND estado = 'en_camino'"))[0];
+    $entregados = (int)mysqli_fetch_row(mysqli_query($conexion, "SELECT COUNT(*) FROM pedido_detalles WHERE id_pedido = $idPedido AND estado = 'entregado'"))[0];
+    if ($enCamino === 0 && $entregados > 0) {
+        mysqli_query($conexion, "UPDATE pedidos SET estado = 'entregado' WHERE id_pedido = $idPedido");
+    }
+    responder(["ok" => true]);
+}
+
+if ($accion === "emitir_boleta") {
+    $usuario = exigir_login();
+    $d = cuerpo_json();
+    $idPedido = entero($d["id_pedido"] ?? 0);
+
+    $stmt = mysqli_prepare($conexion, "SELECT id_pedido FROM pedidos WHERE id_pedido = ? AND id_usuario = ? LIMIT 1");
+    mysqli_stmt_bind_param($stmt, "ii", $idPedido, $usuario["id"]);
+    mysqli_stmt_execute($stmt);
+    if (!mysqli_fetch_assoc(mysqli_stmt_get_result($stmt))) {
+        responder(["ok" => false, "mensaje" => "No se encontro el pedido."], 404);
+    }
+
+    mysqli_query($conexion, "UPDATE pedidos SET boleta_emitida = 1, boleta_emitida_en = COALESCE(boleta_emitida_en, NOW()) WHERE id_pedido = $idPedido");
     responder(["ok" => true]);
 }
 
