@@ -44,6 +44,3 @@ Si la página se ve desactualizada, recarga con:
 ```txt
 Ctrl + F5
 ```
-
-al navegador a cargar nuevamente los archivos CSS y JavaScript.
-```
