@@ -76,7 +76,7 @@ function prepararValidacionRegistro() {
     if (!formulario) return;
     const campos = {
         '[name="regNombre"]': "nombre",
-        '[name="regApellido"]': "nombre",
+        '[name="regApellido"]': "apellido",
         '[name="regEmail"]': "email",
         '[name="regTelefono"]': "telefono",
         '[name="regDireccion"]': "direccion",
@@ -131,7 +131,7 @@ function mostrarErrorFormulario(error) {
     if (error === "validacion" && document.getElementById("register")) {
         validarFormulario(document.getElementById("register"), {
             '[name="regNombre"]': "nombre",
-            '[name="regApellido"]': "nombre",
+            '[name="regApellido"]': "apellido",
             '[name="regEmail"]': "email",
             '[name="regTelefono"]': "telefono",
             '[name="regDireccion"]': "direccion",

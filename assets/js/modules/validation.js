@@ -19,6 +19,18 @@ export const reglas = {
             return "";
         }
     },
+    apellido: {
+        ejemplo: "Ejemplo: Perez",
+        limpiar: (valor) => limpiarTexto(valor).replace(new RegExp(`[^${LETRAS}]`, "g"), "").slice(0, 15),
+        validar: (valor) => {
+            const texto = limpiarTexto(valor);
+            if (!texto) return "Este campo es obligatorio.";
+            if (texto.length < 2) return "Debe tener al menos 2 letras.";
+            if (texto.length > 15) return "Debe tener mÃ¡ximo 15 letras.";
+            if (!REGEX_NOMBRE.test(texto)) return "Usa solo letras, sin nÃºmeros ni sÃ­mbolos.";
+            return "";
+        }
+    },
     email: {
         ejemplo: "Ejemplo: usuario123@correo.com",
         limpiar: (valor) => limpiarTexto(valor).replace(/[^A-Za-z0-9@._-]/g, "").slice(0, 60),
@@ -59,7 +71,7 @@ export const reglas = {
         }
     },
     password: {
-        ejemplo: "Ejemplo: Bocados123",
+        ejemplo: "Ejemplo: Bocados",
         validar: (valor) => {
             const texto = String(valor || "");
             if (!texto) return "Escribe tu contraseña.";
@@ -68,11 +80,11 @@ export const reglas = {
         }
     },
     passwordFuerte: {
-        ejemplo: "Ejemplo: Bocados123",
+        ejemplo: "Ejemplo: Bocados",
         validar: (valor) => {
             const texto = String(valor || "");
             if (!texto) return "Crea una contraseña.";
-            if (texto.length < 8) return "Debe tener al menos 8 caracteres.";
+            if (texto.length < 6) return "Debe tener al menos 6 caracteres.";
             if (!/[A-Za-z]/.test(texto) || !/\d/.test(texto)) return "Combina letras y números.";
             return "";
         }
