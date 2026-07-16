@@ -1,5 +1,6 @@
 import { escaparHtml, protegerEnlace } from "./auth.js";
 import { apiPost } from "./api.js";
+import { prepararFormulario, validarFormulario } from "./validation.js?v=2";
 
 export function prepararHeader(sesion) {
     const header = document.querySelector("header");
@@ -104,7 +105,7 @@ function abrirModalDireccion(sesion) {
             <form data-form-direccion>
                 <label class="campo_direccion">
                     <span>Dirección de delivery</span>
-                    <input name="direccion" type="text" value="${escaparHtml(sesion.direccion || "")}" placeholder="Distrito, calle, número y referencia" required>
+                    <input name="direccion" type="text" value="${escaparHtml(sesion.direccion || "")}" placeholder="Av Lima #123" maxlength="80" required>
                 </label>
                 <button type="submit">Guardar dirección</button>
                 <small data-mensaje-direccion></small>
@@ -112,21 +113,24 @@ function abrirModalDireccion(sesion) {
         </div>
     `;
     modal.classList.add("mostrar");
+    const formDireccion = modal.querySelector("[data-form-direccion]");
+    const campos = { '[name="direccion"]': "direccion" };
+    prepararFormulario(formDireccion, campos);
 
     modal.querySelector("[data-cerrar-direccion]").addEventListener("click", () => modal.classList.remove("mostrar"));
     modal.onclick = (event) => {
         if (event.target === modal) modal.classList.remove("mostrar");
     };
 
-    modal.querySelector("[data-form-direccion]").addEventListener("submit", async (event) => {
+    formDireccion.addEventListener("submit", async (event) => {
         event.preventDefault();
         const form = event.currentTarget;
         const mensaje = form.querySelector("[data-mensaje-direccion]");
-        const direccion = form.direccion.value.trim();
-        if (!direccion) {
-            mensaje.textContent = "Escribe una dirección válida.";
+        if (!validarFormulario(form, campos)) {
+            mensaje.textContent = "Corrige la dirección marcada en rojo.";
             return;
         }
+        const direccion = form.direccion.value.trim();
         try {
             const respuesta = await apiPost("actualizar_direccion", { direccion });
             sesion.direccion = respuesta.direccion;

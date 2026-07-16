@@ -258,6 +258,18 @@
     font-weight: 700;
 }
 
+.modal_direccion_contenido .campo_error {
+    color: #c62828;
+    font-size: .78rem;
+    line-height: 1.35;
+}
+
+.modal_direccion_contenido .campo_invalido {
+    border-color: #c62828 !important;
+    background: #fff5f5 !important;
+    box-shadow: 0 0 0 3px rgba(198, 40, 40, .12) !important;
+}
+
 .btn_guardar_admin {
     border: none;
     background: #7ccf39;

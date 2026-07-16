@@ -11,9 +11,14 @@ if ($email === '' || $contrasena === '') {
     redirigir("login.html?error=campos&next=" . urlencode($destino));
 }
 
-@mysqli_query($conexion, "ALTER TABLE usuarios ADD COLUMN direccion TEXT DEFAULT NULL");
+if (!preg_match('/^[A-Za-z0-9._-]+@[A-Za-z0-9-]+(\.[A-Za-z0-9-]+)+$/', $email) || !preg_match('/\.(com|edu|pe|org|net)$/i', $email)) {
+    redirigir("login.html?error=validacion&next=" . urlencode($destino));
+}
 
-$consulta = mysqli_prepare($conexion, "SELECT id_usuario, nombre, apellido, email, contrasena, direccion FROM usuarios WHERE email = ? LIMIT 1");
+@mysqli_query($conexion, "ALTER TABLE usuarios ADD COLUMN direccion TEXT DEFAULT NULL");
+@mysqli_query($conexion, "ALTER TABLE usuarios ADD COLUMN telefono VARCHAR(20) DEFAULT NULL");
+
+$consulta = mysqli_prepare($conexion, "SELECT id_usuario, nombre, apellido, email, contrasena, telefono, direccion FROM usuarios WHERE email = ? LIMIT 1");
 mysqli_stmt_bind_param($consulta, "s", $email);
 mysqli_stmt_execute($consulta);
 $resultado = mysqli_stmt_get_result($consulta);
@@ -27,6 +32,7 @@ $_SESSION['id_usuario'] = $usuario['id_usuario'];
 $_SESSION['nombre'] = $usuario['nombre'];
 $_SESSION['apellido'] = $usuario['apellido'];
 $_SESSION['email'] = $usuario['email'];
+$_SESSION['telefono'] = $usuario['telefono'] ?? '';
 $_SESSION['direccion'] = $usuario['direccion'] ?? '';
 
 redirigir($destino);

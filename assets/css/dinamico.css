@@ -456,6 +456,24 @@ button:disabled,
     font: inherit;
 }
 
+.campo_error {
+    display: block;
+    color: #c62828;
+    font-size: .78rem;
+    line-height: 1.35;
+    font-weight: 800;
+}
+
+.campo_invalido {
+    border-color: #c62828 !important;
+    background: #fff5f5 !important;
+    box-shadow: 0 0 0 3px rgba(198, 40, 40, .12) !important;
+}
+
+.campos_tarjeta {
+    margin-top: 14px;
+}
+
 .btn_confirmar_pago {
     width: 100%;
     margin-top: 18px !important;

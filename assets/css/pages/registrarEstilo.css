@@ -548,4 +548,20 @@ footer a:hover {
   text-align: center;
   font-weight: bold;
 }
+
+.campo_error {
+  display: block;
+  color: #c62828;
+  font-size: 0.76rem;
+  line-height: 1.35;
+  margin-top: 6px;
+  font-weight: 700;
+}
+
+.campo input.campo_invalido,
+.campo_invalido {
+  border-color: #c62828 !important;
+  background: #fff5f5 !important;
+  box-shadow: 0 0 0 3px rgba(198, 40, 40, 0.12) !important;
+}
  

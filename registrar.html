@@ -1,4 +1,4 @@
-﻿
+
 
 <!DOCTYPE html>
 <html lang="es">
@@ -9,7 +9,7 @@
     <meta http-equiv="Cache-Control" content="no-store" />
     <meta http-equiv="Pragma" content="no-cache" />
     <meta http-equiv="Expires" content="0" />
-    <title>BocadosDeAyuda – Login / Registro</title>
+    <title>BocadosDeAyuda - Login / Registro</title>
     <link rel="shortcut icon" href="img/tienda-de-comestibles.gif" type="image/x-icon" />
     <link rel="stylesheet" href="assets/css/pages/registrarEstilo.css">
 </head>
@@ -50,7 +50,7 @@
                         <span class="stat_label">Restaurantes aliados</span>
                     </div>
                     <div class="panel_tag">
-                        <span>♻️</span>
+                        <span>??</span>
                         <p>Menos desperdicio · Precios accesibles · Impacto positivo</p>
                     </div>
                 </div>
@@ -76,45 +76,45 @@
                     <div class="fila_campos">
                         <div class="campo">
                             <label for="regNombre">Nombre</label>
-                            <input type="text" id="regNombre" name="regNombre" placeholder="Juan" autocomplete="off">
+                            <input type="text" id="regNombre" name="regNombre" placeholder="Juan" autocomplete="given-name" maxlength="15" required>
                         </div>
                         <div class="campo">
                             <label for="regApellido">Apellido</label>
                             <input type="text" id="regApellido" name="regApellido" placeholder="Pérez"
-                                autocomplete="off">
+                                autocomplete="family-name" maxlength="15" required>
                         </div>
                     </div>
 
                     <div class="campo">
                         <label for="regEmail">Correo electrónico</label>
                         <input type="email" id="regEmail" name="regEmail" placeholder="tucorreo@ejemplo.com"
-                            autocomplete="off">
+                            autocomplete="email" maxlength="60" required>
                     </div>
 
                     <div class="campo">
                         <label for="regTelefono">Teléfono</label>
-                        <input type="tel" name="regTelefono" id="regTelefono" placeholder="000 000 000"
-                            autocomplete="off">
+                        <input type="tel" name="regTelefono" id="regTelefono" placeholder="987654321"
+                            autocomplete="tel" inputmode="numeric" maxlength="9" required>
                     </div>
 
                     <div class="campo">
                         <label for="regDireccion">Dirección de delivery</label>
                         <input type="text" name="regDireccion" id="regDireccion"
-                            placeholder="Distrito, calle, número y referencia" autocomplete="street-address">
+                            placeholder="Av Lima #123" autocomplete="street-address" maxlength="80" required>
                     </div>
 
                     <div class="fila_campos">
                         <div class="campo">
                             <label for="regPass">Contraseña</label>
-                            <input type="password" id="regPass" name="regPass" placeholder="••••••••" />
+                            <input type="password" id="regPass" name="regPass" placeholder="••••••••" autocomplete="new-password" minlength="8" required />
                         </div>
                         <div class="campo">
                             <label for="regPass2">Confirmar contraseña</label>
-                            <input type="password" id="regPass2" placeholder="••••••••" />
+                            <input type="password" id="regPass2" placeholder="••••••••" autocomplete="new-password" minlength="8" required />
                         </div>
                     </div>
 
-                    <button class="submit_btn" type="submit">Crear Cuenta Gratis →</button>
+                    <button class="submit_btn" type="submit">Crear Cuenta Gratis ?</button>
 
                     <p id="errorRegistro" class="msg_error"></p>
                 </form>
@@ -132,7 +132,7 @@
         </span>
     </footer>
 
-    <script type="module" src="assets/js/site.js?v=8"></script>
+    <script type="module" src="assets/js/site.js?v=11"></script>
 </body>
 
 </html>

@@ -1,10 +1,12 @@
 import { apiPost, escapar, moneda } from "../../modules/api.js";
 import { actualizarContadoresCarrito, cambiarCantidad, obtenerCarrito, quitarProducto, vaciarCarrito } from "../../modules/cart-store.js";
+import { prepararFormulario, validarFormulario } from "../../modules/validation.js?v=2";
 
 let sesionActual = {};
 let metodoActual = "tarjeta";
 let temporizadorPago = null;
 let tokenPago = 0;
+let datosPago = {};
 
 export function iniciarFormularioPedidos(sesion) {
     if (!document.querySelector("[data-carrito-lista]")) return;
@@ -82,6 +84,15 @@ function prepararModal() {
 
     abrirModal.addEventListener("click", () => {
         metodoActual = "tarjeta";
+        datosPago = {
+            ...datosPago,
+            direccion: datosPago.direccion || sesionActual.direccion || "",
+            telefono: datosPago.telefono || sesionActual.telefono || "",
+            tarjeta: "",
+            titular: nombreTitularUsuario(),
+            fecha: "",
+            cvv: ""
+        };
         modal.classList.add("mostrar");
         pintarMetodo();
     });
@@ -89,6 +100,7 @@ function prepararModal() {
 
     document.querySelectorAll("[data-metodo]").forEach((boton) => {
         boton.addEventListener("click", () => {
+            guardarDatosPago();
             metodoActual = boton.dataset.metodo;
             pintarMetodo();
         });
@@ -107,68 +119,79 @@ function pintarMetodo() {
     cancelarTemporizador();
     document.querySelectorAll("[data-metodo]").forEach((boton) => boton.classList.toggle("activo", boton.dataset.metodo === metodoActual));
     const zona = document.querySelector("[data-campos-pago]");
-    const direccion = escapar(sesionActual.direccion || "");
+    const direccion = escapar(datosPago.direccion || sesionActual.direccion || "");
+    const telefono = escapar(datosPago.telefono || sesionActual.telefono || "");
+    const camposEntrega = `
+        <div class="tarjeta_grid">
+            <label class="campo_pago ancho">
+                <span>Dirección de entrega</span>
+                <input name="direccion" type="text" placeholder="Av Lima #123" value="${direccion}" required autocomplete="street-address">
+            </label>
+            <label class="campo_pago">
+                <span>Celular</span>
+                <input name="telefono" type="tel" inputmode="numeric" maxlength="9" placeholder="987654321" value="${telefono}" required autocomplete="tel">
+            </label>
+        </div>
+    `;
 
     if (metodoActual === "tarjeta") {
         zona.innerHTML = `
-            <div class="tarjeta_grid">
-                <label class="campo_pago ancho">
-                    <span>Direccion</span>
-                    <input name="direccion" type="text" placeholder="Distrito, calle, numero" value="${direccion}" required>
-                </label>
-                <label class="campo_pago">
-                    <span>Telefono</span>
-                    <input name="telefono" type="text" placeholder="+51 999 999 999" required>
-                </label>
+            ${camposEntrega}
+            <div class="tarjeta_grid campos_tarjeta">
                 <label class="campo_pago ancho">
                     <span>Numero de tarjeta</span>
-                    <input name="tarjeta" type="text" minlength="12" placeholder="1234 5678 9123 4567" required>
+                    <input name="tarjeta" type="text" inputmode="numeric" maxlength="16" placeholder="4111111111111111" value="${escapar(datosPago.tarjeta || "")}" required>
                 </label>
                 <label class="campo_pago ancho">
                     <span>Nombre del titular</span>
-                    <input name="titular" type="text" placeholder="Nombre completo" required>
+                    <input name="titular" type="text" placeholder="Juan Perez" value="${escapar(datosPago.titular || "")}" required>
                 </label>
                 <label class="campo_pago">
                     <span>Fecha</span>
-                    <input name="fecha" type="text" placeholder="MM/AA" required>
+                    <input name="fecha" type="text" inputmode="numeric" maxlength="5" placeholder="08/28" value="${escapar(datosPago.fecha || "")}" required>
                 </label>
                 <label class="campo_pago">
                     <span>CVV</span>
-                    <input name="cvv" type="password" minlength="3" maxlength="4" placeholder="123" required>
+                    <input name="cvv" type="password" inputmode="numeric" minlength="3" maxlength="4" placeholder="123" value="${escapar(datosPago.cvv || "")}" required>
                 </label>
             </div>
+            <p class="msg_error" data-error-pago></p>
             <button type="submit" id="btnPagar" class="btn_confirmar_pago">Confirmar pago</button>
         `;
+        prepararValidacionesPago();
         return;
     }
 
     if (metodoActual === "yape") {
         zona.innerHTML = `
+            ${camposEntrega}
             <div class="pago_simulado">
                 <h3>Yape al 987 654 321</h3>
                 <div class="qr_falso">QR</div>
-                <p class="aviso_pago">Entrega en: ${direccion || "direccion registrada en tu cuenta"}</p>
-                <p>La pagina se actualizara una vez se haya pagado.</p>
-                <small>Esperando confirmacion simulada por 10 segundos.</small>
+                <p class="aviso_pago">Verifica que tu dirección y celular estén correctos antes de confirmar.</p>
+                <p>Cuando hayas realizado el Yape, confirma para registrar el pedido.</p>
             </div>
+            <p class="msg_error" data-error-pago></p>
+            <button type="submit" id="btnPagar" class="btn_confirmar_pago">Ya pagué con Yape</button>
         `;
-        iniciarPagoAutomatico("yape");
+        prepararValidacionesPago();
         return;
     }
 
     zona.innerHTML = `
+        ${camposEntrega}
         <div class="pago_simulado">
             <h3>Pago en efectivo BCP</h3>
             <p>Cuenta BCP: 191-23456789-0-99</p>
             <p>Acercate a una agencia, agente BCP o local Multired. Indica el codigo de pago 456789 y conserva tu comprobante.</p>
-            <p class="aviso_pago">Entrega en: ${direccion || "direccion registrada en tu cuenta"}</p>
             <p class="aviso_pago">Se envio un correo a ${escapar(sesionActual.email)} con la informacion detallada para el pago. El pago debe realizarse en 1 hora o sera cancelado.</p>
             <button type="button" id="cancelarPagoPendiente">Cancelar pago</button>
-            <small>Esperando confirmacion simulada por 10 segundos.</small>
         </div>
+        <p class="msg_error" data-error-pago></p>
+        <button type="submit" id="btnPagar" class="btn_confirmar_pago">Confirmar pago en efectivo</button>
     `;
     document.getElementById("cancelarPagoPendiente").addEventListener("click", cancelarPagoPendiente);
-    iniciarPagoAutomatico("efectivo");
+    prepararValidacionesPago();
 }
 
 function iniciarPagoAutomatico(metodo) {
@@ -181,16 +204,18 @@ function iniciarPagoAutomatico(metodo) {
 
 function confirmarPago(event) {
     event.preventDefault();
-    if (metodoActual !== "tarjeta") return;
-    if (!event.currentTarget.checkValidity()) {
-        event.currentTarget.reportValidity();
+    guardarDatosPago();
+    const campos = camposPorMetodo();
+    if (!validarFormulario(event.currentTarget, campos)) {
+        mostrarErrorPago("Corrige los campos marcados en rojo. Tus datos correctos se mantendrán.");
         return;
     }
-    procesarPago("tarjeta");
+    procesarPago(metodoActual);
 }
 
 async function procesarPago(metodo = metodoActual) {
     cancelarTemporizador();
+    guardarDatosPago();
     const pantalla = document.getElementById("pantallaCarga");
     const loader = document.querySelector(".loader");
     document.getElementById("modalPago")?.classList.remove("mostrar");
@@ -202,8 +227,8 @@ async function procesarPago(metodo = metodoActual) {
 
     try {
         const items = obtenerCarrito(sesionActual).map((item) => ({ tipo: item.tipo, id: item.id, cantidad: item.cantidad }));
-        const direccion = document.querySelector('[name="direccion"]')?.value || sesionActual.direccion || "";
-        const resultado = await apiPost("checkout", { metodo_pago: metodo, direccion_envio: direccion, items });
+        const direccion = datosPago.direccion || sesionActual.direccion || "";
+        const resultado = await apiPost("checkout", { metodo_pago: metodo, direccion_envio: direccion, telefono: datosPago.telefono || "", items });
         vaciarCarrito(sesionActual);
         loader.innerHTML = `
             <div class="check_final">&#10003;</div>
@@ -213,7 +238,8 @@ async function procesarPago(metodo = metodoActual) {
         setTimeout(() => { window.location.href = `pedidos.html?pedido=${Number(resultado.id_pedido)}`; }, 1800);
     } catch (error) {
         pantalla.classList.remove("mostrarCarga");
-        alert(error.message);
+        document.getElementById("modalPago")?.classList.add("mostrar");
+        mostrarErrorPago(error.message);
     }
 }
 
@@ -225,6 +251,41 @@ function cancelarPagoPendiente() {
 }
 
 function cerrarModalPago() {
+    guardarDatosPago();
     cancelarTemporizador();
     document.getElementById("modalPago").classList.remove("mostrar");
+}
+
+function prepararValidacionesPago() {
+    prepararFormulario(document.getElementById("formPago"), camposPorMetodo());
+}
+
+function camposPorMetodo() {
+    const comunes = {
+        '[name="direccion"]': "direccion",
+        '[name="telefono"]': "telefono"
+    };
+    if (metodoActual !== "tarjeta") return comunes;
+    return {
+        ...comunes,
+        '[name="tarjeta"]': "tarjeta",
+        '[name="titular"]': "titular",
+        '[name="fecha"]': "fechaTarjeta",
+        '[name="cvv"]': "cvv"
+    };
+}
+
+function guardarDatosPago() {
+    document.querySelectorAll("#formPago input").forEach((input) => {
+        datosPago[input.name] = input.value;
+    });
+}
+
+function mostrarErrorPago(mensaje) {
+    const error = document.querySelector("[data-error-pago]");
+    if (error) error.textContent = mensaje || "";
+}
+
+function nombreTitularUsuario() {
+    return `${sesionActual.nombre || ""} ${sesionActual.apellido || ""}`.trim();
 }

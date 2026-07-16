@@ -25,6 +25,7 @@ function usuario_actual()
         "nombre" => $_SESSION["nombre"] ?? "",
         "apellido" => $_SESSION["apellido"] ?? "",
         "email" => $_SESSION["email"] ?? "",
+        "telefono" => $_SESSION["telefono"] ?? "",
         "direccion" => $_SESSION["direccion"] ?? "",
         "admin" => strtolower($_SESSION["email"] ?? "") === "admin@admin.com"
     ];
@@ -62,6 +63,42 @@ function entero($valor)
     return is_numeric($valor) ? (int)$valor : 0;
 }
 
+function texto_largo($valor)
+{
+    return function_exists('mb_strlen') ? mb_strlen($valor, 'UTF-8') : strlen($valor);
+}
+
+function texto_en_rango($valor, $min, $max)
+{
+    $largo = texto_largo($valor);
+    return $largo >= $min && $largo <= $max;
+}
+
+function direccion_valida($valor)
+{
+    return texto_en_rango($valor, 8, 80)
+        && preg_match('/[\p{L}]/u', $valor)
+        && (!str_contains($valor, '#') || preg_match('/#\d+/', $valor))
+        && substr_count($valor, '#') <= 1
+        && preg_match('/^[\p{L}0-9\s#]+$/u', $valor);
+}
+
+function telefono_valido($valor)
+{
+    return preg_match('/^9\d{8}$/', $valor);
+}
+
+function texto_simple_valido($valor, $min = 3, $max = 120)
+{
+    return texto_en_rango($valor, $min, $max) && preg_match('/[\p{L}0-9]/u', $valor);
+}
+
+function ruta_imagen_valida($valor)
+{
+    if (strpos($valor, "data:image/") === 0) return true;
+    return texto_en_rango($valor, 5, 200) && preg_match('/^[\p{L}0-9\s._\-\/]+$/u', $valor);
+}
+
 function direccion_usuario($conexion, $idUsuario)
 {
     $stmt = mysqli_prepare($conexion, "SELECT direccion FROM usuarios WHERE id_usuario = ? LIMIT 1");
@@ -79,6 +116,7 @@ function asegurar_columnas($conexion)
     @mysqli_query($conexion, "ALTER TABLE menus MODIFY imagen TEXT NOT NULL");
     @mysqli_query($conexion, "ALTER TABLE usuarios ADD COLUMN rol VARCHAR(20) NOT NULL DEFAULT 'cliente'");
     @mysqli_query($conexion, "ALTER TABLE usuarios ADD COLUMN direccion TEXT DEFAULT NULL");
+    @mysqli_query($conexion, "ALTER TABLE usuarios ADD COLUMN telefono VARCHAR(20) DEFAULT NULL");
 
     @mysqli_query($conexion, "CREATE TABLE IF NOT EXISTS promociones (
         id_promocion INT NOT NULL AUTO_INCREMENT,
@@ -204,8 +242,8 @@ if ($accion === "actualizar_direccion") {
     $d = cuerpo_json();
     $direccion = trim($d["direccion"] ?? "");
 
-    if ($direccion === "") {
-        responder(["ok" => false, "mensaje" => "Escribe una direccion valida."], 422);
+    if (!direccion_valida($direccion)) {
+        responder(["ok" => false, "mensaje" => "Escribe una dirección válida. Ejemplo: Av Lima #123."], 422);
     }
 
     $stmt = mysqli_prepare($conexion, "UPDATE usuarios SET direccion = ? WHERE id_usuario = ?");
@@ -227,7 +265,14 @@ if ($accion === "guardar_menu") {
     $demora = entero($d["demoraAPROX"] ?? 20);
     $categoria = entero($d["id_categoria"] ?? 1);
     $stock = entero($d["stock"] ?? 0);
-    if ($nombre === "" || $descripcion === "" || $imagen === "" || $precio <= 0) responder(["ok" => false, "mensaje" => "Completa los datos del plato."], 422);
+    if (
+        !texto_simple_valido($nombre, 3, 80) ||
+        !texto_simple_valido($descripcion, 10, 260) ||
+        !ruta_imagen_valida($imagen) ||
+        $precio <= 0 ||
+        $demora < 1 ||
+        $stock < 0
+    ) responder(["ok" => false, "mensaje" => "Corrige los datos del plato antes de guardar."], 422);
 
     if ($id > 0) {
         $stmt = mysqli_prepare($conexion, "UPDATE menus SET nombre=?, descripcion=?, precio=?, imagen=?, demoraAPROX=?, id_categoria=?, stock=? WHERE id_Menu=?");
@@ -254,7 +299,16 @@ if ($accion === "guardar_promocion") {
     $descuento = trim($d["descuento"] ?? "");
     $color = trim($d["color"] ?? "amarillo");
     $stock = entero($d["stock"] ?? 0);
-    if ($nombre === "" || $descripcion === "" || $etiqueta === "" || $imagen === "" || $precioNuevo <= 0) responder(["ok" => false, "mensaje" => "Completa los datos de la promoción."], 422);
+    if (
+        !texto_simple_valido($nombre, 3, 80) ||
+        !texto_simple_valido($descripcion, 10, 260) ||
+        !texto_simple_valido($etiqueta, 3, 80) ||
+        !texto_simple_valido($restaurante, 3, 120) ||
+        !ruta_imagen_valida($imagen) ||
+        $precioAnterior < 0 ||
+        $precioNuevo <= 0 ||
+        $stock < 0
+    ) responder(["ok" => false, "mensaje" => "Corrige los datos de la promoción antes de guardar."], 422);
 
     if ($id > 0) {
         $stmt = mysqli_prepare($conexion, "UPDATE promociones SET nombre=?, descripcion=?, etiqueta=?, restaurante=?, precio_anterior=?, precio_nuevo=?, descuento=?, imagen=?, color=?, stock=?, demoraAPROX=20 WHERE id_promocion=?");
@@ -289,10 +343,12 @@ if ($accion === "checkout") {
     $items = $d["items"] ?? [];
     $metodo = trim($d["metodo_pago"] ?? "tarjeta");
     $direccion = trim($d["direccion_envio"] ?? "");
+    $telefono = trim($d["telefono"] ?? "");
     if ($direccion === "") $direccion = trim($usuario["direccion"] ?? "");
     if ($direccion === "") $direccion = direccion_usuario($conexion, (int)$usuario["id"]);
     if (!is_array($items) || count($items) === 0) responder(["ok" => false, "mensaje" => "Sin pedidos."], 422);
-    if ($direccion === "") responder(["ok" => false, "mensaje" => "Agrega una dirección de delivery antes de pagar."], 422);
+    if (!direccion_valida($direccion)) responder(["ok" => false, "mensaje" => "Agrega una dirección válida. Ejemplo: Av Lima #123."], 422);
+    if (!telefono_valido($telefono)) responder(["ok" => false, "mensaje" => "Agrega un celular válido de 9 números. Ejemplo: 987654321."], 422);
 
     mysqli_begin_transaction($conexion);
     try {

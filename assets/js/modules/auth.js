@@ -1,3 +1,5 @@
+import { prepararFormulario, validarFormulario, mostrarError } from "./validation.js?v=2";
+
 export const paginasProtegidas = ["pedidos.html", "form_pedidos.html"];
 
 export function rutaActual() {
@@ -47,22 +49,24 @@ export function prepararFormularios() {
         });
     }
 
-    mostrarErrorFormulario(error);
     prepararValidacionLogin();
     prepararValidacionRegistro();
+    mostrarErrorFormulario(error);
 }
 
 function prepararValidacionLogin() {
     const formulario = document.getElementById("login");
     if (!formulario) return;
+    const campos = {
+        '[name="loginEmail"]': "email",
+        '[name="loginPass"]': "password"
+    };
+    prepararFormulario(formulario, campos);
 
     formulario.addEventListener("submit", (event) => {
-        const email = document.getElementById("loginEmail")?.value.trim();
-        const pass = document.getElementById("loginPass")?.value.trim();
-
-        if (!email || !pass) {
+        if (!validarFormulario(formulario, campos)) {
             event.preventDefault();
-            escribirError("errorLogin", "Completa tu correo y contraseña.");
+            escribirError("errorLogin", "Corrige los campos marcados en rojo para iniciar sesión.");
         }
     });
 }
@@ -70,26 +74,42 @@ function prepararValidacionLogin() {
 function prepararValidacionRegistro() {
     const formulario = document.getElementById("register");
     if (!formulario) return;
+    const campos = {
+        '[name="regNombre"]': "nombre",
+        '[name="regApellido"]': "nombre",
+        '[name="regEmail"]': "email",
+        '[name="regTelefono"]': "telefono",
+        '[name="regDireccion"]': "direccion",
+        '[name="regPass"]': "passwordFuerte"
+    };
+    prepararFormulario(formulario, campos);
+    restaurarRegistro();
+    const confirmar = document.getElementById("regPass2");
+    confirmar?.addEventListener("input", () => validarConfirmacionPassword());
 
     formulario.addEventListener("submit", (event) => {
-        const nombre = document.getElementById("regNombre")?.value.trim();
-        const apellido = document.getElementById("regApellido")?.value.trim();
-        const email = document.getElementById("regEmail")?.value.trim();
-        const direccion = document.getElementById("regDireccion")?.value.trim();
-        const pass = document.getElementById("regPass")?.value;
-        const pass2 = document.getElementById("regPass2")?.value;
+        const camposOk = validarFormulario(formulario, campos);
+        const confirmacionOk = validarConfirmacionPassword();
 
-        if (!nombre || !apellido || !email || !direccion || !pass) {
+        if (!camposOk || !confirmacionOk) {
             event.preventDefault();
-            escribirError("errorRegistro", "Completa todos los campos obligatorios.");
+            escribirError("errorRegistro", "Corrige los campos marcados en rojo para crear tu cuenta.");
+            guardarRegistro();
             return;
         }
-
-        if (pass !== pass2) {
-            event.preventDefault();
-            escribirError("errorRegistro", "Las contraseñas no coinciden.");
-        }
+        guardarRegistro();
     });
+}
+
+function validarConfirmacionPassword() {
+    const pass = document.getElementById("regPass")?.value || "";
+    const confirmar = document.getElementById("regPass2");
+    if (!confirmar) return true;
+    const mensaje = confirmar.value && pass === confirmar.value
+        ? ""
+        : "Las contraseñas no coinciden. Ejemplo: repite exactamente Bocados123";
+    mostrarError(confirmar, mensaje);
+    return !mensaje;
 }
 
 function mostrarErrorFormulario(error) {
@@ -99,10 +119,25 @@ function mostrarErrorFormulario(error) {
         campos: "Completa todos los campos obligatorios.",
         credenciales: "Correo o contraseña incorrectos.",
         email: "Ese correo ya está registrado.",
+        validacion: "Revisa los campos marcados. Hay datos con formato inválido.",
         registro: "No se pudo completar el registro. Inténtalo nuevamente."
     };
 
     const contenedor = document.getElementById("errorLogin") || document.getElementById("errorRegistro");
+    if (error === "email") {
+        mostrarError(document.getElementById("regEmail"), "Ese correo ya está registrado. Usa otro correo.");
+        return;
+    }
+    if (error === "validacion" && document.getElementById("register")) {
+        validarFormulario(document.getElementById("register"), {
+            '[name="regNombre"]': "nombre",
+            '[name="regApellido"]': "nombre",
+            '[name="regEmail"]': "email",
+            '[name="regTelefono"]': "telefono",
+            '[name="regDireccion"]': "direccion",
+            '[name="regPass"]': "passwordFuerte"
+        });
+    }
     if (contenedor) {
         contenedor.textContent = mensajes[error] || "Ocurrió un error. Inténtalo nuevamente.";
     }
@@ -117,4 +152,29 @@ export function escaparHtml(texto) {
     const div = document.createElement("div");
     div.textContent = texto;
     return div.innerHTML;
+}
+
+function guardarRegistro() {
+    const formulario = document.getElementById("register");
+    if (!formulario) return;
+    const datos = {};
+    ["regNombre", "regApellido", "regEmail", "regTelefono", "regDireccion"].forEach((id) => {
+        datos[id] = document.getElementById(id)?.value || "";
+    });
+    localStorage.setItem("registroBocadosPendiente", JSON.stringify(datos));
+}
+
+function restaurarRegistro() {
+    const tieneError = new URLSearchParams(window.location.search).has("error");
+    if (!tieneError) {
+        localStorage.removeItem("registroBocadosPendiente");
+        return;
+    }
+    const guardado = localStorage.getItem("registroBocadosPendiente");
+    if (!guardado) return;
+    const datos = JSON.parse(guardado);
+    Object.entries(datos).forEach(([id, valor]) => {
+        const input = document.getElementById(id);
+        if (input && !input.value) input.value = valor;
+    });
 }

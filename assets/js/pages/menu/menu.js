@@ -1,5 +1,6 @@
 import { apiGet, apiPost, escapar, leerImagenComoDataUrl, moneda } from "../../modules/api.js";
 import { agregarAlCarrito, actualizarContadoresCarrito, stockDisponible } from "../../modules/cart-store.js";
+import { prepararFormulario, validarFormulario } from "../../modules/validation.js?v=2";
 
 let catalogo = { categorias: [], menus: [], sesion: {} };
 let categoriaActiva = "Todas";
@@ -143,24 +144,31 @@ function abrirModalPlato() {
             <form id="formPlatoAdmin">
                 <input name="nombre" placeholder="Nombre del plato" required>
                 <textarea name="descripcion" placeholder="Descripción" required></textarea>
-                <input name="precio" type="number" step="0.01" min="0" placeholder="Precio" required>
-                <input name="demoraAPROX" type="number" min="1" value="20" placeholder="Tiempo de preparación">
-                <input name="stock" type="number" min="0" value="10" placeholder="Stock">
+                <input name="precio" type="text" inputmode="decimal" placeholder="Precio" required>
+                <input name="demoraAPROX" type="text" inputmode="numeric" value="20" placeholder="Tiempo de preparación">
+                <input name="stock" type="text" inputmode="numeric" value="10" placeholder="Stock">
                 <select name="id_categoria">${catalogo.categorias.map((c) => `<option value="${c.id_categoria}">${escapar(c.nombre)}</option>`).join("")}</select>
                 <input name="imagenRuta" placeholder="Ruta de imagen, ejemplo img/plato.jpg">
                 <input name="imagenArchivo" type="file" accept="image/*">
+                <p class="msg_error" data-error-admin></p>
                 <button type="submit">Guardar plato</button>
             </form>
         </div>
     `;
     modal.classList.add("mostrar");
     modal.querySelector("[data-cerrar-modal]").addEventListener("click", () => modal.classList.remove("mostrar"));
-    modal.querySelector("form").addEventListener("submit", guardarPlato);
+    const form = modal.querySelector("form");
+    prepararFormulario(form, camposPlatoAdmin());
+    form.addEventListener("submit", guardarPlato);
 }
 
 async function guardarPlato(event) {
     event.preventDefault();
     const form = event.currentTarget;
+    if (!validarFormulario(form, camposPlatoAdmin())) {
+        form.querySelector("[data-error-admin]").textContent = "Corrige los campos marcados en rojo antes de guardar.";
+        return;
+    }
     const datos = Object.fromEntries(new FormData(form).entries());
     const imagenArchivo = await leerImagenComoDataUrl(form.imagenArchivo);
     await apiPost("guardar_menu", {
@@ -176,4 +184,15 @@ async function guardarPlato(event) {
     catalogo = await apiGet("catalogo");
     catalogo.sesion = window.__SESION_ACTUAL__;
     pintarProductos();
+}
+
+function camposPlatoAdmin() {
+    return {
+        '[name="nombre"]': "textoCorto",
+        '[name="descripcion"]': "descripcion",
+        '[name="precio"]': "dinero",
+        '[name="demoraAPROX"]': "enteroPositivo",
+        '[name="stock"]': "stock",
+        '[name="imagenRuta"]': "imagen"
+    };
 }
